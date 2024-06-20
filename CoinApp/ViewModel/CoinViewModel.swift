@@ -8,23 +8,28 @@
 import Foundation
 import Combine
 
-struct APIErrorMessage: Decodable {
-  var error: Bool
-  var reason: String
-}
-
-enum APIError: LocalizedError {
-    case transportError(Error)
-    case invalidResponse
-    case validationError(String)
-    case serverError(statusCode: Int, reason: String? = nil, retryAfter: String? = nil)
-}
+//struct APIErrorMessage: Decodable {
+//  var error: Bool
+//  var reason: String
+//}
+//
+//enum APIError: LocalizedError {
+//    case transportError(Error)
+//    case invalidResponse
+//    case validationError(String)
+//    case serverError(statusCode: Int, reason: String? = nil, retryAfter: String? = nil)
+//}
 
 class CoinViewModel: ObservableObject {
     @Published var coinData: [CoinModel] = []
     @Published var isLoading: Bool = false
     
     var cancellable = Set<AnyCancellable>()
+    
+    // ViewModel 초기화
+    init() {
+        fetchCoinData()
+    }
     
     // 데이터 패칭 - assign로 수정
     func fetchCoinData() {
@@ -34,28 +39,6 @@ class CoinViewModel: ObservableObject {
         isLoading = true
         
         URLSession.shared.dataTaskPublisher(for: url)
-            .mapError { error -> Error in
-                return APIError.transportError(error) // 연결에러
-            }
-            .tryMap { (data, response) -> (data: Data, response: URLResponse) in
-    
-                guard let urlResponse = response as? HTTPURLResponse else {
-                    throw APIError.invalidResponse
-                }
-                if (200..<300) ~= urlResponse.statusCode { } else {
-                    let decoder = JSONDecoder()
-                    let apiError = try decoder.decode(APIErrorMessage.self, from: data)
-                    
-                    if urlResponse.statusCode == 400 {
-                        print("\(apiError.reason)")
-                    }
-                    
-                    if (500..<600) ~= urlResponse.statusCode {
-                        print("서버 오류")
-                    }
-                }
-                return (data, response)
-            }
             .receive(on: DispatchQueue.main)
             .map(\.data)
             .decode(type: [CoinModel].self, decoder: JSONDecoder())
@@ -65,6 +48,29 @@ class CoinViewModel: ObservableObject {
             })
             .assign(to: \.coinData, on: self)
             .store(in: &cancellable)
+//            .mapError { error -> Error in
+//                return APIError.transportError(error) // 연결에러
+//            }
+//            .tryMap { (data, response) -> (data: Data, response: URLResponse) in
+//    
+//                guard let urlResponse = response as? HTTPURLResponse else {
+//                    throw APIError.invalidResponse
+//                }
+//                if (200..<300) ~= urlResponse.statusCode { } else {
+//                    let decoder = JSONDecoder()
+//                    let apiError = try decoder.decode(APIErrorMessage.self, from: data)
+//                    
+//                    if urlResponse.statusCode == 400 {
+//                        print("\(apiError.reason)")
+//                    }
+//                    
+//                    if (500..<600) ~= urlResponse.statusCode {
+//                        print("서버 오류")
+//                    }
+//                }
+//                return (data, response)
+//            }
+
         
         /*
          URLSession.shared.dataTaskPublisher(for: url)

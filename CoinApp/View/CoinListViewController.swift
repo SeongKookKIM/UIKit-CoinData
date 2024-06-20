@@ -39,7 +39,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        coinViewModel.fetchCoinData()
+        // coinViewModel.fetchCoinData()
         
         setUpUI()
         setUpBindData()

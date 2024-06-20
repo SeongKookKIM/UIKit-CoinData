@@ -66,7 +66,6 @@
 		0431BBD82C2065F00045AF95 /* CoinApp */ = {
 			isa = PBXGroup;
 			children = (
-				04F3493D2C244908004F433E /* Service */,
 				0431BC242C208B4D0045AF95 /* Cell */,
 				0431BBF02C2066130045AF95 /* Model */,
 				0431BBEF2C20660B0045AF95 /* ViewModel */,
@@ -120,13 +119,6 @@
 				0431BC272C208C1B0045AF95 /* CointListTVCell.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		04F3493D2C244908004F433E /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
