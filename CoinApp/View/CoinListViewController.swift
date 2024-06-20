@@ -39,6 +39,8 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        coinViewModel.fetchCoinData()
+        
         setUpUI()
         setUpBindData()
         setupSearchController()
@@ -48,6 +50,8 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     func setUpUI() {
         self.title = "Coin List"
         self.view.backgroundColor = .white
+        
+
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -66,7 +70,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         
-        coinViewModel.fetchCoinData()
+         
 
     }
     
@@ -113,7 +117,8 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "코인이름을 검색해주세요."
-        navigationItem.searchController = searchController
+         navigationItem.searchController = searchController
+//        tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
     }
     

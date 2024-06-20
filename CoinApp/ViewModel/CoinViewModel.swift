@@ -17,6 +17,7 @@ enum APIError: LocalizedError {
     case transportError(Error)
     case invalidResponse
     case validationError(String)
+    case serverError(statusCode: Int, reason: String? = nil, retryAfter: String? = nil)
 }
 
 class CoinViewModel: ObservableObject {
@@ -37,7 +38,7 @@ class CoinViewModel: ObservableObject {
                 return APIError.transportError(error) // 연결에러
             }
             .tryMap { (data, response) -> (data: Data, response: URLResponse) in
-                print("Received response from server, now checking status code")
+    
                 guard let urlResponse = response as? HTTPURLResponse else {
                     throw APIError.invalidResponse
                 }
@@ -50,7 +51,7 @@ class CoinViewModel: ObservableObject {
                     }
                     
                     if (500..<600) ~= urlResponse.statusCode {
-                        let retryAfter = urlResponse.value(forHTTPHeaderField: "Retry-After")
+                        print("서버 오류")
                     }
                 }
                 return (data, response)
