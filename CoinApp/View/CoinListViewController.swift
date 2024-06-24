@@ -39,8 +39,6 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // coinViewModel.fetchCoinData()
-        
         setUpUI()
         setUpBindData()
         setupSearchController()
@@ -51,7 +49,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         self.title = "Coin List"
         self.view.backgroundColor = .white
         
-
+        
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -70,43 +68,26 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         
-         
-
+        
+        
     }
     
-    // Combine Data Binding
-    /*
-     private func setUpBindData() {
-         coinViewModel.$coinData
-             .receive(on: DispatchQueue.main)
-             .sink { [weak self] _ in
-                 self?.tableView.reloadData()
-             }
-             .store(in: &cancellables)
-         
-         coinViewModel.$isLoading
-             .receive(on: DispatchQueue.main)
-             .sink { [weak self] isLoading in
-                 if isLoading {
-                     self?.activityIndicator.startAnimating()
-                 } else {
-                     self?.activityIndicator.stopAnimating()
-                 }
-             }
-             .store(in: &cancellables)
-     }
-     */
-
     private func setUpBindData() {
-        Publishers.CombineLatest(coinViewModel.$coinData, coinViewModel.$isLoading)
+        
+        coinViewModel.$coinData
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] coinData, isLoading in
-                self?.tableView.reloadData()
-                
+            .sink { _ in
+                self.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        coinViewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { isLoading in
                 if isLoading {
-                    self?.activityIndicator.startAnimating()
+                    self.activityIndicator.startAnimating()
                 } else {
-                    self?.activityIndicator.stopAnimating()
+                    self.activityIndicator.stopAnimating()
                 }
             }
             .store(in: &cancellables)
@@ -117,8 +98,11 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "코인이름을 검색해주세요."
-         navigationItem.searchController = searchController
-//        tableView.tableHeaderView = searchController.searchBar
+        searchController.hidesNavigationBarDuringPresentation = false
+        
+        navigationItem.hidesSearchBarWhenScrolling = false
+        
+        navigationItem.searchController = searchController
         definesPresentationContext = true
     }
     
@@ -134,8 +118,8 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         let lowercasedSearchText = searchText.lowercased()
         filterCoinData = coinViewModel.coinData.filter { coin in
             return coin.name.lowercased().contains(lowercasedSearchText) ||
-                   coin.symbol.lowercased().contains(lowercasedSearchText) ||
-                   String(format: "%.2f", coin.quotes.krw.price).contains(lowercasedSearchText)
+            coin.symbol.lowercased().contains(lowercasedSearchText) ||
+            String(format: "%.2f", coin.quotes.krw.price).contains(lowercasedSearchText)
         }
         tableView.reloadData()
     }
@@ -186,7 +170,7 @@ extension CoinListViewController: UITableViewDataSource, UITableViewDelegate {
         if let sheet = coinDetailViewController.sheetPresentationController {
             sheet.detents = [
                 .custom(resolver: { context in
-                    return context.maximumDetentValue * 0.75
+                    return context.maximumDetentValue * 0.878912
                 }),
                 
             ]
