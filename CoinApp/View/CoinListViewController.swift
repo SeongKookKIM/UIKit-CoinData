@@ -35,6 +35,20 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         return activityIndicator
     }()
     
+    // Error Label
+    private let errorLabel: UILabel = {
+       let errorLabel = UILabel()
+        errorLabel.font = UIFont.systemFont(ofSize: 18)
+        errorLabel.textColor = .red
+        errorLabel.textAlignment = .center
+        errorLabel.numberOfLines = 0
+        errorLabel.isHidden = true
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        
+        return errorLabel
+    }()
+    
     // viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,12 +63,12 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         self.title = "Coin List"
         self.view.backgroundColor = .white
         
-        
-        
         tableView.delegate = self
         tableView.dataSource = self
+        
         self.view.addSubview(tableView)
         self.view.addSubview(activityIndicator)
+        self.view.addSubview(errorLabel)
         
         let safeArea = self.view.safeAreaLayoutGuide
         
@@ -65,7 +79,11 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
             tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            errorLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
+            errorLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
+            errorLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor)
         ])
         
         
@@ -89,6 +107,14 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
                 } else {
                     self.activityIndicator.stopAnimating()
                 }
+            }
+            .store(in: &cancellables)
+        
+        coinViewModel.$errorMessage
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] errorMessage in
+                self?.errorLabel.text = errorMessage
+                self?.errorLabel.isHidden = (errorMessage == nil)
             }
             .store(in: &cancellables)
     }

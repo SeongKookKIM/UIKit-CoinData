@@ -11,6 +11,7 @@ import Combine
 class CoinViewModel: ObservableObject {
     @Published var coinData: [CoinModel] = []
     @Published var isLoading: Bool = false
+    @Published var errorMessage: String?
     
     private var coinService = CoinService()
     private var cancellable = Set<AnyCancellable>()
@@ -28,18 +29,17 @@ class CoinViewModel: ObservableObject {
         
         coinService.fetchCoinData()
             .receive(on: DispatchQueue.main)
-            .handleEvents(receiveCompletion: { [weak self] _ in
+            .handleEvents(receiveCompletion: { [weak self] completion in
                 self?.isLoading = false
+                if case .failure(let error) = completion {
+                    self?.errorMessage = error.localizedDescription
+                }
             })
             .catch { _ in Just([]) }
             .assign(to: &$coinData)
         
     }
-    
-    
-    
-    
-    
+
     // Price _ 처리(1,000) - Model로 가야하는지..?
     func priceInt(_ price: Double) -> String {
         let numberFormatter = NumberFormatter()
