@@ -8,13 +8,15 @@
 
 ## 개발도구 및 스텍
 
+<div align="left">
 <img src="https://img.shields.io/badge/swift-F05138?style=for-the-badge&logo=swift&logoColor=white">
 <img src="https://img.shields.io/badge/xcode-147EFB?style=for-the-badge&logo=xcode&logoColor=white">
-  <img src="https://img.shields.io/badge/uikit-2396F3?style=for-the-badge&logo=uikit&logoColor=white">
+<img src="https://img.shields.io/badge/uikit-2396F3?style=for-the-badge&logo=uikit&logoColor=white">
+</div>
 
 ## 추가예정
 
 - SplashView 추가
-- websoket을 사용하여 실시간 데이터 가져오기
-- 탭바 추가 후 코인 북마크 기능 만들어서 보고싶은 코인만 보기 - (웹소켓을 사용할 경우 실시간으로 데이터가 변동 되는데, 데이터를 저장할 경우 저장한 시점이 저장되는 이슈로 인해 북마크 시 해당 이름을 가져와서 filter로 거르는 방식으로 진행할지 고민 중)
-- 로그인 기능 추가
+- ~~데이터 새로고침 버튼 추가~~
+- 로그인 기능 추가(베이직 로그인, 소셜로그인)
+- 로인 기능 추가 후 북마크 기능 추가(서버 연동 및 데이터 베이스 생성 후 추가한 데이터 저장 후 데이터 불러올 때 이미지로 체크)
