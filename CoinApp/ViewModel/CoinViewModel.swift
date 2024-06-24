@@ -29,7 +29,7 @@ class CoinViewModel: ObservableObject {
         isLoading = true
         
         coinService.fetchCoinData()
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .handleEvents(receiveCompletion: { [weak self] completion in
                 self?.isLoading = false
                 if case .failure(let error) = completion {
@@ -52,5 +52,10 @@ class CoinViewModel: ObservableObject {
                        String(format: "%.2f", coin.quotes.krw.price).localizedCaseInsensitiveContains(query)
             }
         }
+    }
+    
+    // DataUpdate
+    func updateCoinData() {
+        fetchCoinData()
     }
 }

@@ -55,6 +55,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         setupUI()
         setupBindData()
         setupSearchController()
+        setupBarButtonItem()
     }
     
     // UI Update
@@ -73,6 +74,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         setupLayout(safeArea)
     }
     
+    // setup NSLayout
     func setupLayout(_ safeArea: UILayoutGuide) {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
@@ -89,22 +91,26 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         ])
     }
     
+    // setup BindData
     private func setupBindData() {
-        
         coinViewModel.$coinData
             .receive(on: DispatchQueue.main)
-            .sink { _ in
-                self.tableView.reloadData()
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+                self?.tableView.isHidden = false
+                self?.activityIndicator.stopAnimating()
             }
             .store(in: &cancellables)
         
         coinViewModel.$isLoading
             .receive(on: DispatchQueue.main)
-            .sink { isLoading in
+            .sink { [weak self] isLoading in
                 if isLoading {
-                    self.activityIndicator.startAnimating()
+                    self?.activityIndicator.startAnimating()
+                    self?.tableView.isHidden = true
                 } else {
-                    self.activityIndicator.stopAnimating()
+                    self?.activityIndicator.stopAnimating()
+                    self?.tableView.isHidden = false
                 }
             }
             .store(in: &cancellables)
@@ -138,6 +144,18 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         }
         coinViewModel.searchCoinData(with: searchText)
          self.tableView.reloadData()
+    }
+    
+    // setup UIBarButton
+    func setupBarButtonItem() {
+        let image = UIImage(systemName: "arrow.clockwise")
+        let updateDataButton = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(handlerUpdateData))
+        self.navigationItem.rightBarButtonItem = updateDataButton
+    }
+    
+    // handlerUpdateData
+    @objc func handlerUpdateData() {
+        coinViewModel.updateCoinData()
     }
 }
 
