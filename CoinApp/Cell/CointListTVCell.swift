@@ -52,7 +52,7 @@ class CointListTVCell: UITableViewCell {
     // congifure
     func configure(item: CoinModel) {
         nameLabel.text = "\(item.name)(\(item.symbol))"
-        priceLabel.text = "\(coinViewModel.priceInt(item.quotes.krw.price))원"
+        priceLabel.text = "\(item.quotes.krw.price.priceInt())원"
     }
 
 }

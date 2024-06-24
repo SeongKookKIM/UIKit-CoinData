@@ -20,6 +20,7 @@
 		047CF7FD2C22D39A00C598FB /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 047CF7FC2C22D39A00C598FB /* DGCharts */; };
 		04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC378D2C29926400EA1BDE /* CoinService.swift */; };
 		04EC37912C299A1600EA1BDE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37902C299A1600EA1BDE /* Helper.swift */; };
+		04EC37942C29B0D400EA1BDE /* ExtensionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		047CF7F92C22C8B400C598FB /* CoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewController.swift; sourceTree = "<group>"; };
 		04EC378D2C29926400EA1BDE /* CoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinService.swift; sourceTree = "<group>"; };
 		04EC37902C299A1600EA1BDE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		0431BBD82C2065F00045AF95 /* CoinApp */ = {
 			isa = PBXGroup;
 			children = (
+				04EC37922C29B0AA00EA1BDE /* Extension */,
 				04EC378F2C299A0500EA1BDE /* APIHelper */,
 				04EC378C2C2991C600EA1BDE /* Service */,
 				0431BC242C208B4D0045AF95 /* Cell */,
@@ -141,6 +144,14 @@
 				04EC37902C299A1600EA1BDE /* Helper.swift */,
 			);
 			path = APIHelper;
+			sourceTree = "<group>";
+		};
+		04EC37922C29B0AA00EA1BDE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0431BBF42C2068E70045AF95 /* CoinViewModel.swift in Sources */,
+				04EC37942C29B0D400EA1BDE /* ExtensionHelper.swift in Sources */,
 				0431BC282C208C1B0045AF95 /* CointListTVCell.swift in Sources */,
 				0431BBF22C2068D30045AF95 /* CoinModel.swift in Sources */,
 				0431BBDE2C2065F00045AF95 /* CoinListViewController.swift in Sources */,

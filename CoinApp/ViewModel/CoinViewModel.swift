@@ -39,12 +39,4 @@ class CoinViewModel: ObservableObject {
             .assign(to: &$coinData)
         
     }
-
-    // Price _ 처리(1,000) - Model로 가야하는지..?
-    func priceInt(_ price: Double) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.groupingSeparator = ","
-        return numberFormatter.string(from: NSNumber(value: price)) ?? ""
-    }
 }

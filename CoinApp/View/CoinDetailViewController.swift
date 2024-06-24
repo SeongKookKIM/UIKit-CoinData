@@ -104,7 +104,7 @@ class CoinDetailViewController: UIViewController {
         self.view.backgroundColor = .white
         
         coinTitleLabel.text = coindata.name
-        currentPriceLabel.text = "\(coinViewModel.priceInt(coindata.quotes.krw.price))원"
+        currentPriceLabel.text = "\(coindata.quotes.krw.price.priceInt())원"
         
         self.view.addSubview(priceLabel)
         self.view.addSubview(myBarChartView)
@@ -147,7 +147,7 @@ class CoinDetailViewController: UIViewController {
         let yesterdayPrice = coindata.quotes.krw.price - coindata.quotes.krw.price / (1 + coindata.quotes.krw.percentChange24h / 100)
         
         // 변동률 각격
-        yesterdayColorLabel.text = "\(coinViewModel.priceInt(yesterdayPrice))원 (\(coindata.quotes.krw.percentChange24h)%)"
+        yesterdayColorLabel.text = "\(yesterdayPrice.priceInt())원 (\(coindata.quotes.krw.percentChange24h)%)"
         
         // 변동 색상
         yesterdayColorLabel.textColor = coindata.quotes.krw.percentChange24h >= 0 ? .systemRed : .systemBlue
@@ -239,7 +239,7 @@ extension CoinDetailViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         if let barEntry = entry as? BarChartDataEntry {
             
-            priceLabel.text = "\(coinViewModel.priceInt(barEntry.y))원"
+            priceLabel.text = "\(barEntry.y.priceInt())원"
             priceLabel.font = .systemFont(ofSize: 20, weight: .bold)
             priceLabel.textColor = .systemBlue
         }
