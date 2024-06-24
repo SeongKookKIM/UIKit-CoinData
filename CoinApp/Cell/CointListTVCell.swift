@@ -39,7 +39,10 @@ class CointListTVCell: UITableViewCell {
     func setupUI() {
         contentView.addSubview(nameLabel)
         contentView.addSubview(priceLabel)
-        
+        setupLayout()
+    }
+    
+    func setupLayout() {
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),

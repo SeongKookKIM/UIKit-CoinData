@@ -117,6 +117,10 @@ class CoinDetailViewController: UIViewController {
         setupColorLabel()
         
         // BarChartView 레이아웃 설정
+        setupLayout()
+    }
+    
+    func setupLayout() {
         NSLayoutConstraint.activate([
             coinTitleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30),
             coinTitleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
@@ -138,8 +142,8 @@ class CoinDetailViewController: UIViewController {
             priceLabel.topAnchor.constraint(equalTo: myBarChartView.bottomAnchor, constant: 16),
             priceLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
         ])
-        
     }
+    
     
     // setup yesterdayLabel
     func setupColorLabel() {

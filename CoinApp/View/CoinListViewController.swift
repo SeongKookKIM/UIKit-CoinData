@@ -70,7 +70,10 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         self.view.addSubview(errorLabel)
         
         let safeArea = self.view.safeAreaLayoutGuide
-        
+        setupLayout(safeArea)
+    }
+    
+    func setupLayout(_ safeArea: UILayoutGuide) {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
