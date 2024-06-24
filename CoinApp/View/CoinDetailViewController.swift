@@ -94,12 +94,12 @@ class CoinDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpUI()
-        setUpChart()
+        setupUI()
+        setupChart()
     }
     
     // UI Upadate
-    func setUpUI() {
+    func setupUI() {
         
         self.view.backgroundColor = .white
         
@@ -114,7 +114,7 @@ class CoinDetailViewController: UIViewController {
         self.view.addSubview(yesterdayColorLabel)
 
         
-        setUpColorLabel()
+        setupColorLabel()
         
         // BarChartView 레이아웃 설정
         NSLayoutConstraint.activate([
@@ -141,8 +141,8 @@ class CoinDetailViewController: UIViewController {
         
     }
     
-    // setUp yesterdayLabel
-    func setUpColorLabel() {
+    // setup yesterdayLabel
+    func setupColorLabel() {
         // 어제의 가격 계산
         let yesterdayPrice = coindata.quotes.krw.price - coindata.quotes.krw.price / (1 + coindata.quotes.krw.percentChange24h / 100)
         
@@ -154,7 +154,7 @@ class CoinDetailViewController: UIViewController {
     }
     
     // Chart Update
-    func setUpChart() {
+    func setupChart() {
         // 기본 문구
         self.myBarChartView.noDataText = "출력 데이터가 없습니다."
         // 기본 문구 폰트

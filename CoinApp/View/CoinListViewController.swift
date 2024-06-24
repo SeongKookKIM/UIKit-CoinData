@@ -52,13 +52,13 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpUI()
-        setUpBindData()
+        setupUI()
+        setupBindData()
         setupSearchController()
     }
     
     // UI Update
-    func setUpUI() {
+    func setupUI() {
         self.title = "Coin List"
         self.view.backgroundColor = .white
         
@@ -84,14 +84,11 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
             errorLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
             errorLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor)
         ])
-        
-        
-        
     }
     
-    private func setUpBindData() {
+    private func setupBindData() {
         
-        coinViewModel.$filteredCoinData
+        coinViewModel.$coinData
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 self.tableView.reloadData()
@@ -137,7 +134,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
             return
         }
         coinViewModel.searchCoinData(with: searchText)
-        // self.tableView.reloadData()
+         self.tableView.reloadData()
     }
 }
 

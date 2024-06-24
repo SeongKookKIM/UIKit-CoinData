@@ -29,14 +29,14 @@ class CointListTVCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setUpUI()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    func setUpUI() {
+    func setupUI() {
         contentView.addSubview(nameLabel)
         contentView.addSubview(priceLabel)
         
