@@ -23,8 +23,6 @@ struct CoinService {
                 return APIError.transportError(error)
             }
             .tryMap { (data, response) -> (data: Data, response: URLResponse) in
-                print("Received reponse from server, now checking status code")
-                
                 guard let urlResponse = response as? HTTPURLResponse else {
                     throw APIError.invalidResponse
                 }

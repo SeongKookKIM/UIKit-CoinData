@@ -13,7 +13,8 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     private var coinViewModel = CoinViewModel()
     private var cancellables = Set<AnyCancellable>()
     
-    private var searchController = UISearchController(searchResultsController: nil)
+    private let searchController = UISearchController(searchResultsController: nil)
+    private let refreshCoinDataController = UIRefreshControl()
     
     // tableView
     private var tableView: UITableView = {
@@ -56,6 +57,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         setupBindData()
         setupSearchController()
         setupBarButtonItem()
+        setupRefreshData()
     }
     
     // UI Update
@@ -156,6 +158,20 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     // handlerUpdateData
     @objc func handlerUpdateData() {
         coinViewModel.updateCoinData()
+    }
+    
+    // refresh Data
+    func setupRefreshData() {
+        refreshCoinDataController.addTarget(self, action: #selector(refreshTableData(refresh:)), for: .valueChanged)
+        refreshCoinDataController.attributedTitle = NSAttributedString(string: "Update Data")
+        
+        tableView.refreshControl = refreshCoinDataController
+    }
+    @objc func refreshTableData(refresh: UIRefreshControl) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.coinViewModel.updateCoinData()
+            refresh.endRefreshing()
+        }
     }
 }
 
