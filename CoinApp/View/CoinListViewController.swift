@@ -14,7 +14,6 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     private var cancellables = Set<AnyCancellable>()
     
     private var searchController = UISearchController(searchResultsController: nil)
-    private var filterCoinData: [CoinModel] = []
     
     // tableView
     private var tableView: UITableView = {
@@ -92,7 +91,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     
     private func setUpBindData() {
         
-        coinViewModel.$coinData
+        coinViewModel.$filteredCoinData
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 self.tableView.reloadData()
@@ -134,20 +133,11 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     
     // Search Update
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
-            filterCoinData = coinViewModel.coinData
-            tableView.reloadData()
+        guard let searchText = searchController.searchBar.text else {
             return
         }
-        filterCoinData.removeAll()
-        
-        let lowercasedSearchText = searchText.lowercased()
-        filterCoinData = coinViewModel.coinData.filter { coin in
-            return coin.name.lowercased().contains(lowercasedSearchText) ||
-            coin.symbol.lowercased().contains(lowercasedSearchText) ||
-            String(format: "%.2f", coin.quotes.krw.price).contains(lowercasedSearchText)
-        }
-        tableView.reloadData()
+        coinViewModel.searchCoinData(with: searchText)
+        // self.tableView.reloadData()
     }
 }
 
@@ -156,7 +146,7 @@ extension CoinListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive {
-            return filterCoinData.count
+            return coinViewModel.filteredCoinData.count
         }
         return coinViewModel.coinData.count
     }
@@ -169,7 +159,7 @@ extension CoinListViewController: UITableViewDataSource, UITableViewDelegate {
         let coinCell: CoinModel
         
         if searchController.isActive {
-            coinCell = filterCoinData[indexPath.row]
+            coinCell = coinViewModel.filteredCoinData[indexPath.row]
         } else {
             coinCell = coinViewModel.coinData[indexPath.row]
         }
@@ -185,7 +175,7 @@ extension CoinListViewController: UITableViewDataSource, UITableViewDelegate {
         let selectedCoinCell: CoinModel
         
         if searchController.isActive {
-            selectedCoinCell = filterCoinData[indexPath.row]
+            selectedCoinCell = coinViewModel.filteredCoinData[indexPath.row]
         } else {
             selectedCoinCell = coinViewModel.coinData[indexPath.row]
         }

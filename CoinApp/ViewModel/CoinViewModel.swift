@@ -10,6 +10,7 @@ import Combine
 
 class CoinViewModel: ObservableObject {
     @Published var coinData: [CoinModel] = []
+    @Published var filteredCoinData: [CoinModel] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
@@ -38,5 +39,18 @@ class CoinViewModel: ObservableObject {
             .catch { _ in Just([]) }
             .assign(to: &$coinData)
         
+    }
+    
+    // Search Data
+    func searchCoinData(with query: String) {
+        if query.isEmpty {
+            return filteredCoinData = coinData
+        } else {
+            filteredCoinData = coinData.filter { coin in
+                return coin.name.localizedCaseInsensitiveContains(query) ||
+                       coin.symbol.localizedCaseInsensitiveContains(query) ||
+                       String(format: "%.2f", coin.quotes.krw.price).localizedCaseInsensitiveContains(query)
+            }
+        }
     }
 }
