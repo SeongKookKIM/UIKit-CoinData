@@ -20,6 +20,7 @@
 		047CF7FD2C22D39A00C598FB /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 047CF7FC2C22D39A00C598FB /* DGCharts */; };
 		04A890032C2AE64600E55EA4 /* MyCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890022C2AE64600E55EA4 /* MyCoinViewController.swift */; };
 		04A890062C2AE75600E55EA4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890052C2AE75600E55EA4 /* SplashViewController.swift */; };
+		04A890092C2AF64000E55EA4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890082C2AF64000E55EA4 /* LoginViewController.swift */; };
 		04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC378D2C29926400EA1BDE /* CoinService.swift */; };
 		04EC37912C299A1600EA1BDE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37902C299A1600EA1BDE /* Helper.swift */; };
 		04EC37942C29B0D400EA1BDE /* ExtensionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */; };
@@ -40,6 +41,7 @@
 		047CF7F92C22C8B400C598FB /* CoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewController.swift; sourceTree = "<group>"; };
 		04A890022C2AE64600E55EA4 /* MyCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinViewController.swift; sourceTree = "<group>"; };
 		04A890052C2AE75600E55EA4 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		04A890082C2AF64000E55EA4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		04EC378D2C29926400EA1BDE /* CoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinService.swift; sourceTree = "<group>"; };
 		04EC37902C299A1600EA1BDE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHelper.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		0431BBEE2C2066050045AF95 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04A890072C2AF62700E55EA4 /* Auth */,
 				04A890042C2AE73E00E55EA4 /* Splash */,
 				04A890012C2AE60100E55EA4 /* MyCoin */,
 				04A890002C2AE5F300E55EA4 /* CoinList */,
@@ -158,6 +161,14 @@
 				04A890052C2AE75600E55EA4 /* SplashViewController.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		04A890072C2AF62700E55EA4 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				04A890082C2AF64000E55EA4 /* LoginViewController.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		04EC378C2C2991C600EA1BDE /* Service */ = {
@@ -272,6 +283,7 @@
 				0431BBDC2C2065F00045AF95 /* SceneDelegate.swift in Sources */,
 				04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */,
 				04A890032C2AE64600E55EA4 /* MyCoinViewController.swift in Sources */,
+				04A890092C2AF64000E55EA4 /* LoginViewController.swift in Sources */,
 				047CF7FA2C22C8B400C598FB /* CoinDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

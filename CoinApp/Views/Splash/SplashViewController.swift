@@ -55,9 +55,10 @@ class SplashViewController: UIViewController {
         
         let firstViewController = UINavigationController(rootViewController: CoinListViewController())
         let secondViewController = UINavigationController(rootViewController: MyCoinViewController())
+        let thirdViewController = UINavigationController(rootViewController: LoginViewController())
         
         let tabBarController = UITabBarController()
-        tabBarController.setViewControllers([firstViewController, secondViewController], animated: true)
+        tabBarController.setViewControllers([firstViewController, secondViewController, thirdViewController], animated: true)
         
         if let items = tabBarController.tabBar.items {
             items[0].selectedImage = UIImage(systemName: "bitcoinsign.circle.fill")
@@ -67,6 +68,11 @@ class SplashViewController: UIViewController {
             items[1].selectedImage = UIImage(systemName: "bookmark.fill")
             items[1].image = UIImage(systemName: "bookmark")
             items[1].title = "Coin Bookmark"
+            
+            items[2].selectedImage = UIImage(systemName: "person.fill")
+            items[2].image = UIImage(systemName: "person")
+            items[2].title = "User"
+
         }
         
         let selectedColor   = UIColor(red: 246.0/255.0, green: 155.0/255.0, blue: 13.0/255.0, alpha: 1.0)

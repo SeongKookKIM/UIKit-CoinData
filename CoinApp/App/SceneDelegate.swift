@@ -19,18 +19,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        /* 기존 네이게이션 컨트롤러
-         let rootViewcontroller = CoinListViewController()
-         let navigationCV = UINavigationController(rootViewController: rootViewcontroller)
-         
-         window.rootViewController = navigationCV
+        // 기존 네이게이션 컨트롤러
+        let rootViewcontroller = LoginViewController()
+        let navigationCV = UINavigationController(rootViewController: rootViewcontroller)
+        
+        window.rootViewController = navigationCV
+        window.makeKeyAndVisible()
+        
+        /*
+         // PlashView
+         let splashVC = SplashViewController()
+         window.rootViewController = splashVC
          window.makeKeyAndVisible()
          */
         
-        // PlashView
-        let splashVC = SplashViewController()
-        window.rootViewController = splashVC
-        window.makeKeyAndVisible()
         
         self.window = window
     }
