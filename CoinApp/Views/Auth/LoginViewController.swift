@@ -10,7 +10,7 @@ import UIKit
 class LoginViewController: UIViewController {
     
     private lazy var loginStack: UIStackView = {
-       let loginStack = UIStackView()
+        let loginStack = UIStackView()
         loginStack.axis = .vertical
         loginStack.spacing = 20
         loginStack.alignment = .center
@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     }()
     
     private lazy var loginTitleLabel: UILabel = {
-       let loginTitleLabel = UILabel()
+        let loginTitleLabel = UILabel()
         loginTitleLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         loginTitleLabel.textColor = .gray
         loginTitleLabel.text = "로그인"
@@ -58,7 +58,7 @@ class LoginViewController: UIViewController {
         config.baseForegroundColor = .white
         config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
         loginButton.configuration = config
-
+        
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         
         return loginButton
@@ -78,16 +78,15 @@ class LoginViewController: UIViewController {
         return signButton
     }()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
-
+        
     }
     
     func setupUI() {
-        self.title = "로그인"
         self.view.backgroundColor = .white
         self.view.addSubview(loginTitleLabel)
         self.view.addSubview(loginStack)
@@ -97,8 +96,13 @@ class LoginViewController: UIViewController {
         loginStack.addArrangedSubview(loginButton)
         loginStack.addArrangedSubview(signButton)
         
+        idTF.delegate = self
+        passwordTF.delegate = self
+        
         signButton.addAction(UIAction { [weak self] _ in
-            print("회원가입")
+            let signInVC = SignInViewController()
+            self?.navigationController?.pushViewController(signInVC, animated: true)
+            
         }, for: .touchUpInside)
         
         setupLayout()
@@ -123,5 +127,18 @@ class LoginViewController: UIViewController {
             signButton.widthAnchor.constraint(equalTo: loginStack.widthAnchor)
             
         ])
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate{
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderWidth = 2
+        textField.layer.borderColor = UIColor.systemBlue.cgColor
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderWidth = 0
+        textField.layer.borderColor = UIColor.clear.cgColor
     }
 }

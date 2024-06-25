@@ -21,6 +21,7 @@
 		04A890032C2AE64600E55EA4 /* MyCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890022C2AE64600E55EA4 /* MyCoinViewController.swift */; };
 		04A890062C2AE75600E55EA4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890052C2AE75600E55EA4 /* SplashViewController.swift */; };
 		04A890092C2AF64000E55EA4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890082C2AF64000E55EA4 /* LoginViewController.swift */; };
+		04A8900B2C2B107200E55EA4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8900A2C2B107200E55EA4 /* SignInViewController.swift */; };
 		04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC378D2C29926400EA1BDE /* CoinService.swift */; };
 		04EC37912C299A1600EA1BDE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37902C299A1600EA1BDE /* Helper.swift */; };
 		04EC37942C29B0D400EA1BDE /* ExtensionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */; };
@@ -42,6 +43,7 @@
 		04A890022C2AE64600E55EA4 /* MyCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinViewController.swift; sourceTree = "<group>"; };
 		04A890052C2AE75600E55EA4 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		04A890082C2AF64000E55EA4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		04A8900A2C2B107200E55EA4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		04EC378D2C29926400EA1BDE /* CoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinService.swift; sourceTree = "<group>"; };
 		04EC37902C299A1600EA1BDE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHelper.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				04A890082C2AF64000E55EA4 /* LoginViewController.swift */,
+				04A8900A2C2B107200E55EA4 /* SignInViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A8900B2C2B107200E55EA4 /* SignInViewController.swift in Sources */,
 				0431BBF42C2068E70045AF95 /* CoinViewModel.swift in Sources */,
 				04EC37942C29B0D400EA1BDE /* ExtensionHelper.swift in Sources */,
 				0431BC282C208C1B0045AF95 /* CointListTVCell.swift in Sources */,
