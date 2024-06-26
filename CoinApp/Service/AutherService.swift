@@ -11,7 +11,7 @@ class AuthService {
     
     // signIn Server
     func signIn(userSignInfo: UserSignIn) async throws -> SingInResultModel {
-        guard let url = URL(string: "http://localhost:8080/signIn") else {
+        guard let url = URL(string: "http://localhost:8080/auth/signIn") else {
             throw URLError(.badURL)
         }
         

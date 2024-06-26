@@ -223,9 +223,11 @@ class SignInViewController: UIViewController {
                 let result = try await signInViewModel.signIn()
                 DispatchQueue.main.async {
                     if result.isSuccess {
-                        print("회원가입 성공")
+                        self.showAlert(result.failMessage) {
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }
                     } else {
-                        print("회원가입 실패")
+                        self.showAlert(result.failMessage, completion: nil)
                     }
                 }
             } catch {
@@ -234,5 +236,15 @@ class SignInViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    // 회원가입시 알림
+    func showAlert(_ message: String, completion: (() -> Void)?) {
+        let alert = UIAlertController(title: "회원가입", message: message, preferredStyle: .alert)
+        let confirmBtn = UIAlertAction(title: "확인", style: .default) { _ in
+            completion?()
+        }
+        alert.addAction(confirmBtn)
+        self.present(alert, animated: true, completion: nil)
     }
 }
