@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
     
     private lazy var loginTitleLabel: UILabel = {
         let loginTitleLabel = UILabel()
-        loginTitleLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        loginTitleLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         loginTitleLabel.textColor = .gray
         loginTitleLabel.text = "로그인"
         loginTitleLabel.textAlignment = .center
@@ -33,8 +33,14 @@ class LoginViewController: UIViewController {
     
     private lazy var idTF: UITextField = {
         let idTF = UITextField()
-        idTF.placeholder = "아이디를 입력해주세요."
+        idTF.font = UIFont.systemFont(ofSize: 16)
+        idTF.attributedPlaceholder = NSAttributedString(
+            string: "아이디를 입력해주세요.",
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
+        )
         idTF.borderStyle = .roundedRect
+        idTF.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 6.0, height: 0.0))
+        idTF.leftViewMode = .always
         idTF.translatesAutoresizingMaskIntoConstraints = false
         
         return idTF
@@ -42,9 +48,16 @@ class LoginViewController: UIViewController {
     
     private let passwordTF: UITextField = {
         let passwordTF = UITextField()
-        passwordTF.placeholder = "비밀번호"
+        passwordTF.font = UIFont.systemFont(ofSize: 16)
+        passwordTF.attributedPlaceholder = NSAttributedString(
+            string: "비밀번호를 입력해주세요.",
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
+        )
         passwordTF.isSecureTextEntry = true
+        passwordTF.textContentType = .oneTimeCode
         passwordTF.borderStyle = .roundedRect
+        passwordTF.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 6.0, height: 0.0))
+        passwordTF.leftViewMode = .always
         passwordTF.translatesAutoresizingMaskIntoConstraints = false
         
         return passwordTF
@@ -56,7 +69,7 @@ class LoginViewController: UIViewController {
         config.title = "로그인"
         config.baseBackgroundColor = .blue
         config.baseForegroundColor = .white
-        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
+        config.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 15, trailing: 20)
         loginButton.configuration = config
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +83,7 @@ class LoginViewController: UIViewController {
         config.title = "회원가입"
         config.baseBackgroundColor = .systemBlue
         config.baseForegroundColor = .white
-        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
+        config.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 15, trailing: 20)
         signButton.configuration = config
         
         signButton.translatesAutoresizingMaskIntoConstraints = false
@@ -115,15 +128,18 @@ class LoginViewController: UIViewController {
             loginStack.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -50),
             loginStack.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 50),
             loginStack.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
-            loginStack.heightAnchor.constraint(equalToConstant: 200),
+            loginStack.heightAnchor.constraint(equalToConstant: 300),
             
             loginTitleLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -50),
             loginTitleLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 50),
-            loginTitleLabel.bottomAnchor.constraint(equalTo: loginStack.topAnchor, constant: -20),
+            loginTitleLabel.bottomAnchor.constraint(equalTo: loginStack.topAnchor, constant: -40),
             
             idTF.widthAnchor.constraint(equalTo: loginStack.widthAnchor),
+
             passwordTF.widthAnchor.constraint(equalTo: loginStack.widthAnchor),
+
             loginButton.widthAnchor.constraint(equalTo: loginStack.widthAnchor),
+
             signButton.widthAnchor.constraint(equalTo: loginStack.widthAnchor)
             
         ])
