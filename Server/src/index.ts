@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
-import signInUser from "./Router/Auth";
+import auth from "./Router/Auth";
 
 const app = express();
 
@@ -20,4 +20,4 @@ app.get("/", (req: Request, res: Response) => {
   return res.status(200).json("서버 연결!");
 });
 
-app.use("/auth", signInUser);
+app.use("/auth", auth);

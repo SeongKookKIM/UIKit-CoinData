@@ -3,11 +3,11 @@ import bcrypt from "bcryptjs";
 import db from "../utils/MongoData";
 import { UserInfoType } from "../Types/AuthType";
 
-let signInUser = express.Router();
-signInUser.use(express.json());
+let auth = express.Router();
+auth.use(express.json());
 
 // 회원가입
-signInUser.post("/signIn", async (req: Request, res: Response) => {
+auth.post("/signIn", async (req: Request, res: Response) => {
   const answer = (status: number, message: string, isSuccess: boolean) => {
     return res
       .status(status)
@@ -45,4 +45,4 @@ signInUser.post("/signIn", async (req: Request, res: Response) => {
   }
 });
 
-export default signInUser;
+export default auth;

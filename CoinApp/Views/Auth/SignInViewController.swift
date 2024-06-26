@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, UITextFieldDelegate {
     
     private let signInViewModel = SignInViewModel()
     
@@ -80,6 +80,8 @@ class SignInViewController: UIViewController {
         textField.isSecureTextEntry = isSecure
         textField.textContentType = .oneTimeCode
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.autocapitalizationType = .none
+        textField.delegate = self
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         return textField
@@ -95,12 +97,40 @@ class SignInViewController: UIViewController {
         return label
     }
     
+    // tap 제스처
+    private lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(hanlderTapGeture))
+    
+    // TextField 추적
+    private var activeTF: UITextField?
+    
+    // viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupNavigationBar()
         setupUI()
         validateForm()
     }
     
+    // Memory TapGestures
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        self.view.addGestureRecognizer(tapGesture)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.view.removeGestureRecognizer(tapGesture)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    //setupUI
     func setupUI() {
         self.title = "회원가입"
         self.view.backgroundColor = .white
@@ -124,6 +154,18 @@ class SignInViewController: UIViewController {
         setupLayout()
     }
     
+    //  setup NavigationBar
+    private func setupNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .white
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+    }
+    
+    // setupLayout Contraint
     func setupLayout() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -217,6 +259,7 @@ class SignInViewController: UIViewController {
         submitButton.alpha = isFormValid ? 1.0 : 0.5
     }
     
+    // 가입하기 버튼
     @objc func handlerSignInButton() {
         Task {
             do {
@@ -246,5 +289,45 @@ class SignInViewController: UIViewController {
         }
         alert.addAction(confirmBtn)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    // Tap Hanlder
+    @objc func keyboardWillShow(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            if view.frame.origin.y == 0 {
+                if activeTF == passwordTF {
+                    view.frame.origin.y -= keyboardHeight * 0.45
+                } else if activeTF == passwordCheckTF {
+                    view.frame.origin.y -= keyboardHeight * 0.4
+                }
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+        if view.frame.origin.y != 0 {
+            view.frame.origin.y = 0
+        }
+    }
+    
+    @objc func hanlderTapGeture(_ sender: UIView) {
+        nickNameTF.resignFirstResponder()
+        idTF.resignFirstResponder()
+        passwordTF.resignFirstResponder()
+        passwordCheckTF.resignFirstResponder()
+    }
+    
+    // UITextField Delegate
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTF = textField
+        
+
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        activeTF = nil
+        
+
     }
 }

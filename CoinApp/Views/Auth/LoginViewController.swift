@@ -41,6 +41,7 @@ class LoginViewController: UIViewController {
         idTF.borderStyle = .roundedRect
         idTF.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 6.0, height: 0.0))
         idTF.leftViewMode = .always
+        idTF.autocapitalizationType = .none
         idTF.translatesAutoresizingMaskIntoConstraints = false
         
         return idTF
@@ -58,6 +59,7 @@ class LoginViewController: UIViewController {
         passwordTF.borderStyle = .roundedRect
         passwordTF.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 6.0, height: 0.0))
         passwordTF.leftViewMode = .always
+        passwordTF.autocapitalizationType = .none
         passwordTF.translatesAutoresizingMaskIntoConstraints = false
         
         return passwordTF
@@ -91,14 +93,30 @@ class LoginViewController: UIViewController {
         return signButton
     }()
     
+    // tap 제스처
+    private lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(hanlderTapGeture))
     
+    // viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
-        
+        setupButtonTap()
     }
     
+    // Memory TapGestures
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.view.removeGestureRecognizer(tapGesture)
+    }
+    
+    
+    // setupUI
     func setupUI() {
         self.view.backgroundColor = .white
         self.view.addSubview(loginTitleLabel)
@@ -111,16 +129,11 @@ class LoginViewController: UIViewController {
         
         idTF.delegate = self
         passwordTF.delegate = self
-        
-        signButton.addAction(UIAction { [weak self] _ in
-            let signInVC = SignInViewController()
-            self?.navigationController?.pushViewController(signInVC, animated: true)
-            
-        }, for: .touchUpInside)
-        
+                
         setupLayout()
     }
     
+    // setupLayout Contraint
     func setupLayout() {
         let safeArea = self.view.safeAreaLayoutGuide
         
@@ -144,8 +157,33 @@ class LoginViewController: UIViewController {
             
         ])
     }
+    
+    // Button Actions
+    func setupButtonTap() {
+        loginButton.addAction(UIAction { [weak self] _ in
+            self?.idTF.resignFirstResponder()
+            self?.passwordTF.resignFirstResponder()
+                        
+        }, for: .touchUpInside)
+        
+        signButton.addAction(UIAction { [weak self] _ in
+            self?.idTF.resignFirstResponder()
+            self?.passwordTF.resignFirstResponder()
+            
+            let signInVC = SignInViewController()
+            self?.navigationController?.pushViewController(signInVC, animated: true)
+            
+        }, for: .touchUpInside)
+    }
+    
+    // Tap Hanlder
+    @objc func hanlderTapGeture(_ sender: UIView) {
+        idTF.resignFirstResponder()
+        passwordTF.resignFirstResponder()
+    }
 }
 
+// TextFilet Tap Gesture
 extension LoginViewController: UITextFieldDelegate{
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

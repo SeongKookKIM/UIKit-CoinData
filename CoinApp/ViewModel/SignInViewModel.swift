@@ -48,7 +48,7 @@ class SignInViewModel {
     
     // 정규식 패턴 확인
     private func validateID() {
-        let idRegex = "^[a-zA-Z0-9]{6,}$"
+        let idRegex = "^(?=.*[a-zA-Z])(?=.*\\d)[a-zA-Z0-9]{6,}$"
         if NSPredicate(format: "SELF MATCHES %@", idRegex).evaluate(with: id) {
             idErrorMessage = ""
         } else {
