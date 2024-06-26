@@ -89,7 +89,7 @@ class SignInViewModel {
     }
     
     // 서버에 회원가입 요청
-    func signIn() async throws -> Bool {
+    func signIn() async throws -> SingInResultModel {
         let userSignInfo = UserSignIn(nickName: nickname, id: id, password: password)
         return try await autherService.signIn(userSignInfo: userSignInfo)
     }

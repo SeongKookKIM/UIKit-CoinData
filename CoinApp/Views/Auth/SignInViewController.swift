@@ -220,9 +220,9 @@ class SignInViewController: UIViewController {
     @objc func handlerSignInButton() {
         Task {
             do {
-                let isSignedUp = try await signInViewModel.signIn()
+                let result = try await signInViewModel.signIn()
                 DispatchQueue.main.async {
-                    if isSignedUp {
+                    if result.isSuccess {
                         print("회원가입 성공")
                     } else {
                         print("회원가입 실패")

@@ -10,7 +10,7 @@ import Foundation
 class AuthService {
     
     // signIn Server
-    func signIn(userSignInfo: UserSignIn) async throws -> Bool {
+    func signIn(userSignInfo: UserSignIn) async throws -> SingInResultModel {
         guard let url = URL(string: "http://localhost:8080/signIn") else {
             throw URLError(.badURL)
         }
@@ -21,8 +21,8 @@ class AuthService {
         request.httpBody = try JSONEncoder().encode(userSignInfo)
         
         let (data, _) = try await URLSession.shared.data(for: request)
-        let result = try JSONDecoder().decode(ResultMessage.self, from: data)
+        let result = try JSONDecoder().decode(SingInResultModel.self, from: data)
         
-        return result.isSuccess
+        return result
     }
 }

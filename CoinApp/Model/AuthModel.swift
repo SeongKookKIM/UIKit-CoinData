@@ -13,6 +13,7 @@ struct UserSignIn: Codable {
     let password: String
 }
 
-struct ResultMessage: Codable {
+struct SingInResultModel: Codable {
     let isSuccess: Bool
+    let failMessage: String
 }
