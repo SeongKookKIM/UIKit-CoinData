@@ -9,17 +9,17 @@ import UIKit
 
 class SignInViewController: UIViewController {
     
+    private let signInViewModel = SignInViewModel()
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
         return scrollView
     }()
     
     private let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        
         return contentView
     }()
     
@@ -51,7 +51,7 @@ class SignInViewController: UIViewController {
         submitButton.isEnabled = false
         submitButton.alpha = 0.5
         submitButton.translatesAutoresizingMaskIntoConstraints = false
-        submitButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
+        submitButton.addTarget(self, action: #selector(handlerSignInButton), for: .touchUpInside)
         
         return submitButton
     }()
@@ -98,7 +98,7 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        validateForm() 
+        validateForm()
     }
     
     func setupUI() {
@@ -194,73 +194,45 @@ class SignInViewController: UIViewController {
     
     // TF입력
     @objc func textFieldDidChange(_ textField: UITextField) {
-        validateField(textField)
-    }
-    
-    // 유효성 검사
-    func validateField(_ textField: UITextField) {
         if textField == nickNameTF {
-            validateNickname()
+            signInViewModel.nickname = textField.text ?? ""
+            nickNameErrorMessage.text = signInViewModel.nicknameErrorMessage
         } else if textField == idTF {
-            validateID()
+            signInViewModel.id = textField.text ?? ""
+            idErrorMessage.text = signInViewModel.idErrorMessage
         } else if textField == passwordTF {
-            validatePassword()
+            signInViewModel.password = textField.text ?? ""
+            passwordErrorMessage.text = signInViewModel.passwordErrorMessage
         } else if textField == passwordCheckTF {
-            validatePasswordCheck()
+            signInViewModel.passwordCheck = textField.text ?? ""
+            passwordCheckErrorMessage.text = signInViewModel.passwordCheckErrorMessage
         }
-        
-        validateForm() // 전체 폼 유효성 검사 업데이트
-    }
-    
-    func validateNickname() {
-        if let nickname = nickNameTF.text, nickname.count >= 2 {
-            nickNameErrorMessage.text = ""
-        } else {
-            nickNameErrorMessage.text = "닉네임은 2자 이상이어야 합니다."
-        }
-    }
-    
-    func validateID() {
-        let idRegex = "^[a-zA-Z0-9]{6,}$"
-        if let id = idTF.text, NSPredicate(format: "SELF MATCHES %@", idRegex).evaluate(with: id) {
-            idErrorMessage.text = ""
-        } else {
-            idErrorMessage.text = "아이디는 영문 숫자 조합 6자 이상이어야 합니다."
-        }
-    }
-    
-    func validatePassword() {
-        let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+=-]).{8,}$"
-        if let password = passwordTF.text, NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: password) {
-            passwordErrorMessage.text = ""
-        } else {
-            passwordErrorMessage.text = "비밀번호는 소문자, 대문자, 숫자, 특수기호 포함 8자 이상이어야 합니다."
-        }
-    }
-    
-    func validatePasswordCheck() {
-        if let password = passwordTF.text, let passwordCheck = passwordCheckTF.text, password == passwordCheck {
-            passwordCheckErrorMessage.text = ""
-        } else {
-            passwordCheckErrorMessage.text = "비밀번호가 일치하지 않습니다."
-        }
+        validateForm()
     }
     
     // 유효성 검사에 따른 버튼 활성화
     func validateForm() {
-        let isNicknameValid = !(nickNameTF.text?.isEmpty ?? true) && nickNameErrorMessage.text?.isEmpty == true
-        let isIdValid = !(idTF.text?.isEmpty ?? true) && idErrorMessage.text?.isEmpty == true
-        let isPasswordValid = !(passwordTF.text?.isEmpty ?? true) && passwordErrorMessage.text?.isEmpty == true
-        let isPasswordCheckValid = !(passwordCheckTF.text?.isEmpty ?? true) && passwordCheckErrorMessage.text?.isEmpty == true
-        
-        let isFormValid = isNicknameValid && isIdValid && isPasswordValid && isPasswordCheckValid
-        
+        let isFormValid = signInViewModel.isFormValid
         submitButton.isEnabled = isFormValid
         submitButton.alpha = isFormValid ? 1.0 : 0.5
     }
     
-    @objc func submitButtonTapped() {
-        // 가입하기 버튼 클릭 시 동작
-        print("가입하기 버튼 클릭됨")
+    @objc func handlerSignInButton() {
+        Task {
+            do {
+                let isSignedUp = try await signInViewModel.signIn()
+                DispatchQueue.main.async {
+                    if isSignedUp {
+                        print("회원가입 성공")
+                    } else {
+                        print("회원가입 실패")
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    print("에러 발생: \(error)")
+                }
+            }
+        }
     }
 }

@@ -16,6 +16,9 @@
 		0431BBF22C2068D30045AF95 /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431BBF12C2068D30045AF95 /* CoinModel.swift */; };
 		0431BBF42C2068E70045AF95 /* CoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431BBF32C2068E70045AF95 /* CoinViewModel.swift */; };
 		0431BC282C208C1B0045AF95 /* CointListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431BC272C208C1B0045AF95 /* CointListTVCell.swift */; };
+		043AEEF62C2BDD2D00B03ADA /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF52C2BDD2D00B03ADA /* AuthModel.swift */; };
+		043AEEF82C2BDD5E00B03ADA /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */; };
+		043AEEFA2C2BF49300B03ADA /* AutherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF92C2BF49300B03ADA /* AutherService.swift */; };
 		047CF7FA2C22C8B400C598FB /* CoinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF7F92C22C8B400C598FB /* CoinDetailViewController.swift */; };
 		047CF7FD2C22D39A00C598FB /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 047CF7FC2C22D39A00C598FB /* DGCharts */; };
 		04A890032C2AE64600E55EA4 /* MyCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890022C2AE64600E55EA4 /* MyCoinViewController.swift */; };
@@ -39,6 +42,9 @@
 		0431BBF12C2068D30045AF95 /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 		0431BBF32C2068E70045AF95 /* CoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewModel.swift; sourceTree = "<group>"; };
 		0431BC272C208C1B0045AF95 /* CointListTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CointListTVCell.swift; sourceTree = "<group>"; };
+		043AEEF52C2BDD2D00B03ADA /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		043AEEF92C2BF49300B03ADA /* AutherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutherService.swift; sourceTree = "<group>"; };
 		047CF7F92C22C8B400C598FB /* CoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewController.swift; sourceTree = "<group>"; };
 		04A890022C2AE64600E55EA4 /* MyCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinViewController.swift; sourceTree = "<group>"; };
 		04A890052C2AE75600E55EA4 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				0431BBF32C2068E70045AF95 /* CoinViewModel.swift */,
+				043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -128,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				0431BBF12C2068D30045AF95 /* CoinModel.swift */,
+				043AEEF52C2BDD2D00B03ADA /* AuthModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				04EC378D2C29926400EA1BDE /* CoinService.swift */,
+				043AEEF92C2BF49300B03ADA /* AutherService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -284,11 +293,14 @@
 				0431BBDE2C2065F00045AF95 /* CoinListViewController.swift in Sources */,
 				0431BBDA2C2065F00045AF95 /* AppDelegate.swift in Sources */,
 				04EC37912C299A1600EA1BDE /* Helper.swift in Sources */,
+				043AEEFA2C2BF49300B03ADA /* AutherService.swift in Sources */,
 				0431BBDC2C2065F00045AF95 /* SceneDelegate.swift in Sources */,
 				04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */,
 				04A890032C2AE64600E55EA4 /* MyCoinViewController.swift in Sources */,
+				043AEEF82C2BDD5E00B03ADA /* SignInViewModel.swift in Sources */,
 				04A890092C2AF64000E55EA4 /* LoginViewController.swift in Sources */,
 				047CF7FA2C22C8B400C598FB /* CoinDetailViewController.swift in Sources */,
+				043AEEF62C2BDD2D00B03ADA /* AuthModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
