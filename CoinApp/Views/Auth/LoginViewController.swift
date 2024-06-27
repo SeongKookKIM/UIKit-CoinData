@@ -173,7 +173,10 @@ class LoginViewController: UIViewController {
                     let result = try await self.loginViewModel.login(self.idTF.text ?? "", self.passwordTF.text ?? "")
                     DispatchQueue.main.async {
                         if result.isSuccess {
+                            print("엑세스토큰: \(result.accessToken ?? "없음")")
+                            print("리프레쉬토큰: \(result.refreshToken ?? "없음")")
                             self.showAlert(result.failMessage) {
+                                print("뷰 이동 예정")
                             }
                         } else {
                             self.showAlert(result.failMessage, completion: nil)

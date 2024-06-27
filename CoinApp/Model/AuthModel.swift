@@ -26,6 +26,6 @@ struct UserLoginModel: Codable {
 struct LoginResultModel: Codable {
     let isSuccess: Bool
     let failMessage: String
-    let accessToken: String
-    let refreshToken: String
+    let accessToken: String?
+    let refreshToken: String?
 }
