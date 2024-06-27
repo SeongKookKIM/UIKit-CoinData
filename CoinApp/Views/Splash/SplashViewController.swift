@@ -9,8 +9,6 @@ import UIKit
 
 class SplashViewController: UIViewController {
     
-    private let loginViewModel = LoginViewModel()
-    
     private let imageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "CoinWatch_logo"))
         imageView.contentMode = .scaleAspectFit

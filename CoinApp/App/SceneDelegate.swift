@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    private let loginViewModel = LoginViewModel()
+    private let loginViewModel = LoginViewModel.shared
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -28,11 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          window.makeKeyAndVisible()
          */
         
-        // 토큰으로 유저 정보 가졍
-        Task {
-            let result = try await self.loginViewModel.userInfo()
-            print(result)
-        }
+        loginViewModel.fetchUserInfo()
         
         
          // PlashView

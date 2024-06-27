@@ -9,7 +9,6 @@ import Foundation
 import Security
 
 class KeychainHelper {
-    static let shared = KeychainHelper()
 
     func save(_ value: String, forKey key: String) {
         guard let data = value.data(using: .utf8) else { return }
