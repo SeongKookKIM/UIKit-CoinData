@@ -7,6 +7,7 @@
 
 import Foundation
 
+// 회원가입
 struct UserSignInModel: Codable {
     let nickName: String
     let id: String
@@ -18,6 +19,7 @@ struct SingInResultModel: Codable {
     let failMessage: String
 }
 
+// 로그인
 struct UserLoginModel: Codable {
     let id: String
     let password: String
@@ -28,4 +30,11 @@ struct LoginResultModel: Codable {
     let failMessage: String
     let accessToken: String?
     let refreshToken: String?
+}
+
+// 유저 정보
+struct UserModel: Codable {
+    let isLogin: Bool
+    let nickName: String
+    let id: String
 }

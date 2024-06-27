@@ -3,3 +3,8 @@ export type UserInfoType = {
   id: string;
   password: string;
 };
+
+export type LoginUserType = {
+  nickName: string;
+  id: string;
+};

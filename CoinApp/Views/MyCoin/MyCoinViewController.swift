@@ -8,24 +8,43 @@
 import UIKit
 
 class MyCoinViewController: UIViewController {
+    
+    private lazy var testALabel = UILabel()
+    private lazy var testBLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
+        
+        if let accessToken = KeychainHelper.shared.get("accessToken") {
+            testALabel.text = accessToken
+        } else {
+            testALabel.text = "accessToken none"
+        }
 
-        // Do any additional setup after loading the view.
+        if let refreshToken = KeychainHelper.shared.get("refreshToken") {
+            testBLabel.text = refreshToken
+        } else {
+            testBLabel.text = "refreshToken none"
+        }
+        
+        testALabel.translatesAutoresizingMaskIntoConstraints = false
+        testBLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(testALabel)
+        self.view.addSubview(testBLabel)
+        
+        NSLayoutConstraint.activate([
+            testALabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            testALabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            
+            testBLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            testBLabel.topAnchor.constraint(equalTo: testALabel.bottomAnchor, constant: 40),
+        ])
+
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

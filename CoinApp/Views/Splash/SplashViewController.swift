@@ -9,6 +9,8 @@ import UIKit
 
 class SplashViewController: UIViewController {
     
+    private let loginViewModel = LoginViewModel()
+    
     private let imageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "CoinWatch_logo"))
         imageView.contentMode = .scaleAspectFit
@@ -19,9 +21,19 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         setupUI()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+                
+        // 2초 후에 메인 화면으로 전환
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.showMainView()
+        }
+    }
+    
     
     func setupUI() {
         self.view.backgroundColor = UIColor(red: 172/255, green: 183/255, blue: 189/255, alpha: 1)
@@ -34,16 +46,6 @@ class SplashViewController: UIViewController {
             imageView.widthAnchor.constraint(equalToConstant: 300),
             imageView.heightAnchor.constraint(equalToConstant: 300)
         ])
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // 2초 후에 메인 화면으로 전환
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.showMainView()
-        }
     }
     
     private func showMainView() {

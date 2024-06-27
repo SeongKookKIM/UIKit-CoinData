@@ -11,30 +11,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
+    private let loginViewModel = LoginViewModel()
+    
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-
+        /*
          // 기존 네이게이션 컨트롤러
          let rootViewcontroller = LoginViewController()
          let navigationCV = UINavigationController(rootViewController: rootViewcontroller)
          
          window.rootViewController = navigationCV
          window.makeKeyAndVisible()
-
+         */
         
-        /*
+        // 토큰으로 유저 정보 가졍
+        Task {
+            let result = try await self.loginViewModel.userInfo()
+            print(result)
+        }
+        
+        
          // PlashView
          let splashVC = SplashViewController()
          window.rootViewController = splashVC
          window.makeKeyAndVisible()
-         */
-
-
-        
+         
         self.window = window
     }
     

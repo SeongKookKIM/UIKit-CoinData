@@ -81,14 +81,14 @@ auth.post("/login", async (req: Request, res: Response) => {
     }
 
     const accessToken = jwt.sign(
-      { id: user.id },
+      { id: user.id, nickName: user.nickName },
       process.env.ACCESS_TOKEN_SECRET!,
       {
         expiresIn: "60m",
       }
     );
     const refreshToken = jwt.sign(
-      { id: user.id },
+      { id: user.id, nickName: user.nickName },
       process.env.REFRESH_TOKEN_SECRET!,
       {
         expiresIn: "7d",
@@ -111,6 +111,19 @@ auth.post("/login", async (req: Request, res: Response) => {
     console.error("로그인 오류:", error);
     return answer(500, "서버 오류가 발생했습니다.", false);
   }
+});
+
+// 토큰체크
+auth.post("/loginCheck", async (req: Request, res: Response) => {
+  const accessToken = req.headers["authorization"];
+  const refreshToken = req.headers["refresh-token"];
+
+  console.log("AccessToken:", accessToken);
+  console.log("RefreshToken:", refreshToken);
+
+  return res
+    .status(200)
+    .json({ isLogin: true, id: "test", nickName: "TestName" });
 });
 
 export default auth;

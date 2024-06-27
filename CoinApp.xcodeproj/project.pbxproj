@@ -20,6 +20,8 @@
 		043AEEF82C2BDD5E00B03ADA /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */; };
 		043AEEFA2C2BF49300B03ADA /* AutherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF92C2BF49300B03ADA /* AutherService.swift */; };
 		0464D1742C2D00BF002EBE45 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464D1732C2D00BF002EBE45 /* LoginViewModel.swift */; };
+		0464D1762C2D3964002EBE45 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464D1752C2D3964002EBE45 /* KeychainHelper.swift */; };
+		0464D1782C2D4017002EBE45 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464D1772C2D4017002EBE45 /* MyPageViewController.swift */; };
 		047CF7FA2C22C8B400C598FB /* CoinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF7F92C22C8B400C598FB /* CoinDetailViewController.swift */; };
 		047CF7FD2C22D39A00C598FB /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 047CF7FC2C22D39A00C598FB /* DGCharts */; };
 		04A890032C2AE64600E55EA4 /* MyCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890022C2AE64600E55EA4 /* MyCoinViewController.swift */; };
@@ -27,7 +29,7 @@
 		04A890092C2AF64000E55EA4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890082C2AF64000E55EA4 /* LoginViewController.swift */; };
 		04A8900B2C2B107200E55EA4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8900A2C2B107200E55EA4 /* SignInViewController.swift */; };
 		04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC378D2C29926400EA1BDE /* CoinService.swift */; };
-		04EC37912C299A1600EA1BDE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37902C299A1600EA1BDE /* Helper.swift */; };
+		04EC37912C299A1600EA1BDE /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37902C299A1600EA1BDE /* APIHelper.swift */; };
 		04EC37942C29B0D400EA1BDE /* ExtensionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,13 +49,15 @@
 		043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		043AEEF92C2BF49300B03ADA /* AutherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutherService.swift; sourceTree = "<group>"; };
 		0464D1732C2D00BF002EBE45 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		0464D1752C2D3964002EBE45 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		0464D1772C2D4017002EBE45 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		047CF7F92C22C8B400C598FB /* CoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewController.swift; sourceTree = "<group>"; };
 		04A890022C2AE64600E55EA4 /* MyCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinViewController.swift; sourceTree = "<group>"; };
 		04A890052C2AE75600E55EA4 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		04A890082C2AF64000E55EA4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		04A8900A2C2B107200E55EA4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		04EC378D2C29926400EA1BDE /* CoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinService.swift; sourceTree = "<group>"; };
-		04EC37902C299A1600EA1BDE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		04EC37902C299A1600EA1BDE /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,8 +92,7 @@
 		0431BBD82C2065F00045AF95 /* CoinApp */ = {
 			isa = PBXGroup;
 			children = (
-				04EC37922C29B0AA00EA1BDE /* Extension */,
-				04EC378F2C299A0500EA1BDE /* APIHelper */,
+				04EC378F2C299A0500EA1BDE /* Helper */,
 				04EC378C2C2991C600EA1BDE /* Service */,
 				0431BC242C208B4D0045AF95 /* Cell */,
 				0431BBF02C2066130045AF95 /* Model */,
@@ -181,6 +184,7 @@
 			children = (
 				04A890082C2AF64000E55EA4 /* LoginViewController.swift */,
 				04A8900A2C2B107200E55EA4 /* SignInViewController.swift */,
+				0464D1772C2D4017002EBE45 /* MyPageViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -194,20 +198,14 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		04EC378F2C299A0500EA1BDE /* APIHelper */ = {
+		04EC378F2C299A0500EA1BDE /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				04EC37902C299A1600EA1BDE /* Helper.swift */,
-			);
-			path = APIHelper;
-			sourceTree = "<group>";
-		};
-		04EC37922C29B0AA00EA1BDE /* Extension */ = {
-			isa = PBXGroup;
-			children = (
+				04EC37902C299A1600EA1BDE /* APIHelper.swift */,
 				04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */,
+				0464D1752C2D3964002EBE45 /* KeychainHelper.swift */,
 			);
-			path = Extension;
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,14 +294,16 @@
 				0431BBDE2C2065F00045AF95 /* CoinListViewController.swift in Sources */,
 				0431BBDA2C2065F00045AF95 /* AppDelegate.swift in Sources */,
 				0464D1742C2D00BF002EBE45 /* LoginViewModel.swift in Sources */,
-				04EC37912C299A1600EA1BDE /* Helper.swift in Sources */,
+				04EC37912C299A1600EA1BDE /* APIHelper.swift in Sources */,
 				043AEEFA2C2BF49300B03ADA /* AutherService.swift in Sources */,
 				0431BBDC2C2065F00045AF95 /* SceneDelegate.swift in Sources */,
 				04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */,
 				04A890032C2AE64600E55EA4 /* MyCoinViewController.swift in Sources */,
 				043AEEF82C2BDD5E00B03ADA /* SignInViewModel.swift in Sources */,
+				0464D1782C2D4017002EBE45 /* MyPageViewController.swift in Sources */,
 				04A890092C2AF64000E55EA4 /* LoginViewController.swift in Sources */,
 				047CF7FA2C22C8B400C598FB /* CoinDetailViewController.swift in Sources */,
+				0464D1762C2D3964002EBE45 /* KeychainHelper.swift in Sources */,
 				043AEEF62C2BDD2D00B03ADA /* AuthModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
