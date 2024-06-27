@@ -9,6 +9,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    private let loginViewModel = LoginViewModel()
+    
     private lazy var loginStack: UIStackView = {
         let loginStack = UIStackView()
         loginStack.axis = .vertical
@@ -129,7 +131,7 @@ class LoginViewController: UIViewController {
         
         idTF.delegate = self
         passwordTF.delegate = self
-                
+        
         setupLayout()
     }
     
@@ -148,11 +150,11 @@ class LoginViewController: UIViewController {
             loginTitleLabel.bottomAnchor.constraint(equalTo: loginStack.topAnchor, constant: -40),
             
             idTF.widthAnchor.constraint(equalTo: loginStack.widthAnchor),
-
+            
             passwordTF.widthAnchor.constraint(equalTo: loginStack.widthAnchor),
-
+            
             loginButton.widthAnchor.constraint(equalTo: loginStack.widthAnchor),
-
+            
             signButton.widthAnchor.constraint(equalTo: loginStack.widthAnchor)
             
         ])
@@ -161,17 +163,39 @@ class LoginViewController: UIViewController {
     // Button Actions
     func setupButtonTap() {
         loginButton.addAction(UIAction { [weak self] _ in
-            self?.idTF.resignFirstResponder()
-            self?.passwordTF.resignFirstResponder()
-                        
+            guard let self = self else { return }
+            
+            self.idTF.resignFirstResponder()
+            self.passwordTF.resignFirstResponder()
+            
+            Task {
+                do {
+                    let result = try await self.loginViewModel.login(self.idTF.text ?? "", self.passwordTF.text ?? "")
+                    DispatchQueue.main.async {
+                        if result.isSuccess {
+                            self.showAlert(result.failMessage) {
+                            }
+                        } else {
+                            self.showAlert(result.failMessage, completion: nil)
+                        }
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        print("에러 발생: \(error)")
+                    }
+                }
+            }
+            
         }, for: .touchUpInside)
         
         signButton.addAction(UIAction { [weak self] _ in
-            self?.idTF.resignFirstResponder()
-            self?.passwordTF.resignFirstResponder()
+            guard let self = self else { return }
+            
+            self.idTF.resignFirstResponder()
+            self.passwordTF.resignFirstResponder()
             
             let signInVC = SignInViewController()
-            self?.navigationController?.pushViewController(signInVC, animated: true)
+            self.navigationController?.pushViewController(signInVC, animated: true)
             
         }, for: .touchUpInside)
     }
@@ -181,16 +205,26 @@ class LoginViewController: UIViewController {
         idTF.resignFirstResponder()
         passwordTF.resignFirstResponder()
     }
+    
+    // 로그인시 알림
+    func showAlert(_ message: String, completion: (() -> Void)?) {
+        let alert = UIAlertController(title: "로그인", message: message, preferredStyle: .alert)
+        let confirmBtn = UIAlertAction(title: "확인", style: .default) { _ in
+            completion?()
+        }
+        alert.addAction(confirmBtn)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
-// TextFilet Tap Gesture
+// TextFiled Tap Gesture
 extension LoginViewController: UITextFieldDelegate{
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderWidth = 2
         textField.layer.borderColor = UIColor.systemBlue.cgColor
     }
-
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderWidth = 0
         textField.layer.borderColor = UIColor.clear.cgColor

@@ -45,4 +45,9 @@ auth.post("/signIn", async (req: Request, res: Response) => {
   }
 });
 
+// 로그인
+auth.post("/login", async (req: Request, res: Response) => {
+  console.log(req.body);
+});
+
 export default auth;

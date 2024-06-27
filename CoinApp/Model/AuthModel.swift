@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserSignIn: Codable {
+struct UserSignInModel: Codable {
     let nickName: String
     let id: String
     let password: String
@@ -16,4 +16,16 @@ struct UserSignIn: Codable {
 struct SingInResultModel: Codable {
     let isSuccess: Bool
     let failMessage: String
+}
+
+struct UserLoginModel: Codable {
+    let id: String
+    let password: String
+}
+
+struct LoginResultModel: Codable {
+    let isSuccess: Bool
+    let failMessage: String
+    let accessToken: String
+    let refreshToken: String
 }
