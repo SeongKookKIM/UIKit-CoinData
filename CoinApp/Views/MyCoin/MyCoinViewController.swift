@@ -11,7 +11,7 @@ import Combine
 class MyCoinViewController: UIViewController {
     
     var Keychain = KeychainHelper()
-    private let loginViewModel = LoginViewModel.shared
+    private let loginViewModel = LoginViewModel()
     private var cancellables = Set<AnyCancellable>()
     
     private lazy var testALabel = UILabel()

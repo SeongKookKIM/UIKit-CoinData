@@ -9,7 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    private let loginViewModel = LoginViewModel.shared
+    private let loginViewModel = LoginViewModel()
     
     private lazy var loginStack: UIStackView = {
         let loginStack = UIStackView()
