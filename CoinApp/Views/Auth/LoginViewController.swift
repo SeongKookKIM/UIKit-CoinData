@@ -170,7 +170,7 @@ class LoginViewController: UIViewController {
             
             Task {
                 do {
-                    let result = try await self.loginViewModel.login(self.idTF.text ?? "", self.passwordTF.text ?? "")
+                    let result = try await self.loginViewModel.fetchLogin(self.idTF.text ?? "", self.passwordTF.text ?? "")
                     DispatchQueue.main.async {
                         if result.isSuccess {
                             self.showAlert(result.failMessage) {

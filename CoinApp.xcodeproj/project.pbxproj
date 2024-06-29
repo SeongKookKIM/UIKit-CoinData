@@ -28,6 +28,7 @@
 		04A890062C2AE75600E55EA4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890052C2AE75600E55EA4 /* SplashViewController.swift */; };
 		04A890092C2AF64000E55EA4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890082C2AF64000E55EA4 /* LoginViewController.swift */; };
 		04A8900B2C2B107200E55EA4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8900A2C2B107200E55EA4 /* SignInViewController.swift */; };
+		04E37B3A2C305CB50051FBEA /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E37B392C305CB50051FBEA /* UserViewModel.swift */; };
 		04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC378D2C29926400EA1BDE /* CoinService.swift */; };
 		04EC37912C299A1600EA1BDE /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37902C299A1600EA1BDE /* APIHelper.swift */; };
 		04EC37942C29B0D400EA1BDE /* ExtensionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */; };
@@ -56,6 +57,7 @@
 		04A890052C2AE75600E55EA4 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		04A890082C2AF64000E55EA4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		04A8900A2C2B107200E55EA4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		04E37B392C305CB50051FBEA /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		04EC378D2C29926400EA1BDE /* CoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinService.swift; sourceTree = "<group>"; };
 		04EC37902C299A1600EA1BDE /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHelper.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				0431BBF32C2068E70045AF95 /* CoinViewModel.swift */,
 				043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */,
 				0464D1732C2D00BF002EBE45 /* LoginViewModel.swift */,
+				04E37B392C305CB50051FBEA /* UserViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				04A890092C2AF64000E55EA4 /* LoginViewController.swift in Sources */,
 				047CF7FA2C22C8B400C598FB /* CoinDetailViewController.swift in Sources */,
 				0464D1762C2D3964002EBE45 /* KeychainHelper.swift in Sources */,
+				04E37B3A2C305CB50051FBEA /* UserViewModel.swift in Sources */,
 				043AEEF62C2BDD2D00B03ADA /* AuthModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

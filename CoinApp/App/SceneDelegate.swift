@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    private let loginViewModel = LoginViewModel()
+
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -27,8 +27,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          window.rootViewController = navigationCV
          window.makeKeyAndVisible()
          */
-        
-        loginViewModel.fetchUserInfo()
         
         
          // PlashView

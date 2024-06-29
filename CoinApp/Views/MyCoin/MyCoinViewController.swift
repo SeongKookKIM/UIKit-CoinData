@@ -6,13 +6,14 @@
 //
 
 import UIKit
-import Combine
+
+
 
 class MyCoinViewController: UIViewController {
     
     var Keychain = KeychainHelper()
-    private let loginViewModel = LoginViewModel()
-    private var cancellables = Set<AnyCancellable>()
+    private let userViewModel = UserViewModel()
+
     
     private lazy var testALabel = UILabel()
     private lazy var testBLabel = UILabel()
@@ -35,8 +36,14 @@ class MyCoinViewController: UIViewController {
             testBLabel.text = "refreshToken none"
         }
         
+        
         setupLayout()
-        bindViewModel()
+        
+        Task {
+            try await print(userViewModel.fetchUserInfo())
+            testCLabel.text = try await userViewModel.fetchUserInfo().nickName
+        }
+        
     }
     
     private func setupLayout() {
@@ -60,17 +67,5 @@ class MyCoinViewController: UIViewController {
         ])
     }
     
-    private func bindViewModel() {
-        loginViewModel.$userInfo
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] userInfo in
-                self?.updateView(userInfo: userInfo)
-            }
-            .store(in: &cancellables)
-    }
-    
-    private func updateView(userInfo: UserModel) {
-        testCLabel.text = userInfo.nickName
-        // 다른 뷰를 업데이트하려면 여기에 추가
-    }
+
 }
