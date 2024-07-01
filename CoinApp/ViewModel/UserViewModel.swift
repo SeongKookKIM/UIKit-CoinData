@@ -10,9 +10,24 @@ import Combine
 
 class UserViewModel {
     
+    static let shared = UserViewModel()
+    
     private let autherService = AuthService()
     
-    func fetchUserInfo() async throws -> UserModel {
-        return try await autherService.userLoginCheckService()
+    @Published private(set) var userInfo: UserModel?
+    
+    private init() {}
+    
+    func fetchUserInfo() {
+        Task {
+            do {
+                let result = try await autherService.userLoginCheckService()
+                DispatchQueue.main.async {
+                    self.userInfo = result
+                }
+            } catch {
+                print("Error fetching user info: \(error)")
+            }
+        }
     }
 }

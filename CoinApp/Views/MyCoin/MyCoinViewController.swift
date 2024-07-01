@@ -6,14 +6,13 @@
 //
 
 import UIKit
-
-
+import Combine
 
 class MyCoinViewController: UIViewController {
     
     var Keychain = KeychainHelper()
-    private let userViewModel = UserViewModel()
-
+//    private let userViewModel = UserViewModel()
+    private var cancellables = Set<AnyCancellable>()
     
     private lazy var testALabel = UILabel()
     private lazy var testBLabel = UILabel()
@@ -39,10 +38,22 @@ class MyCoinViewController: UIViewController {
         
         setupLayout()
         
-        Task {
-            try await print(userViewModel.fetchUserInfo())
-            testCLabel.text = try await userViewModel.fetchUserInfo().nickName
-        }
+//        Task {
+//            try await print(userViewModel.fetchUserInfo())
+//            testCLabel.text = try await userViewModel.fetchUserInfo().nickName
+//        }
+        
+        // 데이터 가져오기
+        UserViewModel.shared.fetchUserInfo()
+        
+        // userInfo 변경 관찰하기
+        UserViewModel.shared.$userInfo
+            .sink { [weak self] userInfo in
+                if let userInfo = userInfo {
+                    self?.testCLabel.text = userInfo.nickName
+                }
+            }
+            .store(in: &cancellables)
         
     }
     
