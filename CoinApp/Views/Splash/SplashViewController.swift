@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import Combine
 
 class SplashViewController: UIViewController {
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    var thirdViewController = UINavigationController(rootViewController: LoginViewController())
     
     private let imageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "CoinWatch_logo"))
@@ -21,6 +26,10 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
                 
         setupUI()
+        // 데이터 가져오기
+        UserViewModel.shared.fetchUserInfo()
+        
+        setupBindData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,7 +41,7 @@ class SplashViewController: UIViewController {
         }
     }
     
-    
+    // setupUI
     func setupUI() {
         self.view.backgroundColor = UIColor(red: 172/255, green: 183/255, blue: 189/255, alpha: 1)
         
@@ -46,6 +55,19 @@ class SplashViewController: UIViewController {
         ])
     }
     
+    // setupBindData - 토큰 유효시 자동로그인
+    func setupBindData() {
+        UserViewModel.shared.$userInfo
+            .sink { [weak self] userInfo in
+                guard let self = self else { return }
+                if let userInfo = userInfo {
+                    self.thirdViewController = userInfo.isLogin ? UINavigationController(rootViewController: MyPageViewController()) : UINavigationController(rootViewController: LoginViewController())
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    // tabBarController
     private func showMainView() {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let sceneDelegate = windowScene.delegate as? SceneDelegate,
@@ -55,7 +77,7 @@ class SplashViewController: UIViewController {
         
         let firstViewController = UINavigationController(rootViewController: CoinListViewController())
         let secondViewController = UINavigationController(rootViewController: MyCoinViewController())
-        let thirdViewController = UINavigationController(rootViewController: LoginViewController())
+
         
         let tabBarController = UITabBarController()
         tabBarController.setViewControllers([firstViewController, secondViewController, thirdViewController], animated: true)

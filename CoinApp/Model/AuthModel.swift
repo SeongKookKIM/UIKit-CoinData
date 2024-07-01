@@ -35,6 +35,8 @@ struct LoginResultModel: Codable {
 // 유저 정보
 struct UserModel: Codable {
     let isLogin: Bool
-    let nickName: String
-    let id: String
+    let nickName: String?
+    let id: String?
+    let accessToken: String?
+    let refreshToken: String?
 }

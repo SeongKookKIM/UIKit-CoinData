@@ -14,6 +14,8 @@ class UserViewModel {
     
     private let autherService = AuthService()
     
+    var Keychain = KeychainHelper()
+    
     @Published private(set) var userInfo: UserModel?
     
     private init() {}
@@ -21,7 +23,14 @@ class UserViewModel {
     func fetchUserInfo() {
         Task {
             do {
+                // @@@@@@@@키체인 리셋
                 let result = try await autherService.userLoginCheckService()
+     
+                 if let accessToken = result.accessToken, let refreshToken = result.refreshToken {
+                     Keychain.save(accessToken, forKey: "accessToken")
+                     Keychain.save(refreshToken, forKey: "refreshToken")
+                 }
+             
                 DispatchQueue.main.async {
                     self.userInfo = result
                 }

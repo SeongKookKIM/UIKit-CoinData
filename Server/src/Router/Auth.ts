@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
 import db from "../utils/MongoData";
-import { UserInfoType } from "../Types/AuthType";
+import { TokenPayload, UserInfoType } from "../Types/AuthType";
 
 let auth = express.Router();
 auth.use(express.json());
@@ -84,7 +84,7 @@ auth.post("/login", async (req: Request, res: Response) => {
       { id: user.id, nickName: user.nickName },
       process.env.ACCESS_TOKEN_SECRET!,
       {
-        expiresIn: "60m",
+        expiresIn: "30m",
       }
     );
     const refreshToken = jwt.sign(
@@ -108,29 +108,39 @@ auth.post("/login", async (req: Request, res: Response) => {
   }
 });
 
-interface TokenPayload {
-  id: string;
-  nickName: string;
-  iat: number;
-  exp: number;
-}
-
 // 토큰체크
 auth.post("/loginCheck", async (req: Request, res: Response) => {
   const accessToken = (req.headers["authorization"] as string)?.split(" ")[1];
   const refreshToken = (req.headers["refresh-token"] as string)?.split(" ")[1];
 
-  console.log("AccessToken:", accessToken);
-  console.log("RefreshToken:", refreshToken);
+  const returnToken = (
+    status: number,
+    isLogin: boolean,
+    nickName?: string | null,
+    id?: string | null,
+    accessToken?: string | null,
+    refreshToken?: string | null
+  ) => {
+    return res.status(status).json({
+      isLogin: isLogin,
+      nickName: nickName,
+      id: id,
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+    });
+  };
 
   if (!accessToken || !refreshToken) {
-    return res.status(401).json({ error: "토큰이 제공되지 않았습니다." });
+    returnToken(401, false, null, null, null, null);
   }
 
   if (!process.env.ACCESS_TOKEN_SECRET || !process.env.REFRESH_TOKEN_SECRET) {
     console.error("필요한 환경 변수가 설정되지 않았습니다.");
     process.exit(1);
   }
+
+  // 현재 시간
+  const now = Math.floor(Date.now() / 1000);
 
   try {
     // Access 토큰 검증
@@ -139,43 +149,52 @@ auth.post("/loginCheck", async (req: Request, res: Response) => {
       process.env.ACCESS_TOKEN_SECRET!
     ) as TokenPayload;
 
-    // Refresh 토큰 검증
-    const decodedRefresh = jwt.verify(
-      refreshToken,
-      process.env.REFRESH_TOKEN_SECRET!
-    ) as TokenPayload;
-
-    const now = Math.floor(Date.now() / 1000);
-
-    console.log(decodedAccess);
-    console.log(decodedRefresh);
-
-    if (decodedAccess.exp < now) {
-      console.log("엑세스토큰 통과 못함");
-      if (decodedRefresh.exp < now) {
-        console.log("리프레쉬토큰 통과 못함");
-      } else {
-        console.log("리프레쉬 통과 - 엑세스토큰 다시 발급");
-      }
-    } else {
-      console.log("엑세으토큰 통과");
+    if (decodedAccess.exp >= now) {
+      // 엑세스 토큰 유효기간 통과일 경우
+      returnToken(
+        200,
+        true,
+        decodedAccess.nickName,
+        decodedAccess.id,
+        accessToken,
+        refreshToken
+      );
     }
   } catch (error) {
     if (error instanceof jwt.JsonWebTokenError) {
-      console.error("토큰 검증 실패:", error.message);
-      return res.status(401).json({ error: "유효하지 않은 토큰입니다." });
+      console.error("엑세스 토큰 검증 실패:", error.message);
+      // Refresh 토큰 검증
+      const decodedRefresh = jwt.verify(
+        refreshToken,
+        process.env.REFRESH_TOKEN_SECRET!
+      ) as TokenPayload;
+
+      if (decodedRefresh.exp >= now) {
+        const accessToken = jwt.sign(
+          { id: decodedRefresh.id, nickName: decodedRefresh.nickName },
+          process.env.ACCESS_TOKEN_SECRET!,
+          {
+            expiresIn: "30m",
+          }
+        );
+
+        returnToken(
+          200,
+          true,
+          decodedRefresh.nickName,
+          decodedRefresh.id,
+          accessToken,
+          refreshToken
+        );
+      }
     } else if (error instanceof jwt.TokenExpiredError) {
       console.error("토큰 만료:", error.message);
-      return res.status(401).json({ error: "토큰이 만료되었습니다." });
+      returnToken(401, false, null, null, null, null);
     } else {
       console.error("알 수 없는 오류:", error);
-      return res.status(500).json({ error: "서버 오류가 발생했습니다." });
+      returnToken(500, false, null, null, null, null);
     }
   }
-
-  // return res
-  //   .status(200)
-  //   .json({ isLogin: true, id: "test", nickName: "TestName" });
 });
 
 export default auth;

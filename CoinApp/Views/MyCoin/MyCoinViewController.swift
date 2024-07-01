@@ -11,7 +11,7 @@ import Combine
 class MyCoinViewController: UIViewController {
     
     var Keychain = KeychainHelper()
-//    private let userViewModel = UserViewModel()
+
     private var cancellables = Set<AnyCancellable>()
     
     private lazy var testALabel = UILabel()
@@ -38,10 +38,7 @@ class MyCoinViewController: UIViewController {
         
         setupLayout()
         
-//        Task {
-//            try await print(userViewModel.fetchUserInfo())
-//            testCLabel.text = try await userViewModel.fetchUserInfo().nickName
-//        }
+
         
         // 데이터 가져오기
         UserViewModel.shared.fetchUserInfo()
