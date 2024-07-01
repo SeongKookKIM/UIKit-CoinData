@@ -49,13 +49,13 @@ class KeychainHelper {
         return nil
     }
 
-//    func delete(_ key: String) {
-//        let query = [
-//            kSecClass: kSecClassGenericPassword,
-//            kSecAttrAccount: key
-//        ] as NSDictionary
-//        SecItemDelete(query)
-//    }
+    func delete(_ key: String) {
+        let query = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: key
+        ] as NSDictionary
+        SecItemDelete(query)
+    }
 //
 //    func clear() {
 //        let query = [kSecClass: kSecClassGenericPassword] as NSDictionary

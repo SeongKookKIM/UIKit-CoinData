@@ -59,7 +59,9 @@ class AuthService {
         
         guard let accessToken = Keychain.get("accessToken"),
               let refreshToken = Keychain.get("refreshToken") else {
-            throw APIError.invalidRequestError("토큰이 존재하지 않습니다.")
+            print(APIError.invalidRequestError("토큰이 존재하지 않습니다."))
+            
+            return UserModel(isLogin: false, nickName: nil, id: nil, accessToken: nil, refreshToken: nil)
         }
         
         var request = URLRequest(url: url)

@@ -12,8 +12,6 @@ class SplashViewController: UIViewController {
     
     private var cancellables = Set<AnyCancellable>()
     
-    var thirdViewController = UINavigationController(rootViewController: LoginViewController())
-    
     private let imageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "CoinWatch_logo"))
         imageView.contentMode = .scaleAspectFit
@@ -26,10 +24,6 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
                 
         setupUI()
-        // 데이터 가져오기
-        UserViewModel.shared.fetchUserInfo()
-        
-        setupBindData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,17 +49,8 @@ class SplashViewController: UIViewController {
         ])
     }
     
-    // setupBindData - 토큰 유효시 자동로그인
-    func setupBindData() {
-        UserViewModel.shared.$userInfo
-            .sink { [weak self] userInfo in
-                guard let self = self else { return }
-                if let userInfo = userInfo {
-                    self.thirdViewController = userInfo.isLogin ? UINavigationController(rootViewController: MyPageViewController()) : UINavigationController(rootViewController: LoginViewController())
-                }
-            }
-            .store(in: &cancellables)
-    }
+
+    
     
     // tabBarController
     private func showMainView() {
@@ -77,10 +62,13 @@ class SplashViewController: UIViewController {
         
         let firstViewController = UINavigationController(rootViewController: CoinListViewController())
         let secondViewController = UINavigationController(rootViewController: MyCoinViewController())
+        let thirdViewController = UINavigationController(rootViewController: LoginViewController())
+        
+        let testViewController = UINavigationController(rootViewController: MyPageViewController())
 
         
         let tabBarController = UITabBarController()
-        tabBarController.setViewControllers([firstViewController, secondViewController, thirdViewController], animated: true)
+        tabBarController.setViewControllers([firstViewController, secondViewController, thirdViewController, testViewController], animated: true)
         
         if let items = tabBarController.tabBar.items {
             items[0].selectedImage = UIImage(systemName: "bitcoinsign.circle.fill")
@@ -94,6 +82,10 @@ class SplashViewController: UIViewController {
             items[2].selectedImage = UIImage(systemName: "person.fill")
             items[2].image = UIImage(systemName: "person")
             items[2].title = "User"
+            
+            items[3].selectedImage = UIImage(systemName: "person.fill")
+            items[3].image = UIImage(systemName: "person")
+            items[3].title = "test"
 
         }
         
@@ -110,3 +102,5 @@ class SplashViewController: UIViewController {
         UIView.transition(with: window, duration: 0.7, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }
 }
+
+

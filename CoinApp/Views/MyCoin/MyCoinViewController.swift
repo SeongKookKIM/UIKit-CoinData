@@ -46,8 +46,9 @@ class MyCoinViewController: UIViewController {
         // userInfo 변경 관찰하기
         UserViewModel.shared.$userInfo
             .sink { [weak self] userInfo in
+                guard let self = self else { return }
                 if let userInfo = userInfo {
-                    self?.testCLabel.text = userInfo.nickName
+                    self.testCLabel.text = userInfo.isLogin ? userInfo.nickName : "자동로그인 아님"
                 }
             }
             .store(in: &cancellables)

@@ -30,7 +30,6 @@ class UserViewModel {
                      Keychain.save(accessToken, forKey: "accessToken")
                      Keychain.save(refreshToken, forKey: "refreshToken")
                  }
-             
                 DispatchQueue.main.async {
                     self.userInfo = result
                 }

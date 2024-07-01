@@ -175,6 +175,7 @@ class LoginViewController: UIViewController {
                         if result.isSuccess {
                             self.showAlert(result.failMessage) {
                                 if let tabBarController = self.tabBarController {
+                                    UserViewModel.shared.fetchUserInfo()
                                     tabBarController.selectedIndex = 0
                                 }
                             }
