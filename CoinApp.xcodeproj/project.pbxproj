@@ -16,6 +16,7 @@
 		0431BBF22C2068D30045AF95 /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431BBF12C2068D30045AF95 /* CoinModel.swift */; };
 		0431BBF42C2068E70045AF95 /* CoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431BBF32C2068E70045AF95 /* CoinViewModel.swift */; };
 		0431BC282C208C1B0045AF95 /* CointListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431BC272C208C1B0045AF95 /* CointListTVCell.swift */; };
+		0437EE832C3312EE008DFAFB /* UserContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0437EE822C3312EE008DFAFB /* UserContainerViewController.swift */; };
 		043AEEF62C2BDD2D00B03ADA /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF52C2BDD2D00B03ADA /* AuthModel.swift */; };
 		043AEEF82C2BDD5E00B03ADA /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */; };
 		043AEEFA2C2BF49300B03ADA /* AutherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF92C2BF49300B03ADA /* AutherService.swift */; };
@@ -46,6 +47,7 @@
 		0431BBF12C2068D30045AF95 /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 		0431BBF32C2068E70045AF95 /* CoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewModel.swift; sourceTree = "<group>"; };
 		0431BC272C208C1B0045AF95 /* CointListTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CointListTVCell.swift; sourceTree = "<group>"; };
+		0437EE822C3312EE008DFAFB /* UserContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContainerViewController.swift; sourceTree = "<group>"; };
 		043AEEF52C2BDD2D00B03ADA /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		043AEEF92C2BF49300B03ADA /* AutherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutherService.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				04A890082C2AF64000E55EA4 /* LoginViewController.swift */,
 				04A8900A2C2B107200E55EA4 /* SignInViewController.swift */,
 				0464D1772C2D4017002EBE45 /* MyPageViewController.swift */,
+				0437EE822C3312EE008DFAFB /* UserContainerViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				04EC37942C29B0D400EA1BDE /* ExtensionHelper.swift in Sources */,
 				0431BC282C208C1B0045AF95 /* CointListTVCell.swift in Sources */,
 				04A890062C2AE75600E55EA4 /* SplashViewController.swift in Sources */,
+				0437EE832C3312EE008DFAFB /* UserContainerViewController.swift in Sources */,
 				0431BBF22C2068D30045AF95 /* CoinModel.swift in Sources */,
 				0431BBDE2C2065F00045AF95 /* CoinListViewController.swift in Sources */,
 				0431BBDA2C2065F00045AF95 /* AppDelegate.swift in Sources */,

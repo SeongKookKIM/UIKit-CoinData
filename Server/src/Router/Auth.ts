@@ -84,14 +84,14 @@ auth.post("/login", async (req: Request, res: Response) => {
       { id: user.id, nickName: user.nickName },
       process.env.ACCESS_TOKEN_SECRET!,
       {
-        expiresIn: "30m",
+        expiresIn: "10s",
       }
     );
     const refreshToken = jwt.sign(
       { id: user.id, nickName: user.nickName },
       process.env.REFRESH_TOKEN_SECRET!,
       {
-        expiresIn: "7d",
+        expiresIn: "30s",
       }
     );
 
@@ -163,29 +163,39 @@ auth.post("/loginCheck", async (req: Request, res: Response) => {
   } catch (error) {
     if (error instanceof jwt.JsonWebTokenError) {
       console.error("엑세스 토큰 검증 실패:", error.message);
-      // Refresh 토큰 검증
-      const decodedRefresh = jwt.verify(
-        refreshToken,
-        process.env.REFRESH_TOKEN_SECRET!
-      ) as TokenPayload;
+      try {
+        // Refresh 토큰 검증
+        const decodedRefresh = jwt.verify(
+          refreshToken,
+          process.env.REFRESH_TOKEN_SECRET!
+        ) as TokenPayload;
 
-      if (decodedRefresh.exp >= now) {
-        const accessToken = jwt.sign(
-          { id: decodedRefresh.id, nickName: decodedRefresh.nickName },
-          process.env.ACCESS_TOKEN_SECRET!,
-          {
-            expiresIn: "30m",
-          }
-        );
+        if (decodedRefresh.exp >= now) {
+          const accessToken = jwt.sign(
+            { id: decodedRefresh.id, nickName: decodedRefresh.nickName },
+            process.env.ACCESS_TOKEN_SECRET!,
+            {
+              expiresIn: "30s",
+            }
+          );
 
-        returnToken(
-          200,
-          true,
-          decodedRefresh.nickName,
-          decodedRefresh.id,
-          accessToken,
-          refreshToken
-        );
+          returnToken(
+            200,
+            true,
+            decodedRefresh.nickName,
+            decodedRefresh.id,
+            accessToken,
+            refreshToken
+          );
+        }
+      } catch (error) {
+        if (error instanceof jwt.TokenExpiredError) {
+          console.error("토큰 만료:", error.message);
+          returnToken(401, false, null, null, null, null);
+        } else {
+          console.error("알 수 없는 오류:", error);
+          returnToken(500, false, null, null, null, null);
+        }
       }
     } else if (error instanceof jwt.TokenExpiredError) {
       console.error("토큰 만료:", error.message);

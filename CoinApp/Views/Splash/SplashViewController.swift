@@ -22,13 +22,13 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         setupUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-                
+        
         // 2초 후에 메인 화면으로 전환
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.showMainView()
@@ -49,7 +49,7 @@ class SplashViewController: UIViewController {
         ])
     }
     
-
+    
     
     
     // tabBarController
@@ -62,13 +62,12 @@ class SplashViewController: UIViewController {
         
         let firstViewController = UINavigationController(rootViewController: CoinListViewController())
         let secondViewController = UINavigationController(rootViewController: MyCoinViewController())
-        let thirdViewController = UINavigationController(rootViewController: LoginViewController())
+        let thirdViewController = UINavigationController(rootViewController: UserContainerViewController())
         
-        let testViewController = UINavigationController(rootViewController: MyPageViewController())
-
+        
         
         let tabBarController = UITabBarController()
-        tabBarController.setViewControllers([firstViewController, secondViewController, thirdViewController, testViewController], animated: true)
+        tabBarController.setViewControllers([firstViewController, secondViewController, thirdViewController], animated: true)
         
         if let items = tabBarController.tabBar.items {
             items[0].selectedImage = UIImage(systemName: "bitcoinsign.circle.fill")
@@ -82,11 +81,6 @@ class SplashViewController: UIViewController {
             items[2].selectedImage = UIImage(systemName: "person.fill")
             items[2].image = UIImage(systemName: "person")
             items[2].title = "User"
-            
-            items[3].selectedImage = UIImage(systemName: "person.fill")
-            items[3].image = UIImage(systemName: "person")
-            items[3].title = "test"
-
         }
         
         let selectedColor   = UIColor(red: 246.0/255.0, green: 155.0/255.0, blue: 13.0/255.0, alpha: 1.0)
