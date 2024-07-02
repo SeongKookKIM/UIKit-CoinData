@@ -16,5 +16,10 @@ class LoginViewModel: ObservableObject {
         let userLoginInfo = UserLoginModel(id: id, password: password)
         return try await autherService.loginService(loginInfo: userLoginInfo)
     }
+    
+    func fetchLogout(_ id:String, _ nickName: String) async throws -> WidthdrawResultModel {
+        let userInfo = UserModel(isLogin: true, nickName: nickName, id: id, accessToken: nil, refreshToken: nil)
+        return try await autherService.logoutService(userInfo: userInfo)
+    }
 }
 

@@ -77,4 +77,20 @@ class AuthService {
         return result
     }
     
+    // Logout
+    func logoutService(userInfo: UserModel) async throws -> WidthdrawResultModel {
+        guard let url = URL(string: "http://localhost:8080/auth/widhdraw") else {
+            throw URLError(.badURL)
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONEncoder().encode(userInfo)
+        
+        let (data, _) = try await URLSession.shared.data(for: request)
+        let result = try JSONDecoder().decode(WidthdrawResultModel.self, from: data)
+        
+        return result
+    }
 }

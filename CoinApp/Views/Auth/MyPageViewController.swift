@@ -11,9 +11,11 @@ class MyPageViewController: UIViewController {
     
     var Keychain = KeychainHelper()
     
+    private let loginViewModel = LoginViewModel()
+    
     // User Info
     private let welcomeLabel: UILabel = {
-       let welcomeLabel = UILabel()
+        let welcomeLabel = UILabel()
         welcomeLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         welcomeLabel.textColor = .black
         welcomeLabel.text = "반갑습니다."
@@ -24,7 +26,7 @@ class MyPageViewController: UIViewController {
     }()
     
     private let userNameLabel: UILabel = {
-       let userNameLabel = UILabel()
+        let userNameLabel = UILabel()
         userNameLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         userNameLabel.textColor = .systemBlue
         userNameLabel.textAlignment = .center
@@ -34,7 +36,7 @@ class MyPageViewController: UIViewController {
     }()
     
     private let userBookmarkLabel: UILabel = {
-       let userBookmarkLabel = UILabel()
+        let userBookmarkLabel = UILabel()
         userBookmarkLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         userBookmarkLabel.textColor = .black
         userBookmarkLabel.text = "현재 내 북마크 갯수는 0개 입니다."
@@ -73,12 +75,12 @@ class MyPageViewController: UIViewController {
         
         return withdrawButton
     }()
-
+    
     // ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    
+        
         setupUI()
         setupBindData()
         setupButtonAction()
@@ -114,7 +116,7 @@ class MyPageViewController: UIViewController {
             
             logoutButton.topAnchor.constraint(equalTo: userBookmarkLabel.bottomAnchor, constant: 50),
             logoutButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-
+            
             withdrawButton.topAnchor.constraint(equalTo: logoutButton.bottomAnchor, constant: 20),
             withdrawButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
         ])
@@ -129,13 +131,46 @@ class MyPageViewController: UIViewController {
     func setupButtonAction() {
         logoutButton.addAction(UIAction { [weak self] _ in
             guard let self = self else { return }
-            self.showAlert() {
+            self.showAlert("로그아웃", "로그아웃 하시겠습니까?", check: false) {
                 if let tabBarController = self.tabBarController {
                     self.Keychain.delete("accessToken")
                     self.Keychain.delete("refreshToken")
                     UserViewModel.shared.fetchUserInfo()
-
+                    
                     tabBarController.selectedIndex = 0
+                } else {
+                    print("Tab bar controller is nil")
+                }
+            }
+        }, for: .touchUpInside)
+        
+        withdrawButton.addAction(UIAction { [weak self] _ in
+            guard let self = self else { return }
+            self.showAlert("회원탈퇴", "회원을 탈퇴 하시겠습니까?", check: true) {
+                if let tabBarController = self.tabBarController {
+                    Task {
+                        do {
+                            let result = try await self.loginViewModel.fetchLogout(UserViewModel.shared.userInfo?.id ?? "", UserViewModel.shared.userInfo?.nickName ?? "")
+                            
+                            self.Keychain.delete("accessToken")
+                            self.Keychain.delete("refreshToken")
+                            UserViewModel.shared.fetchUserInfo()
+                            
+                            self.showAlert("회원탈퇴 진행완료", result.widthdrawMessage, check: false) {
+                                DispatchQueue.main.async {
+                                    tabBarController.selectedIndex = 0
+                                }
+                            }
+                            
+                            
+                        } catch {
+                            DispatchQueue.main.async {
+                                print("에러 발생: \(error)")
+                            }
+                        }
+                    }
+                    
+                    // tabBarController.selectedIndex = 0
                 } else {
                     print("Tab bar controller is nil")
                 }
@@ -143,15 +178,21 @@ class MyPageViewController: UIViewController {
         }, for: .touchUpInside)
     }
     
-
+    
     // 로그아웃시 알림
-    func showAlert(completion: (() -> Void)?) {
-        let alert = UIAlertController(title: "로그아웃", message: "로그아웃 하시겠습니까?", preferredStyle: .alert)
+    func showAlert(_ title: String, _ message: String , check: Bool , completion: (() -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let confirmBtn = UIAlertAction(title: "확인", style: .default) { _ in
             completion?()
         }
+        
+        if check {
+            let cancelBtn = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            alert.addAction(cancelBtn)
+        }
+        
         alert.addAction(confirmBtn)
         self.present(alert, animated: true, completion: nil)
     }
-
+    
 }
