@@ -84,14 +84,14 @@ auth.post("/login", async (req: Request, res: Response) => {
       { id: user.id, nickName: user.nickName },
       process.env.ACCESS_TOKEN_SECRET!,
       {
-        expiresIn: "10s",
+        expiresIn: "30m",
       }
     );
     const refreshToken = jwt.sign(
       { id: user.id, nickName: user.nickName },
       process.env.REFRESH_TOKEN_SECRET!,
       {
-        expiresIn: "30s",
+        expiresIn: "7d",
       }
     );
 
@@ -175,7 +175,7 @@ auth.post("/loginCheck", async (req: Request, res: Response) => {
             { id: decodedRefresh.id, nickName: decodedRefresh.nickName },
             process.env.ACCESS_TOKEN_SECRET!,
             {
-              expiresIn: "30s",
+              expiresIn: "30m",
             }
           );
 
