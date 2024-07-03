@@ -1,7 +1,8 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
-import auth from "./Router/Auth";
+import auth from "./Router/Auth/Auth";
+import coin from "./Router/Coin/Coin";
 
 const app = express();
 
@@ -21,3 +22,5 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/auth", auth);
+
+app.use("/coin", coin);

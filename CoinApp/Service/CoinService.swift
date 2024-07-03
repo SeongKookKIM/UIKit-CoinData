@@ -44,4 +44,20 @@ struct CoinService {
             .eraseToAnyPublisher()
     }
     
+    func fetchAddBookmark(addBookMark: BookmarkData) async throws -> BookmarkMessageModel {
+        guard let url = URL(string: "http://localhost:8080/coin/add/bookmark") else {
+            throw URLError(.badURL)
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONEncoder().encode(addBookMark)
+        
+        let (data, _) = try await URLSession.shared.data(for: request)
+        let result = try JSONDecoder().decode(BookmarkMessageModel.self, from: data)
+        
+        return result
+    }
+    
 }

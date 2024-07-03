@@ -23,7 +23,6 @@ class UserViewModel {
     func fetchUserInfo() {
         Task {
             do {
-                // @@@@@@@@키체인 리셋
                 let result = try await autherService.userLoginCheckService()
      
                  if let accessToken = result.accessToken, let refreshToken = result.refreshToken {

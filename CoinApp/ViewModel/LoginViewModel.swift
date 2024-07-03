@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import Combine
 
-class LoginViewModel: ObservableObject {
+
+class LoginViewModel {
     private let autherService = AuthService()
     
     // 서버에 로그인 요청
@@ -17,6 +17,7 @@ class LoginViewModel: ObservableObject {
         return try await autherService.loginService(loginInfo: userLoginInfo)
     }
     
+    // 서버에 로그아웃 요청
     func fetchLogout(_ id:String, _ nickName: String) async throws -> WidthdrawResultModel {
         let userInfo = UserModel(isLogin: true, nickName: nickName, id: id, accessToken: nil, refreshToken: nil)
         return try await autherService.logoutService(userInfo: userInfo)

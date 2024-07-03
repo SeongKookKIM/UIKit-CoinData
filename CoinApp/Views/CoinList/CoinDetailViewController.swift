@@ -9,9 +9,11 @@ import UIKit
 import DGCharts
 
 class CoinDetailViewController: UIViewController {
-    
-    private var coinViewModel = CoinViewModel()
+
+    // Binding Coindata
     var coindata: CoinModel
+    
+    private let coinDetailViewModel = CoinDetailViewModel()
     
     // Title Label
     private let coinTitleLabel: UILabel = {
@@ -70,6 +72,20 @@ class CoinDetailViewController: UIViewController {
         return priceLabel
     }()
     
+    private let bookmarkButton: UIButton = {
+        let bookmarkButton = UIButton(type: .custom)
+        var config = UIButton.Configuration.filled()
+        config.title = "북마크 추가하기"
+        config.baseBackgroundColor = .systemBlue
+        config.baseForegroundColor = .white
+        config.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 15, trailing: 20)
+        bookmarkButton.configuration = config
+        
+        bookmarkButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        return bookmarkButton
+    }()
+    
     
     // 구분값
     var dayData: [String] = ["1일", "12시간", "6시간", "1시간", "30분", "15분", "현재"]
@@ -96,6 +112,7 @@ class CoinDetailViewController: UIViewController {
         
         setupUI()
         setupChart()
+        setupButtonActions()
     }
     
     // UI Upadate
@@ -112,6 +129,10 @@ class CoinDetailViewController: UIViewController {
         self.view.addSubview(currentPriceLabel)
         self.view.addSubview(yesterdayLabel)
         self.view.addSubview(yesterdayColorLabel)
+        self.view.addSubview(bookmarkButton)
+        
+        self.bookmarkButton.isEnabled = UserViewModel.shared.userInfo?.isLogin ?? false
+        
 
         
         setupColorLabel()
@@ -140,8 +161,47 @@ class CoinDetailViewController: UIViewController {
             myBarChartView.heightAnchor.constraint(equalToConstant: 300),
             
             priceLabel.topAnchor.constraint(equalTo: myBarChartView.bottomAnchor, constant: 16),
-            priceLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
+            priceLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            
+            bookmarkButton.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 40),
+            bookmarkButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            bookmarkButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
         ])
+    }
+    
+    // setupButtonActions
+    func setupButtonActions() {
+        bookmarkButton.addAction(UIAction { [weak self] _ in
+            guard let self = self else { return }
+            Task {
+                do {
+                    let result = try await self.coinDetailViewModel.addCoinBookmark(self.coindata.name, userId: UserViewModel.shared.userInfo?.id ?? "", userNickname: UserViewModel.shared.userInfo?.nickName ?? "")
+                    
+                    if result.isSuccess {
+                        self.showAlert(result.message) {
+                            self.dismiss(animated: true)
+                        }
+                    } else {
+                        self.showAlert(result.message) {
+                            print("북마크 저장실패: \(result.message)")
+                        }
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        print("북마크 에러: \(error)")
+                    }
+                }
+            }
+        }, for: .touchUpInside)
+    }
+    
+    func showAlert(_ message: String, completion: (() -> Void)?) {
+        let alert = UIAlertController(title: "북마크", message: message, preferredStyle: .alert)
+        let confirmBtn = UIAlertAction(title: "확인", style: .default) { _ in
+            completion?()
+        }
+        alert.addAction(confirmBtn)
+        self.present(alert, animated: true, completion: nil)
     }
     
     
