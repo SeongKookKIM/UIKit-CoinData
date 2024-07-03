@@ -58,4 +58,10 @@ class CoinViewModel: ObservableObject {
     func updateCoinData() {
         fetchCoinData()
     }
+    
+    // Fetch Bookmark
+    func fetchCheckBookmark(userId: String, userNickname: String) async throws -> [String] {
+        let finduser = BookmarkData(coinName: nil, userId: userId, userNickname: userNickname)
+        return try await coinService.fetchUserBookmark(userInfo: finduser)
+    }
 }

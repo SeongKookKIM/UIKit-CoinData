@@ -195,6 +195,8 @@ class CoinDetailViewController: UIViewController {
         }, for: .touchUpInside)
     }
     
+
+    
     func showAlert(_ message: String, completion: (() -> Void)?) {
         let alert = UIAlertController(title: "북마크", message: message, preferredStyle: .alert)
         let confirmBtn = UIAlertAction(title: "확인", style: .default) { _ in

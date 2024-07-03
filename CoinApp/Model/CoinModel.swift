@@ -82,7 +82,7 @@ struct Quotes: Codable {
 }
 
 struct BookmarkData: Codable {
-    let coinName: String
+    let coinName: String?
     let userId: String
     let userNickname: String
 }

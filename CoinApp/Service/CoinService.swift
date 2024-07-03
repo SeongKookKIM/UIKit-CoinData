@@ -60,4 +60,21 @@ struct CoinService {
         return result
     }
     
+    // Check Bookmark
+    func fetchUserBookmark(userInfo: BookmarkData) async throws -> [String] {
+        guard let url = URL(string: "http://localhost:8080/coin/get/bookmark") else {
+            throw URLError(.badURL)
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONEncoder().encode(userInfo)
+        
+        let (data, _) = try await URLSession.shared.data(for: request)
+        let result = try JSONDecoder().decode([String].self, from: data)
+        
+        return result
+    }
+    
 }

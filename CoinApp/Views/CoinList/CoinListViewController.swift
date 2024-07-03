@@ -16,6 +16,9 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     private let searchController = UISearchController(searchResultsController: nil)
     private let refreshCoinDataController = UIRefreshControl()
     
+    // Bookmark List
+    var bookmarkList: [String] = []
+    
     // tableView
     private var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -37,7 +40,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     
     // Error Label
     private let errorLabel: UILabel = {
-       let errorLabel = UILabel()
+        let errorLabel = UILabel()
         errorLabel.font = UIFont.systemFont(ofSize: 18)
         errorLabel.textColor = .red
         errorLabel.textAlignment = .center
@@ -59,7 +62,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         setupBarButtonItem()
         setupRefreshData()
     }
-    
+        
     // UI Update
     func setupUI() {
         self.title = "Coin List"
@@ -124,6 +127,23 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
                 self?.errorLabel.isHidden = (errorMessage == nil)
             }
             .store(in: &cancellables)
+        
+        UserViewModel.shared.$userInfo
+            .sink { [weak self] userInfo in
+                guard let self = self else { return }
+                if let userInfo = userInfo {
+                    Task {
+                        do {
+                            let bookmarks = try await self.coinViewModel.fetchCheckBookmark(userId: userInfo.id ?? "", userNickname: userInfo.nickName ?? "")
+                            
+                            self.bookmarkList = bookmarks
+                        } catch {
+                            print("북마크 에러 발생: \(error.localizedDescription)")
+                        }
+                    }
+                }
+            }
+            .store(in: &cancellables)
     }
     
     // Search
@@ -145,7 +165,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
             return
         }
         coinViewModel.searchCoinData(with: searchText)
-         self.tableView.reloadData()
+        self.tableView.reloadData()
     }
     
     // setup UIBarButton
@@ -199,7 +219,7 @@ extension CoinListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         cell.selectionStyle = .none
-        cell.configure(item: coinCell)
+        cell.configure(item: coinCell, checkBookmark: bookmarkList)
         
         return cell
         
