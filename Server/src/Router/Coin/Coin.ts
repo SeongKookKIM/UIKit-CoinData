@@ -61,8 +61,6 @@ coin.post("/get/bookmark", async (req: Request, res: Response) => {
   } catch {
     return res.status(500).json("Error");
   }
-
-  return res.status(200).json(["Bitcoin", "Solana"]);
 });
 
 export default coin;

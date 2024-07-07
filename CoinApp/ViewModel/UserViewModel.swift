@@ -16,9 +16,14 @@ class UserViewModel {
     
     var Keychain = KeychainHelper()
     
-    @Published private(set) var userInfo: UserModel?
+    @Published var userInfo: UserModel?
+    @Published var isLoggedIn: Bool = false
     
-    private init() {}
+    private init() {
+        $userInfo
+            .map { $0 != nil }
+            .assign(to: &$isLoggedIn)
+    }
     
     func fetchUserInfo() {
         Task {
@@ -36,5 +41,13 @@ class UserViewModel {
                 print("Error fetching user info: \(error)")
             }
         }
+    }
+    
+    func logout() {
+        Keychain.delete("accessToken")
+        Keychain.delete("refreshToken")
+        fetchUserInfo()
+        
+        userInfo = nil // 로그아웃 시 userInfo를 nil로 설정
     }
 }

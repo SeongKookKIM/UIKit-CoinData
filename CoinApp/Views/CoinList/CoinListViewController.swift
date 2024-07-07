@@ -61,6 +61,8 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
         setupSearchController()
         setupBarButtonItem()
         setupRefreshData()
+        
+        UserViewModel.shared.fetchUserInfo()
     }
         
     // UI Update
@@ -135,12 +137,17 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
                     Task {
                         do {
                             let bookmarks = try await self.coinViewModel.fetchCheckBookmark(userId: userInfo.id ?? "", userNickname: userInfo.nickName ?? "")
-                            
-                            self.bookmarkList = bookmarks
+                            DispatchQueue.main.async {
+                                self.bookmarkList = bookmarks
+                                self.tableView.reloadData()
+                            }
                         } catch {
                             print("북마크 에러 발생: \(error.localizedDescription)")
                         }
                     }
+                } else {
+                    self.bookmarkList = []
+                    self.tableView.reloadData()
                 }
             }
             .store(in: &cancellables)

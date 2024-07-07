@@ -13,6 +13,7 @@ class CoinDetailViewController: UIViewController {
     // Binding Coindata
     var coindata: CoinModel
     
+    private var coinViewModel = CoinViewModel()
     private let coinDetailViewModel = CoinDetailViewModel()
     
     // Title Label
@@ -179,6 +180,7 @@ class CoinDetailViewController: UIViewController {
                     
                     if result.isSuccess {
                         self.showAlert(result.message) {
+                            self.coinViewModel.updateCoinData()
                             self.dismiss(animated: true)
                         }
                     } else {

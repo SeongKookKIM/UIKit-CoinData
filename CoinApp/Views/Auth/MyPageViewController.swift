@@ -133,9 +133,10 @@ class MyPageViewController: UIViewController {
             guard let self = self else { return }
             self.showAlert("로그아웃", "로그아웃 하시겠습니까?", check: false) {
                 if let tabBarController = self.tabBarController {
-                    self.Keychain.delete("accessToken")
-                    self.Keychain.delete("refreshToken")
-                    UserViewModel.shared.fetchUserInfo()
+//                    self.Keychain.delete("accessToken")
+//                    self.Keychain.delete("refreshToken")
+//                     UserViewModel.shared.fetchUserInfo()
+                    UserViewModel.shared.logout()
                     
                     tabBarController.selectedIndex = 0
                 } else {
