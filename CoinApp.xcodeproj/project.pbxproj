@@ -34,6 +34,7 @@
 		04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC378D2C29926400EA1BDE /* CoinService.swift */; };
 		04EC37912C299A1600EA1BDE /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37902C299A1600EA1BDE /* APIHelper.swift */; };
 		04EC37942C29B0D400EA1BDE /* ExtensionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */; };
+		04ED11E52C3AC9C9004750BF /* coinBookmarkTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED11E42C3AC9C9004750BF /* coinBookmarkTVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		04EC378D2C29926400EA1BDE /* CoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinService.swift; sourceTree = "<group>"; };
 		04EC37902C299A1600EA1BDE /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHelper.swift; sourceTree = "<group>"; };
+		04ED11E42C3AC9C9004750BF /* coinBookmarkTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coinBookmarkTVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				0431BC272C208C1B0045AF95 /* CointListTVCell.swift */,
+				04ED11E42C3AC9C9004750BF /* coinBookmarkTVCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				0464D1742C2D00BF002EBE45 /* LoginViewModel.swift in Sources */,
 				04EC37912C299A1600EA1BDE /* APIHelper.swift in Sources */,
 				043AEEFA2C2BF49300B03ADA /* AutherService.swift in Sources */,
+				04ED11E52C3AC9C9004750BF /* coinBookmarkTVCell.swift in Sources */,
 				0431BBDC2C2065F00045AF95 /* SceneDelegate.swift in Sources */,
 				04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */,
 				04A890032C2AE64600E55EA4 /* MyCoinViewController.swift in Sources */,

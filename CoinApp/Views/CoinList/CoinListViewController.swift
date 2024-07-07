@@ -206,6 +206,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
 extension CoinListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if searchController.isActive {
             return coinViewModel.filteredCoinData.count
         }
@@ -234,6 +235,7 @@ extension CoinListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCoinCell: CoinModel
+        let isBookmarkSelected = false
         
         if searchController.isActive {
             selectedCoinCell = coinViewModel.filteredCoinData[indexPath.row]
@@ -241,7 +243,7 @@ extension CoinListViewController: UITableViewDataSource, UITableViewDelegate {
             selectedCoinCell = coinViewModel.coinData[indexPath.row]
         }
         
-        let coinDetailViewController = CoinDetailViewController(coindata: selectedCoinCell)
+        let coinDetailViewController = CoinDetailViewController(coindata: selectedCoinCell, isBookmarkSelected: isBookmarkSelected)
         coinDetailViewController.modalPresentationStyle = .pageSheet
         
         if let sheet = coinDetailViewController.sheetPresentationController {

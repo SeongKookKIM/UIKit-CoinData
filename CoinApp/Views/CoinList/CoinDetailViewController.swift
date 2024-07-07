@@ -12,6 +12,7 @@ class CoinDetailViewController: UIViewController {
 
     // Binding Coindata
     var coindata: CoinModel
+    var isBookmarkSelected: Bool
     
     private var coinViewModel = CoinViewModel()
     private let coinDetailViewModel = CoinDetailViewModel()
@@ -95,8 +96,9 @@ class CoinDetailViewController: UIViewController {
     
     
     // 초기화
-    init(coindata: CoinModel) {
+    init(coindata: CoinModel, isBookmarkSelected: Bool) {
         self.coindata = coindata
+        self.isBookmarkSelected = isBookmarkSelected
         super.init(nibName: nil, bundle: nil)
         
         // priceData 계산
@@ -133,6 +135,7 @@ class CoinDetailViewController: UIViewController {
         self.view.addSubview(bookmarkButton)
         
         self.bookmarkButton.isEnabled = UserViewModel.shared.userInfo?.isLogin ?? false
+        self.bookmarkButton.isHidden = isBookmarkSelected ? true : false
         
 
         

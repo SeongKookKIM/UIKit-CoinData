@@ -14,6 +14,7 @@ class CoinViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     @Published var bookmarkList: [String] = []
+    @Published var bookmarkedCoinData: [CoinModel] = []
     
     private var coinService = CoinService()
     private var cancellable = Set<AnyCancellable>()
@@ -34,7 +35,8 @@ class CoinViewModel: ObservableObject {
             .handleEvents(receiveCompletion: { [weak self] completion in
                 self?.isLoading = false
                 if case .failure(let error) = completion {
-                    self?.errorMessage = error.localizedDescription
+                    print("\(error.localizedDescription)")
+                    self?.errorMessage = "데이터를 불러올 수 없습니다."
                 }
             })
             .catch { _ in Just([]) }
@@ -67,5 +69,10 @@ class CoinViewModel: ObservableObject {
         bookmarkList = result
         
         return result
+    }
+    
+    // Filter Bookmark CoinData
+    func filterBookmarkedCoinData() {
+        bookmarkedCoinData = coinData.filter { bookmarkList.contains($0.name) }
     }
 }
