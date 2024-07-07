@@ -179,6 +179,8 @@ class CoinDetailViewController: UIViewController {
                     let result = try await self.coinDetailViewModel.addCoinBookmark(self.coindata.name, userId: UserViewModel.shared.userInfo?.id ?? "", userNickname: UserViewModel.shared.userInfo?.nickName ?? "")
                     
                     if result.isSuccess {
+                        UserViewModel.shared.updateUserInfo()
+                        
                         self.showAlert(result.message) {
                             self.coinViewModel.updateCoinData()
                             self.dismiss(animated: true)

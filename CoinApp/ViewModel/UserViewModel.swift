@@ -50,4 +50,8 @@ class UserViewModel {
         
         userInfo = nil // 로그아웃 시 userInfo를 nil로 설정
     }
+    
+    func updateUserInfo() {
+        fetchUserInfo()
+    }
 }
