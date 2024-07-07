@@ -13,6 +13,7 @@ class CoinViewModel: ObservableObject {
     @Published var filteredCoinData: [CoinModel] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
+    @Published var bookmarkList: [String] = []
     
     private var coinService = CoinService()
     private var cancellable = Set<AnyCancellable>()
@@ -62,6 +63,9 @@ class CoinViewModel: ObservableObject {
     // Fetch Bookmark
     func fetchCheckBookmark(userId: String, userNickname: String) async throws -> [String] {
         let finduser = BookmarkData(coinName: nil, userId: userId, userNickname: userNickname)
-        return try await coinService.fetchUserBookmark(userInfo: finduser)
+        let result =  try await coinService.fetchUserBookmark(userInfo: finduser)
+        bookmarkList = result
+        
+        return result
     }
 }

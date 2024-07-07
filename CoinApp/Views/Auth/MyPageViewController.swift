@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import Combine
 
 class MyPageViewController: UIViewController {
     
     var Keychain = KeychainHelper()
     
     private let loginViewModel = LoginViewModel()
+    private var coinViewModel = CoinViewModel()
+    private var cancellables = Set<AnyCancellable>()
     
     // User Info
     private let welcomeLabel: UILabel = {
@@ -82,6 +85,7 @@ class MyPageViewController: UIViewController {
         
         
         setupUI()
+        fetchBookmarks()
         setupBindData()
         setupButtonAction()
     }
@@ -125,6 +129,34 @@ class MyPageViewController: UIViewController {
     // setupBind UserInfo
     func setupBindData() {
         userNameLabel.text = "\(UserViewModel.shared.userInfo?.nickName ?? "")님"
+        
+        coinViewModel.$bookmarkList
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] bookmarks in
+                guard let self = self else { return }
+                self.userBookmarkLabel.text = "현재 내 북마크 갯수는 \(bookmarks.count)개 입니다."
+            }
+            .store(in: &cancellables)
+    }
+    
+    // fetchBookmarks
+    func fetchBookmarks() {
+        Task {
+            do {
+                if let userId = UserViewModel.shared.userInfo?.id,
+                   let userNickname = UserViewModel.shared.userInfo?.nickName {
+                    let bookmarks = try await coinViewModel.fetchCheckBookmark(userId: userId, userNickname: userNickname)
+                    DispatchQueue.main.async {
+                        self.coinViewModel.bookmarkList = bookmarks
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.coinViewModel.bookmarkList = []
+                }
+                print("Error fetching bookmarks: \(error)")
+            }
+        }
     }
     
     // Button Actions
@@ -133,10 +165,7 @@ class MyPageViewController: UIViewController {
             guard let self = self else { return }
             self.showAlert("로그아웃", "로그아웃 하시겠습니까?", check: false) {
                 if let tabBarController = self.tabBarController {
-//                    self.Keychain.delete("accessToken")
-//                    self.Keychain.delete("refreshToken")
-//                     UserViewModel.shared.fetchUserInfo()
-                    UserViewModel.shared.logout()
+                    UserViewModel.shared.removeUserInfo()
                     
                     tabBarController.selectedIndex = 0
                 } else {
@@ -153,9 +182,7 @@ class MyPageViewController: UIViewController {
                         do {
                             let result = try await self.loginViewModel.fetchLogout(UserViewModel.shared.userInfo?.id ?? "", UserViewModel.shared.userInfo?.nickName ?? "")
                             
-                            self.Keychain.delete("accessToken")
-                            self.Keychain.delete("refreshToken")
-                            UserViewModel.shared.fetchUserInfo()
+                            UserViewModel.shared.removeUserInfo()
                             
                             self.showAlert("회원탈퇴 진행완료", result.widthdrawMessage, check: false) {
                                 DispatchQueue.main.async {

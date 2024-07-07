@@ -43,12 +43,12 @@ class UserViewModel {
         }
     }
     
-    func logout() {
+    func removeUserInfo() {
         Keychain.delete("accessToken")
         Keychain.delete("refreshToken")
         fetchUserInfo()
         
-        userInfo = nil // 로그아웃 시 userInfo를 nil로 설정
+        userInfo = nil
     }
     
     func updateUserInfo() {
