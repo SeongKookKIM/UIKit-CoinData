@@ -65,7 +65,7 @@ class MyCoinViewController: UIViewController {
         setupUI()
         setupBindData()
         setupRefreshData()
-        
+        setupBarButtonItem()
         UserViewModel.shared.fetchUserInfo()
     }
         
@@ -101,8 +101,8 @@ class MyCoinViewController: UIViewController {
             errorLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
             errorLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
             
-            statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            statusLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            statusLabel.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            statusLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor)
         ])
     }
     
@@ -114,8 +114,12 @@ class MyCoinViewController: UIViewController {
                 guard let self = self else { return }
                 self.tableView.reloadData()
                 self.tableView.isHidden = bookmarkedCoinData.isEmpty
-                self.statusLabel.isHidden = !bookmarkedCoinData.isEmpty
-                self.statusLabel.text = bookmarkedCoinData.isEmpty ? "리스트가 존재하지 않습니다" : ""
+                if bookmarkedCoinData.isEmpty && (self.coinViewModel.errorMessage?.isEmpty ?? true) {
+                    self.statusLabel.text = "리스트가 존재하지 않습니다"
+                    self.statusLabel.isHidden = false
+                } else {
+                    self.statusLabel.isHidden = true
+                }
                 self.activityIndicator.stopAnimating()
             }
             .store(in: &cancellables)
@@ -139,6 +143,12 @@ class MyCoinViewController: UIViewController {
             .sink { [weak self] errorMessage in
                 self?.errorLabel.text = errorMessage
                 self?.errorLabel.isHidden = (errorMessage == nil)
+                if let errorMessage = errorMessage, !errorMessage.isEmpty {
+                    self?.statusLabel.isHidden = true
+                } else if self?.coinViewModel.bookmarkedCoinData.isEmpty ?? true {
+                    self?.statusLabel.text = "리스트가 존재하지 않습니다"
+                    self?.statusLabel.isHidden = false
+                }
             }
             .store(in: &cancellables)
         
@@ -152,8 +162,12 @@ class MyCoinViewController: UIViewController {
                             DispatchQueue.main.async {
                                 self.bookmarkList = bookmarks
                                 self.coinViewModel.filterBookmarkedCoinData()
-                                self.statusLabel.isHidden = !self.bookmarkList.isEmpty
-                                self.statusLabel.text = self.bookmarkList.isEmpty ? "리스트가 존재하지 않습니다" : ""
+                                if self.bookmarkList.isEmpty && (self.coinViewModel.errorMessage?.isEmpty ?? true) {
+                                    self.statusLabel.text = "리스트가 존재하지 않습니다"
+                                    self.statusLabel.isHidden = false
+                                } else {
+                                    self.statusLabel.isHidden = true
+                                }
                                 self.tableView.reloadData()
                             }
                         } catch {
@@ -170,6 +184,19 @@ class MyCoinViewController: UIViewController {
             }
             .store(in: &cancellables)
     }
+    
+    // setup UIBarButton
+    func setupBarButtonItem() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
+                                                            target: self,
+                                                            action: #selector(handlerDelete))
+
+    }
+    @objc func handlerDelete() {
+        let shouldBeEdited = !tableView.isEditing
+        tableView.setEditing(shouldBeEdited, animated: true)
+    }
+    
         
     // refresh Data
     func setupRefreshData() {
