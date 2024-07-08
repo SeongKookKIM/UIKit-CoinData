@@ -64,8 +64,10 @@ class MyCoinViewController: UIViewController {
         setupRefreshData()
         setupBarButtonItem()
         UserViewModel.shared.fetchUserInfo()
-    }
         
+        checkLoginStatus()
+    }
+    
     // UI Update
     func setupUI() {
         self.title = "Coin Bookmark List"
@@ -105,97 +107,100 @@ class MyCoinViewController: UIViewController {
     
     // setup BindData
     private func setupBindData() {
-          coinViewModel.$bookmarkedCoinData
-              .receive(on: DispatchQueue.main)
-              .sink { [weak self] bookmarkedCoinData in
-                  guard let self = self else { return }
-                  self.tableView.reloadData()
-                  self.tableView.isHidden = bookmarkedCoinData.isEmpty
-                  if bookmarkedCoinData.isEmpty && (self.coinViewModel.errorMessage?.isEmpty ?? true) && UserViewModel.shared.userInfo != nil {
-                      self.statusLabel.text = "리스트가 존재하지 않습니다"
-                      self.statusLabel.isHidden = false
-                  } else if UserViewModel.shared.userInfo == nil {
-                      self.statusLabel.text = "로그인 후 사용해주세요."
-                      self.statusLabel.isHidden = false
-                  } else {
-                      self.statusLabel.isHidden = true
-                  }
-                  self.activityIndicator.stopAnimating()
-              }
-              .store(in: &cancellables)
-          
-          coinViewModel.$isLoading
-              .receive(on: DispatchQueue.main)
-              .sink { [weak self] isLoading in
-                  if isLoading {
-                      self?.activityIndicator.startAnimating()
-                      self?.tableView.isHidden = true
-                      self?.statusLabel.isHidden = true
-                  } else {
-                      self?.activityIndicator.stopAnimating()
-                      self?.tableView.isHidden = false
-                  }
-              }
-              .store(in: &cancellables)
-          
-          coinViewModel.$errorMessage
-              .receive(on: DispatchQueue.main)
-              .sink { [weak self] errorMessage in
-                  self?.errorLabel.text = errorMessage
-                  self?.errorLabel.isHidden = (errorMessage == nil)
-                  if let errorMessage = errorMessage, !errorMessage.isEmpty {
-                      self?.statusLabel.isHidden = true
-                  } else if self?.coinViewModel.bookmarkedCoinData.isEmpty ?? true {
-                      self?.statusLabel.text = "리스트가 존재하지 않습니다"
-                      self?.statusLabel.isHidden = false
-                  }
-              }
-              .store(in: &cancellables)
-          
-          UserViewModel.shared.$userInfo
-              .sink { [weak self] userInfo in
-                  guard let self = self else { return }
-                  if let userInfo = userInfo {
-                      Task {
-                          do {
-                              let bookmarks = try await self.coinViewModel.fetchCheckBookmark(userId: userInfo.id ?? "", userNickname: userInfo.nickName ?? "")
-                              DispatchQueue.main.async {
-                                  self.coinViewModel.filterBookmarkedCoinData()
-                                  if self.coinViewModel.errorMessage?.isEmpty ?? true && self.coinViewModel.bookmarkedCoinData.isEmpty {
-                                      self.statusLabel.text = "리스트가 존재하지 않습니다"
-                                      self.statusLabel.isHidden = false
-                                  } else {
-                                      self.statusLabel.isHidden = true
-                                  }
-                                  self.tableView.reloadData()
-                              }
-                          } catch {
-                              print("북마크 에러 발생: \(error.localizedDescription)")
-                          }
-                      }
-                  } else {
-                      self.coinViewModel.bookmarkedCoinData.removeAll()
-                      self.tableView.reloadData()
-                      self.statusLabel.isHidden = false
-                      self.statusLabel.text = "로그인 후 사용해주세요."
-                  }
-              }
-              .store(in: &cancellables)
-      }
+        coinViewModel.$bookmarkedCoinData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] bookmarkedCoinData in
+                guard let self = self else { return }
+                self.tableView.reloadData()
+                self.tableView.isHidden = bookmarkedCoinData.isEmpty
+                self.updateStatusLabel()
+                self.activityIndicator.stopAnimating()
+            }
+            .store(in: &cancellables)
+        
+        coinViewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                if isLoading {
+                    self?.activityIndicator.startAnimating()
+                    self?.tableView.isHidden = true
+                    self?.statusLabel.isHidden = true
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                }
+            }
+            .store(in: &cancellables)
+        
+        coinViewModel.$errorMessage
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] errorMessage in
+                self?.errorLabel.text = errorMessage
+                self?.errorLabel.isHidden = (errorMessage == nil)
+                if let errorMessage = errorMessage, !errorMessage.isEmpty {
+                    self?.statusLabel.isHidden = true
+                }
+            }
+            .store(in: &cancellables)
+        
+        UserViewModel.shared.$userInfo
+            .sink { [weak self] userInfo in
+                guard let self = self else { return }
+                if let userInfo = userInfo, userInfo.isLogin == true {
+                    Task {
+                        do {
+                            _ = try await self.coinViewModel.fetchCheckBookmark(userId: userInfo.id ?? "", userNickname: userInfo.nickName ?? "")
+                            self.coinViewModel.filterBookmarkedCoinData()
+                            DispatchQueue.main.async {
+                                self.updateStatusLabel()
+                                self.tableView.reloadData()
+                            }
+                        } catch {
+                            print("북마크 에러 발생: \(error.localizedDescription)")
+                        }
+                    }
+                } else {
+                    self.coinViewModel.bookmarkedCoinData.removeAll()
+                    self.tableView.reloadData()
+                    self.updateStatusLabel()
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func updateStatusLabel() {
+        if let userInfo = UserViewModel.shared.userInfo, userInfo.isLogin == true {
+            if coinViewModel.bookmarkedCoinData.isEmpty {
+                statusLabel.text = "리스트가 존재하지 않습니다"
+                statusLabel.isHidden = false
+            } else {
+                statusLabel.isHidden = true
+            }
+        } else {
+            statusLabel.text = "로그인 후 사용해주세요."
+            statusLabel.isHidden = false
+        }
+    }
+    
+    private func checkLoginStatus() {
+        if UserViewModel.shared.userInfo == nil || UserViewModel.shared.userInfo?.isLogin == false {
+            statusLabel.text = "로그인 후 사용해주세요."
+            statusLabel.isHidden = false
+        }
+    }
     
     // setup UIBarButton - 삭제버튼
     func setupBarButtonItem() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
-                                                            target: self,
-                                                            action: #selector(handlerDelete))
-
+                                                                 target: self,
+                                                                 action: #selector(handlerDelete))
+        
     }
     @objc func handlerDelete() {
         let shouldBeEdited = !tableView.isEditing
         tableView.setEditing(shouldBeEdited, animated: true)
     }
     
-        
+    
     // refresh Data
     func setupRefreshData() {
         refreshCoinDataController.addTarget(self, action: #selector(refreshTableData(refresh:)), for: .valueChanged)
