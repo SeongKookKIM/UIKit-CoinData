@@ -64,8 +64,6 @@ class MyCoinViewController: UIViewController {
         setupRefreshData()
         setupBarButtonItem()
         UserViewModel.shared.fetchUserInfo()
-        
-        checkLoginStatus()
     }
     
     // UI Update
@@ -112,7 +110,6 @@ class MyCoinViewController: UIViewController {
             .sink { [weak self] bookmarkedCoinData in
                 guard let self = self else { return }
                 self.tableView.reloadData()
-                self.tableView.isHidden = bookmarkedCoinData.isEmpty
                 self.updateStatusLabel()
                 self.activityIndicator.stopAnimating()
             }
@@ -155,6 +152,7 @@ class MyCoinViewController: UIViewController {
                                 self.tableView.reloadData()
                             }
                         } catch {
+                            self.updateStatusLabel()
                             print("북마크 에러 발생: \(error.localizedDescription)")
                         }
                     }
@@ -166,7 +164,7 @@ class MyCoinViewController: UIViewController {
             }
             .store(in: &cancellables)
     }
-    
+
     private func updateStatusLabel() {
         if let userInfo = UserViewModel.shared.userInfo, userInfo.isLogin == true {
             if coinViewModel.bookmarkedCoinData.isEmpty {
@@ -176,13 +174,6 @@ class MyCoinViewController: UIViewController {
                 statusLabel.isHidden = true
             }
         } else {
-            statusLabel.text = "로그인 후 사용해주세요."
-            statusLabel.isHidden = false
-        }
-    }
-    
-    private func checkLoginStatus() {
-        if UserViewModel.shared.userInfo == nil || UserViewModel.shared.userInfo?.isLogin == false {
             statusLabel.text = "로그인 후 사용해주세요."
             statusLabel.isHidden = false
         }
@@ -256,4 +247,15 @@ extension MyCoinViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    
+    // Delete
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        print(indexPath.row)
+        // self.tableView.deleteRows(at: [indexPath], with: .fade)
+    }
 }
+
+//#Preview {
+//    return UINavigationController(rootViewController: MyCoinViewController())
+//}

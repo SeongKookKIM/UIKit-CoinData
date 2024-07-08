@@ -174,8 +174,9 @@ class LoginViewController: UIViewController {
                     DispatchQueue.main.async {
                         if result.isSuccess {
                             self.showAlert(result.failMessage) {
+                                UserViewModel.shared.fetchUserInfo()
+                                
                                 if let tabBarController = self.tabBarController {
-                                    UserViewModel.shared.fetchUserInfo()
                                     tabBarController.selectedIndex = 0
                                 }
                             }
