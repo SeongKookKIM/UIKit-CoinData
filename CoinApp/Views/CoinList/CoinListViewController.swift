@@ -190,7 +190,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     // refresh Data
     func setupRefreshData() {
         refreshCoinDataController.addTarget(self, action: #selector(refreshTableData(refresh:)), for: .valueChanged)
-        refreshCoinDataController.attributedTitle = NSAttributedString(string: "Update Data")
+        refreshCoinDataController.attributedTitle = NSAttributedString(string: "데이터 새로고침")
         
         tableView.refreshControl = refreshCoinDataController
     }
