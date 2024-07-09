@@ -161,7 +161,7 @@ class MyCoinViewController: UIViewController {
             }
             .store(in: &cancellables)
     }
-
+    
     private func updateStatusLabel() {
         if let errorText = errorLabel.text, !errorText.isEmpty {
             statusLabel.isHidden = true
@@ -246,20 +246,20 @@ extension MyCoinViewController: UITableViewDataSource, UITableViewDelegate {
         if let userInfo = UserViewModel.shared.userInfo {
             Task {
                 do {
+                    // 코인 삭제 API 호출
                     try await self.coinViewModel.deleteBookmarkedCoinData(userId: userInfo.id ?? "", userNickname: userInfo.nickName ?? "", coinName: coinName.name)
                     
-                    await MainActor.run {
-                        self.coinViewModel.filterBookmarkedCoinData()
-                        self.coinViewModel.updateCoinData()
-                        
-                        if self.coinViewModel.bookmarkedCoinData.count < tableView.numberOfRows(inSection: 0) {
-                            tableView.deleteRows(at: [indexPath], with: .fade)
-                        } else {
-                            tableView.reloadData()
-                        }
-                        
-                        self.updateStatusLabel()
-                    }
+                    // 데이터 소스 업데이트
+                    self.coinViewModel.bookmarkedCoinData.remove(at: indexPath.row)
+                    
+                    // 테이블 뷰 업데이트
+                    self.tableView.beginUpdates()
+                    self.tableView.deleteRows(at: [indexPath], with: .fade)
+                    self.tableView.endUpdates()
+                    
+                    // 상태 업데이트
+                    self.updateStatusLabel()
+                    
                 } catch {
                     print("Delete: \(error.localizedDescription)")
                 }

@@ -81,9 +81,7 @@ class CoinViewModel: ObservableObject {
         let deleteData = BookmarkData(coinName: coinName, userId: userId, userNickname: userNickname)
         let result = try await coinService.fetchDeleteBookmark(data: deleteData)
         
-        DispatchQueue.main.async {
-            self.bookmarkList = result
-            self.filterBookmarkedCoinData()
-        }
+        bookmarkList = result
+        filterBookmarkedCoinData()
     }
 }

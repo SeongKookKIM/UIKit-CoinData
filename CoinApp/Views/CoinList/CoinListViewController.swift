@@ -152,11 +152,11 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
             }
             .store(in: &cancellables)
         
-        coinViewModel.$bookmarkList
+        coinViewModel.$bookmarkedCoinData
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] bookmarkList in
+            .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.bookmarkList = bookmarkList
+                self.bookmarkList = coinViewModel.bookmarkList
                 self.tableView.reloadData()
             }
             .store(in: &cancellables)
