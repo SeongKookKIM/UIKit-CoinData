@@ -151,6 +151,15 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
                 }
             }
             .store(in: &cancellables)
+        
+        coinViewModel.$bookmarkList
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] bookmarkList in
+                guard let self = self else { return }
+                self.bookmarkList = bookmarkList
+                self.tableView.reloadData()
+            }
+            .store(in: &cancellables)
     }
     
     // Search

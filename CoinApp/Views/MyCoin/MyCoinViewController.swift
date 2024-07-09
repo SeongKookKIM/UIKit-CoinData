@@ -13,8 +13,6 @@ class MyCoinViewController: UIViewController {
     private var coinViewModel = CoinViewModel()
     private var cancellables = Set<AnyCancellable>()
     
-    private let refreshCoinDataController = UIRefreshControl()
-    
     // tableView
     private var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -61,7 +59,6 @@ class MyCoinViewController: UIViewController {
         
         setupUI()
         setupBindData()
-        setupRefreshData()
         setupBarButtonItem()
         UserViewModel.shared.fetchUserInfo()
     }
@@ -166,6 +163,12 @@ class MyCoinViewController: UIViewController {
     }
 
     private func updateStatusLabel() {
+        if let errorText = errorLabel.text, !errorText.isEmpty {
+            statusLabel.isHidden = true
+            return
+        }
+        
+        // 사용자 로그인 상태를 체크합니다.
         if let userInfo = UserViewModel.shared.userInfo, userInfo.isLogin == true {
             if coinViewModel.bookmarkedCoinData.isEmpty {
                 statusLabel.text = "리스트가 존재하지 않습니다"
@@ -181,28 +184,14 @@ class MyCoinViewController: UIViewController {
     
     // setup UIBarButton - 삭제버튼
     func setupBarButtonItem() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
                                                                  target: self,
                                                                  action: #selector(handlerDelete))
-        
     }
+    
     @objc func handlerDelete() {
         let shouldBeEdited = !tableView.isEditing
         tableView.setEditing(shouldBeEdited, animated: true)
-    }
-    
-    
-    // refresh Data
-    func setupRefreshData() {
-        refreshCoinDataController.addTarget(self, action: #selector(refreshTableData(refresh:)), for: .valueChanged)
-        refreshCoinDataController.attributedTitle = NSAttributedString(string: "데이터 새로고침")
-        tableView.refreshControl = refreshCoinDataController
-    }
-    @objc func refreshTableData(refresh: UIRefreshControl) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.coinViewModel.updateCoinData()
-            refresh.endRefreshing()
-        }
     }
 }
 
@@ -251,11 +240,32 @@ extension MyCoinViewController: UITableViewDataSource, UITableViewDelegate {
     // Delete
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        print(indexPath.row)
-        // self.tableView.deleteRows(at: [indexPath], with: .fade)
+        
+        let coinName = coinViewModel.bookmarkedCoinData[indexPath.row]
+        
+        if let userInfo = UserViewModel.shared.userInfo {
+            Task {
+                do {
+                    try await self.coinViewModel.deleteBookmarkedCoinData(userId: userInfo.id ?? "", userNickname: userInfo.nickName ?? "", coinName: coinName.name)
+                    
+                    await MainActor.run {
+                        self.coinViewModel.filterBookmarkedCoinData()
+                        self.coinViewModel.updateCoinData()
+                        
+                        if self.coinViewModel.bookmarkedCoinData.count < tableView.numberOfRows(inSection: 0) {
+                            tableView.deleteRows(at: [indexPath], with: .fade)
+                        } else {
+                            tableView.reloadData()
+                        }
+                        
+                        self.updateStatusLabel()
+                    }
+                } catch {
+                    print("Delete: \(error.localizedDescription)")
+                }
+            }
+        } else {
+            print("Delete: 유저정보가 존재하지 않습니다.")
+        }
     }
 }
-
-//#Preview {
-//    return UINavigationController(rootViewController: MyCoinViewController())
-//}
