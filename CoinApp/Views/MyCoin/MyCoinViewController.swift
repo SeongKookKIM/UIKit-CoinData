@@ -240,28 +240,31 @@ extension MyCoinViewController: UITableViewDataSource, UITableViewDelegate {
     // Delete
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        
+
         let coinName = coinViewModel.bookmarkedCoinData[indexPath.row]
-        
+
         if let userInfo = UserViewModel.shared.userInfo {
+            
+            self.coinViewModel.bookmarkedCoinData.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            
             Task {
                 do {
-                    // 코인 삭제 API 호출
                     try await self.coinViewModel.deleteBookmarkedCoinData(userId: userInfo.id ?? "", userNickname: userInfo.nickName ?? "", coinName: coinName.name)
                     
-                    // 데이터 소스 업데이트
-                    self.coinViewModel.bookmarkedCoinData.remove(at: indexPath.row)
+                    UserViewModel.shared.fetchUserInfo()
                     
-                    // 테이블 뷰 업데이트
-                    self.tableView.beginUpdates()
-                    self.tableView.deleteRows(at: [indexPath], with: .fade)
-                    self.tableView.endUpdates()
-                    
-                    // 상태 업데이트
-                    self.updateStatusLabel()
+                    DispatchQueue.main.async {
+                        self.coinViewModel.filterBookmarkedCoinData()
+                        self.updateStatusLabel()
+                    }
                     
                 } catch {
                     print("Delete: \(error.localizedDescription)")
+                    DispatchQueue.main.async {
+                        self.coinViewModel.bookmarkedCoinData.insert(coinName, at: indexPath.row)
+                        tableView.insertRows(at: [indexPath], with: .automatic)
+                    }
                 }
             }
         } else {

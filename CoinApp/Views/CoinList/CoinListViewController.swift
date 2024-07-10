@@ -152,14 +152,6 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
             }
             .store(in: &cancellables)
         
-        coinViewModel.$bookmarkedCoinData
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                self.bookmarkList = coinViewModel.bookmarkList
-                self.tableView.reloadData()
-            }
-            .store(in: &cancellables)
     }
     
     // Search
