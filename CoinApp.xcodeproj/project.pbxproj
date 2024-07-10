@@ -20,6 +20,8 @@
 		043AEEF62C2BDD2D00B03ADA /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF52C2BDD2D00B03ADA /* AuthModel.swift */; };
 		043AEEF82C2BDD5E00B03ADA /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */; };
 		043AEEFA2C2BF49300B03ADA /* AutherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF92C2BF49300B03ADA /* AutherService.swift */; };
+		0462627E2C3EBA4E00B70BCC /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462627D2C3EBA4E00B70BCC /* ServiceHelper.swift */; };
+		046262802C3ED0CE00B70BCC /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462627F2C3ED0CE00B70BCC /* ViewHelper.swift */; };
 		0464D1742C2D00BF002EBE45 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464D1732C2D00BF002EBE45 /* LoginViewModel.swift */; };
 		0464D1762C2D3964002EBE45 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464D1752C2D3964002EBE45 /* KeychainHelper.swift */; };
 		0464D1782C2D4017002EBE45 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464D1772C2D4017002EBE45 /* MyPageViewController.swift */; };
@@ -53,6 +55,8 @@
 		043AEEF52C2BDD2D00B03ADA /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		043AEEF92C2BF49300B03ADA /* AutherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutherService.swift; sourceTree = "<group>"; };
+		0462627D2C3EBA4E00B70BCC /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHelper.swift; sourceTree = "<group>"; };
+		0462627F2C3ED0CE00B70BCC /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		0464D1732C2D00BF002EBE45 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0464D1752C2D3964002EBE45 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		0464D1772C2D4017002EBE45 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +222,8 @@
 				04EC37902C299A1600EA1BDE /* APIHelper.swift */,
 				04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */,
 				0464D1752C2D3964002EBE45 /* KeychainHelper.swift */,
+				0462627D2C3EBA4E00B70BCC /* ServiceHelper.swift */,
+				0462627F2C3ED0CE00B70BCC /* ViewHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -305,6 +311,7 @@
 				0431BC282C208C1B0045AF95 /* CointListTVCell.swift in Sources */,
 				04A890062C2AE75600E55EA4 /* SplashViewController.swift in Sources */,
 				0437EE832C3312EE008DFAFB /* UserContainerViewController.swift in Sources */,
+				046262802C3ED0CE00B70BCC /* ViewHelper.swift in Sources */,
 				0431BBF22C2068D30045AF95 /* CoinModel.swift in Sources */,
 				0431BBDE2C2065F00045AF95 /* CoinListViewController.swift in Sources */,
 				0431BBDA2C2065F00045AF95 /* AppDelegate.swift in Sources */,
@@ -314,6 +321,7 @@
 				04ED11E52C3AC9C9004750BF /* coinBookmarkTVCell.swift in Sources */,
 				0431BBDC2C2065F00045AF95 /* SceneDelegate.swift in Sources */,
 				04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */,
+				0462627E2C3EBA4E00B70BCC /* ServiceHelper.swift in Sources */,
 				04A890032C2AE64600E55EA4 /* MyCoinViewController.swift in Sources */,
 				043AEEF82C2BDD5E00B03ADA /* SignInViewModel.swift in Sources */,
 				0464D1782C2D4017002EBE45 /* MyPageViewController.swift in Sources */,

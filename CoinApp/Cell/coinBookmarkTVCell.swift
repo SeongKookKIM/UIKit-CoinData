@@ -12,32 +12,19 @@ class CoinBookmarkTVCell: UITableViewCell {
     private var coinViewModel = CoinViewModel()
     
     private let nameLabel: UILabel = {
-        let nameLabel = UILabel()
-        nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        return nameLabel
+        return UILabel.basicLabel(fontSize: 20, fontWeight: .bold)
     }()
     
     private let priceLabel: UILabel = {
-        let priceLabel = UILabel()
-        priceLabel.font = UIFont.systemFont(ofSize: 18)
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        return priceLabel
+        return UILabel.basicLabel(fontSize: 18, fontWeight: .regular)
     }()
     
     private var bookmarkImage: UIImageView = {
-        let bookmarkImage = UIImageView(image: UIImage(systemName: "bookmark"))
-        bookmarkImage.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        bookmarkImage.tintColor = UIColor(red: 246.0/255.0, green: 155.0/255.0, blue: 13.0/255.0, alpha: 1.0)
-        bookmarkImage.contentMode = .scaleAspectFill
-        bookmarkImage.translatesAutoresizingMaskIntoConstraints = false
-        
-        return bookmarkImage
+        return UIImageView.bookmarkImage(imageName: "bookmark")
     }()
 
     
+    // 초기화
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()

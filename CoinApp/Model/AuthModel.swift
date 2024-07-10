@@ -7,14 +7,25 @@
 
 import Foundation
 
+protocol UserIdentifiable {
+    var id: String? { get }
+    var nickName: String? { get }
+}
+
+protocol TokenIdentifiable {
+    var accessToken: String? { get }
+    var refreshToken: String? { get }
+}
+
 // 회원가입
-struct UserSignInModel: Codable {
-    let nickName: String
-    let id: String
+struct UserSignInModel: Codable, UserIdentifiable {
+    var id: String?
+    var nickName: String?
+    
     let password: String
 }
 
-struct SingInResultModel: Codable {
+struct SignUpResultModel: Codable {
     let isSuccess: Bool
     let failMessage: String
 }
@@ -25,23 +36,23 @@ struct UserLoginModel: Codable {
     let password: String
 }
 
-struct LoginResultModel: Codable {
+struct LoginResultModel: Codable, TokenIdentifiable {
     let isSuccess: Bool
     let failMessage: String
-    let accessToken: String?
-    let refreshToken: String?
+    var accessToken: String?
+    var refreshToken: String?
 }
 
 // 유저 정보
-struct UserModel: Codable {
+struct UserModel: Codable, TokenIdentifiable {
     let isLogin: Bool?
     let nickName: String?
     let id: String?
-    let accessToken: String?
-    let refreshToken: String?
+    var accessToken: String?
+    var refreshToken: String?
 }
 
 // 로그아웃
-struct WidthdrawResultModel: Codable {
+struct WithdrawResultModel: Codable {
     let widthdrawMessage: String
 }

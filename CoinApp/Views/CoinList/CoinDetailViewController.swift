@@ -19,30 +19,17 @@ class CoinDetailViewController: UIViewController {
     
     // Title Label
     private let coinTitleLabel: UILabel = {
-        let coinTitleLabel = UILabel()
-        coinTitleLabel.font = .systemFont(ofSize: 23, weight: .semibold)
-        coinTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        return coinTitleLabel
+        return UILabel.basicLabel(fontSize: 23, fontWeight: .semibold)
     }()
     
     // yesterday Label
     private let yesterdayLabel: UILabel = {
-        let yesterdayLabel = UILabel()
-        yesterdayLabel.font = .systemFont(ofSize: 18, weight: .medium)
-        yesterdayLabel.text = "어제보다"
-        yesterdayLabel.textColor = UIColor.systemGray
-        yesterdayLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        return yesterdayLabel
+        return UILabel.createLabel(fontSize: 18, fontWeight: .medium, textColor: .systemGray, text: "어제보다", align: .left)
     }()
     
+    // yesterday Price(Per)
     private let yesterdayColorLabel: UILabel = {
-        let yesterdayColorLabel = UILabel()
-        yesterdayColorLabel.font = .systemFont(ofSize: 18, weight: .medium)
-        yesterdayColorLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        return yesterdayColorLabel
+        return UILabel.basicLabel(fontSize: 18, fontWeight: .medium)
     }()
     
     // Chart View
@@ -55,37 +42,16 @@ class CoinDetailViewController: UIViewController {
     
     // CurrentPriceLabel
     private let currentPriceLabel: UILabel = {
-        let currentPriceLabel = UILabel()
-        currentPriceLabel.font = .systemFont(ofSize: 24, weight: .bold)
-        currentPriceLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        return currentPriceLabel
+        return UILabel.basicLabel(fontSize: 24, fontWeight: .bold)
     }()
     
     
     private let priceLabel: UILabel = {
-        let priceLabel = UILabel()
-        priceLabel.text = "* 바 클릭시 가격이 나타납니다."
-        priceLabel.font = .systemFont(ofSize: 18, weight: .regular)
-        priceLabel.textColor = .systemRed
-        priceLabel.textAlignment = .left
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        return priceLabel
+        return UILabel.createLabel(fontSize: 18, fontWeight: .regular, textColor: .systemRed, text: "* 바 클릭시 가격이 나타납니다.", align: .left)
     }()
     
     private let bookmarkButton: UIButton = {
-        let bookmarkButton = UIButton(type: .custom)
-        var config = UIButton.Configuration.filled()
-        config.title = "북마크 추가하기"
-        config.baseBackgroundColor = .systemBlue
-        config.baseForegroundColor = .white
-        config.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 15, trailing: 20)
-        bookmarkButton.configuration = config
-        
-        bookmarkButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        return bookmarkButton
+        return UIButton.createButton(title: "북마크 추가하기", backgroundColor: .systemBlue, foregroundColor: .white)
     }()
     
     

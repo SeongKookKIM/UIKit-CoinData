@@ -12,6 +12,7 @@ class SplashViewController: UIViewController {
     
     private var cancellables = Set<AnyCancellable>()
     
+    // imageView
     private let imageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "CoinWatch_logo"))
         imageView.contentMode = .scaleAspectFit
@@ -20,6 +21,7 @@ class SplashViewController: UIViewController {
         return imageView
     }()
     
+    //viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -18,7 +18,7 @@ class LoginViewModel {
     }
     
     // 서버에 로그아웃 요청
-    func fetchLogout(_ id:String, _ nickName: String) async throws -> WidthdrawResultModel {
+    func fetchLogout(_ id:String, _ nickName: String) async throws -> WithdrawResultModel {
         let userInfo = UserModel(isLogin: true, nickName: nickName, id: id, accessToken: nil, refreshToken: nil)
         return try await autherService.logoutService(userInfo: userInfo)
     }

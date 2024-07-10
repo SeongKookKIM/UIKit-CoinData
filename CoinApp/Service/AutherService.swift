@@ -9,42 +9,24 @@ import Foundation
 
 class AuthService {
     
-    var Keychain = KeychainHelper()
+    var keychain = KeychainHelper()
+    private let serviceHelper = ServiceHelper()
+
     
     // signIn Server
-    func signInService(userSignInfo: UserSignInModel) async throws -> SingInResultModel {
-        guard let url = URL(string: "http://localhost:8080/auth/signIn") else {
-            throw URLError(.badURL)
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try JSONEncoder().encode(userSignInfo)
-        
-        let (data, _) = try await URLSession.shared.data(for: request)
-        let result = try JSONDecoder().decode(SingInResultModel.self, from: data)
-        
-        return result
+    func signInService(userSignInfo: UserSignInModel) async throws -> SignUpResultModel {
+        let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/auth/signIn", method: "POST", body: try JSONEncoder().encode(userSignInfo))
+        return try await serviceHelper.sendRequest(request)
     }
     
     // Login Server
     func loginService(loginInfo: UserLoginModel) async throws -> LoginResultModel {
-        guard let url = URL(string: "http://localhost:8080/auth/login") else {
-            throw URLError(.badURL)
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try JSONEncoder().encode(loginInfo)
-        
-        let (data, _) = try await URLSession.shared.data(for: request)
-        let result = try JSONDecoder().decode(LoginResultModel.self, from: data)
+        let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/auth/login", method: "POST", body: try JSONEncoder().encode(loginInfo))
+        let result: LoginResultModel = try await serviceHelper.sendRequest(request)
         
         if result.isSuccess, let accessToken = result.accessToken, let refreshToken = result.refreshToken {
-            Keychain.save(accessToken, forKey: "accessToken")
-            Keychain.save(refreshToken, forKey: "refreshToken")
+            keychain.save(accessToken, forKey: "accessToken")
+            keychain.save(refreshToken, forKey: "refreshToken")
         }
         
         return result
@@ -53,44 +35,22 @@ class AuthService {
 
     // UserLogin TokenCheck
     func userLoginCheckService() async throws -> UserModel {
-        guard let url = URL(string: "http://localhost:8080/auth/loginCheck") else {
-            throw URLError(.badURL)
-        }
-        
-        guard let accessToken = Keychain.get("accessToken"),
-              let refreshToken = Keychain.get("refreshToken") else {
+        guard let accessToken = keychain.get("accessToken"),
+              let refreshToken = keychain.get("refreshToken") else {
             print(APIError.invalidRequestError("토큰이 존재하지 않습니다."))
-            
             return UserModel(isLogin: false, nickName: nil, id: nil, accessToken: nil, refreshToken: nil)
         }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        var request = try serviceHelper.createRequest(urlString: "http://localhost:8080/auth/loginCheck", method: "POST")
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Refresh-Token")
         
-        
-        let (data, _) = try await URLSession.shared.data(for: request)
-        let result = try JSONDecoder().decode(UserModel.self, from: data)
-        
-        return result
+        return try await serviceHelper.sendRequest(request)
     }
     
     // Logout
-    func logoutService(userInfo: UserModel) async throws -> WidthdrawResultModel {
-        guard let url = URL(string: "http://localhost:8080/auth/widhdraw") else {
-            throw URLError(.badURL)
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try JSONEncoder().encode(userInfo)
-        
-        let (data, _) = try await URLSession.shared.data(for: request)
-        let result = try JSONDecoder().decode(WidthdrawResultModel.self, from: data)
-        
-        return result
+    func logoutService(userInfo: UserModel) async throws -> WithdrawResultModel {
+        let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/auth/withdraw", method: "POST", body: try JSONEncoder().encode(userInfo))
+        return try await serviceHelper.sendRequest(request)
     }
 }

@@ -18,65 +18,25 @@ class MyPageViewController: UIViewController {
     
     // User Info
     private let welcomeLabel: UILabel = {
-        let welcomeLabel = UILabel()
-        welcomeLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        welcomeLabel.textColor = .black
-        welcomeLabel.text = "반갑습니다."
-        welcomeLabel.textAlignment = .center
-        welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        return welcomeLabel
+        return UILabel.createLabel(fontSize: 18, fontWeight: .bold, textColor: .black, text: "반갑습니다.", align: .center)
     }()
     
     private let userNameLabel: UILabel = {
-        let userNameLabel = UILabel()
-        userNameLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        userNameLabel.textColor = .systemBlue
-        userNameLabel.textAlignment = .center
-        userNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        return userNameLabel
+        return UILabel.createLabel(fontSize: 22, fontWeight: .bold, textColor: .systemBlue, text: "", align: .center)
     }()
     
     private let userBookmarkLabel: UILabel = {
-        let userBookmarkLabel = UILabel()
-        userBookmarkLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        userBookmarkLabel.textColor = .black
-        userBookmarkLabel.text = "현재 내 북마크 갯수는 0개 입니다."
-        userBookmarkLabel.textAlignment = .left
-        userBookmarkLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        return userBookmarkLabel
+        return UILabel.createLabel(fontSize: 22, fontWeight: .bold, textColor: .black, text: "현재 내 북마크 갯수는 0개 입니다.", align: .left)
     }()
     
     // Logout Btn
     private let logoutButton: UIButton = {
-        let loginButton = UIButton(type: .custom)
-        var config = UIButton.Configuration.filled()
-        config.title = "로그아웃"
-        config.baseBackgroundColor = .systemBlue
-        config.baseForegroundColor = .white
-        config.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 15, trailing: 20)
-        loginButton.configuration = config
-        
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        return loginButton
+        return UIButton.createButton(title: "로그아웃", backgroundColor: .systemBlue, foregroundColor: .white)
     }()
     
     // 탈퇴 Btn
     private let withdrawButton: UIButton = {
-        let withdrawButton = UIButton(type: .custom)
-        var config = UIButton.Configuration.filled()
-        config.title = "탈퇴하기"
-        config.baseBackgroundColor = .systemRed
-        config.baseForegroundColor = .white
-        config.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 15, trailing: 20)
-        withdrawButton.configuration = config
-        
-        withdrawButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        return withdrawButton
+        return UIButton.createButton(title: "탈퇴하기", backgroundColor: .systemRed, foregroundColor: .white)
     }()
     
     // ViewDidLoad
@@ -189,16 +149,12 @@ class MyPageViewController: UIViewController {
                                     tabBarController.selectedIndex = 0
                                 }
                             }
-                            
-                            
                         } catch {
                             DispatchQueue.main.async {
                                 print("에러 발생: \(error)")
                             }
                         }
                     }
-                    
-                    // tabBarController.selectedIndex = 0
                 } else {
                     print("Tab bar controller is nil")
                 }

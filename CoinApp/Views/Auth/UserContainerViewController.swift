@@ -9,8 +9,10 @@ import UIKit
 import Combine
 
 class UserContainerViewController: UIViewController {
+    
     private var cancellables = Set<AnyCancellable>()
     
+    // viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,13 +25,14 @@ class UserContainerViewController: UIViewController {
             .store(in: &cancellables)
     }
     
+    // 뷰가 나타날 때마다 사용자 정보를 새로 가져옴
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // 뷰가 나타날 때마다 사용자 정보를 새로 가져옴
         UserViewModel.shared.fetchUserInfo()
     }
     
+    // 로그인 확인 유무에 따른 뷰 컨트롤
     private func updateViewController(isLoggedIn: Bool) {
         let viewController: UIViewController
         

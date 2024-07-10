@@ -162,13 +162,13 @@ class MyCoinViewController: UIViewController {
             .store(in: &cancellables)
     }
     
+    // 데이터 패칭, 로그인 유무, 리스트 존재 텍스트 분기처리
     private func updateStatusLabel() {
         if let errorText = errorLabel.text, !errorText.isEmpty {
             statusLabel.isHidden = true
             return
         }
         
-        // 사용자 로그인 상태를 체크합니다.
         if let userInfo = UserViewModel.shared.userInfo, userInfo.isLogin == true {
             if coinViewModel.bookmarkedCoinData.isEmpty {
                 statusLabel.text = "리스트가 존재하지 않습니다"
@@ -198,10 +198,12 @@ class MyCoinViewController: UIViewController {
 // TableViewDataSource, TableViewDelegate 분리
 extension MyCoinViewController: UITableViewDataSource, UITableViewDelegate {
     
+    // TableView Cell갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return coinViewModel.bookmarkedCoinData.count
     }
     
+    // TableView Cell Data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "coinBookmarkListCell", for: indexPath) as? CoinBookmarkTVCell else {
             return UITableViewCell()
@@ -214,6 +216,7 @@ extension MyCoinViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    // TableView Cell Click
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCoinCell = coinViewModel.bookmarkedCoinData[indexPath.row]
         let isBookmarkSelected = true
@@ -237,12 +240,12 @@ extension MyCoinViewController: UITableViewDataSource, UITableViewDelegate {
         return 80
     }
     
-    // Delete
+    // TableView Cell Delete
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-
+        
         let coinName = coinViewModel.bookmarkedCoinData[indexPath.row]
-
+        
         if let userInfo = UserViewModel.shared.userInfo {
             
             self.coinViewModel.bookmarkedCoinData.remove(at: indexPath.row)

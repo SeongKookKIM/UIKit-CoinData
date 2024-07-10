@@ -206,14 +206,15 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
 // TableViewDataSource, TableViewDelegate 분리
 extension CoinListViewController: UITableViewDataSource, UITableViewDelegate {
     
+    // TableView Cell갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if searchController.isActive {
             return coinViewModel.filteredCoinData.count
         }
         return coinViewModel.coinData.count
     }
     
+    // TableView Cell Data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "coinListCell", for: indexPath) as? CointListTVCell else {
             return UITableViewCell()
@@ -234,6 +235,7 @@ extension CoinListViewController: UITableViewDataSource, UITableViewDelegate {
         
     }
     
+    // TableView Click
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCoinCell: CoinModel
         let isBookmarkSelected = false

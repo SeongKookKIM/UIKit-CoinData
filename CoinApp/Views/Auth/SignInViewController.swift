@@ -11,6 +11,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     private let signInViewModel = SignInViewModel()
     
+    // Views
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
