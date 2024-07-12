@@ -21,10 +21,16 @@
 		043AEEF82C2BDD5E00B03ADA /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */; };
 		043AEEFA2C2BF49300B03ADA /* AutherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF92C2BF49300B03ADA /* AutherService.swift */; };
 		0462627E2C3EBA4E00B70BCC /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462627D2C3EBA4E00B70BCC /* ServiceHelper.swift */; };
-		046262802C3ED0CE00B70BCC /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462627F2C3ED0CE00B70BCC /* ViewHelper.swift */; };
 		0464D1742C2D00BF002EBE45 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464D1732C2D00BF002EBE45 /* LoginViewModel.swift */; };
 		0464D1762C2D3964002EBE45 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464D1752C2D3964002EBE45 /* KeychainHelper.swift */; };
 		0464D1782C2D4017002EBE45 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464D1772C2D4017002EBE45 /* MyPageViewController.swift */; };
+		046EFD412C41242000051AEC /* ValidHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EFD402C41242000051AEC /* ValidHelper.swift */; };
+		046EFD442C4126DC00051AEC /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EFD432C4126DC00051AEC /* Extension+UIImage.swift */; };
+		046EFD462C41270700051AEC /* Extension+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EFD452C41270700051AEC /* Extension+Double.swift */; };
+		046EFD482C41273B00051AEC /* Extension+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EFD472C41273B00051AEC /* Extension+UILabel.swift */; };
+		046EFD4A2C41275A00051AEC /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EFD492C41275A00051AEC /* Extension+UIImageView.swift */; };
+		046EFD4C2C41277A00051AEC /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EFD4B2C41277A00051AEC /* Extension+UITextField.swift */; };
+		046EFD4E2C41279600051AEC /* Extension+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EFD4D2C41279600051AEC /* Extension+UIButton.swift */; };
 		047CF7FA2C22C8B400C598FB /* CoinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF7F92C22C8B400C598FB /* CoinDetailViewController.swift */; };
 		047CF7FD2C22D39A00C598FB /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 047CF7FC2C22D39A00C598FB /* DGCharts */; };
 		0490F2BE2C3571010068A9B5 /* CoinDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0490F2BD2C3571010068A9B5 /* CoinDetailViewModel.swift */; };
@@ -35,8 +41,7 @@
 		04E37B3A2C305CB50051FBEA /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E37B392C305CB50051FBEA /* UserViewModel.swift */; };
 		04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC378D2C29926400EA1BDE /* CoinService.swift */; };
 		04EC37912C299A1600EA1BDE /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37902C299A1600EA1BDE /* APIHelper.swift */; };
-		04EC37942C29B0D400EA1BDE /* ExtensionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */; };
-		04ED11E52C3AC9C9004750BF /* coinBookmarkTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED11E42C3AC9C9004750BF /* coinBookmarkTVCell.swift */; };
+		04ED11E52C3AC9C9004750BF /* CoinBookmarkTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED11E42C3AC9C9004750BF /* CoinBookmarkTVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,10 +61,16 @@
 		043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		043AEEF92C2BF49300B03ADA /* AutherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutherService.swift; sourceTree = "<group>"; };
 		0462627D2C3EBA4E00B70BCC /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHelper.swift; sourceTree = "<group>"; };
-		0462627F2C3ED0CE00B70BCC /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		0464D1732C2D00BF002EBE45 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0464D1752C2D3964002EBE45 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		0464D1772C2D4017002EBE45 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		046EFD402C41242000051AEC /* ValidHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidHelper.swift; sourceTree = "<group>"; };
+		046EFD432C4126DC00051AEC /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
+		046EFD452C41270700051AEC /* Extension+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Double.swift"; sourceTree = "<group>"; };
+		046EFD472C41273B00051AEC /* Extension+UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UILabel.swift"; sourceTree = "<group>"; };
+		046EFD492C41275A00051AEC /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
+		046EFD4B2C41277A00051AEC /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
+		046EFD4D2C41279600051AEC /* Extension+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIButton.swift"; sourceTree = "<group>"; };
 		047CF7F92C22C8B400C598FB /* CoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewController.swift; sourceTree = "<group>"; };
 		0490F2BD2C3571010068A9B5 /* CoinDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewModel.swift; sourceTree = "<group>"; };
 		0497888D2C34233C00E27138 /* CoinApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinApp.entitlements; sourceTree = "<group>"; };
@@ -70,8 +81,7 @@
 		04E37B392C305CB50051FBEA /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		04EC378D2C29926400EA1BDE /* CoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinService.swift; sourceTree = "<group>"; };
 		04EC37902C299A1600EA1BDE /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
-		04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHelper.swift; sourceTree = "<group>"; };
-		04ED11E42C3AC9C9004750BF /* coinBookmarkTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coinBookmarkTVCell.swift; sourceTree = "<group>"; };
+		04ED11E42C3AC9C9004750BF /* CoinBookmarkTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinBookmarkTVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +115,7 @@
 		0431BBD82C2065F00045AF95 /* CoinApp */ = {
 			isa = PBXGroup;
 			children = (
+				046EFD422C4126B700051AEC /* Extension */,
 				0497888D2C34233C00E27138 /* CoinApp.entitlements */,
 				04EC378F2C299A0500EA1BDE /* Helper */,
 				04EC378C2C2991C600EA1BDE /* Service */,
@@ -166,9 +177,22 @@
 			isa = PBXGroup;
 			children = (
 				0431BC272C208C1B0045AF95 /* CointListTVCell.swift */,
-				04ED11E42C3AC9C9004750BF /* coinBookmarkTVCell.swift */,
+				04ED11E42C3AC9C9004750BF /* CoinBookmarkTVCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		046EFD422C4126B700051AEC /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				046EFD432C4126DC00051AEC /* Extension+UIImage.swift */,
+				046EFD452C41270700051AEC /* Extension+Double.swift */,
+				046EFD472C41273B00051AEC /* Extension+UILabel.swift */,
+				046EFD492C41275A00051AEC /* Extension+UIImageView.swift */,
+				046EFD4B2C41277A00051AEC /* Extension+UITextField.swift */,
+				046EFD4D2C41279600051AEC /* Extension+UIButton.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		04A890002C2AE5F300E55EA4 /* CoinList */ = {
@@ -220,10 +244,9 @@
 			isa = PBXGroup;
 			children = (
 				04EC37902C299A1600EA1BDE /* APIHelper.swift */,
-				04EC37932C29B0D400EA1BDE /* ExtensionHelper.swift */,
 				0464D1752C2D3964002EBE45 /* KeychainHelper.swift */,
 				0462627D2C3EBA4E00B70BCC /* ServiceHelper.swift */,
-				0462627F2C3ED0CE00B70BCC /* ViewHelper.swift */,
+				046EFD402C41242000051AEC /* ValidHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -306,24 +329,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A8900B2C2B107200E55EA4 /* SignInViewController.swift in Sources */,
+				046EFD412C41242000051AEC /* ValidHelper.swift in Sources */,
+				046EFD482C41273B00051AEC /* Extension+UILabel.swift in Sources */,
 				0431BBF42C2068E70045AF95 /* CoinViewModel.swift in Sources */,
-				04EC37942C29B0D400EA1BDE /* ExtensionHelper.swift in Sources */,
 				0431BC282C208C1B0045AF95 /* CointListTVCell.swift in Sources */,
+				046EFD4C2C41277A00051AEC /* Extension+UITextField.swift in Sources */,
 				04A890062C2AE75600E55EA4 /* SplashViewController.swift in Sources */,
+				046EFD462C41270700051AEC /* Extension+Double.swift in Sources */,
 				0437EE832C3312EE008DFAFB /* UserContainerViewController.swift in Sources */,
-				046262802C3ED0CE00B70BCC /* ViewHelper.swift in Sources */,
+				046EFD442C4126DC00051AEC /* Extension+UIImage.swift in Sources */,
 				0431BBF22C2068D30045AF95 /* CoinModel.swift in Sources */,
 				0431BBDE2C2065F00045AF95 /* CoinListViewController.swift in Sources */,
 				0431BBDA2C2065F00045AF95 /* AppDelegate.swift in Sources */,
 				0464D1742C2D00BF002EBE45 /* LoginViewModel.swift in Sources */,
 				04EC37912C299A1600EA1BDE /* APIHelper.swift in Sources */,
 				043AEEFA2C2BF49300B03ADA /* AutherService.swift in Sources */,
-				04ED11E52C3AC9C9004750BF /* coinBookmarkTVCell.swift in Sources */,
+				04ED11E52C3AC9C9004750BF /* CoinBookmarkTVCell.swift in Sources */,
 				0431BBDC2C2065F00045AF95 /* SceneDelegate.swift in Sources */,
 				04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */,
 				0462627E2C3EBA4E00B70BCC /* ServiceHelper.swift in Sources */,
+				046EFD4E2C41279600051AEC /* Extension+UIButton.swift in Sources */,
 				04A890032C2AE64600E55EA4 /* MyCoinViewController.swift in Sources */,
 				043AEEF82C2BDD5E00B03ADA /* SignInViewModel.swift in Sources */,
+				046EFD4A2C41275A00051AEC /* Extension+UIImageView.swift in Sources */,
 				0464D1782C2D4017002EBE45 /* MyPageViewController.swift in Sources */,
 				04A890092C2AF64000E55EA4 /* LoginViewController.swift in Sources */,
 				0490F2BE2C3571010068A9B5 /* CoinDetailViewModel.swift in Sources */,

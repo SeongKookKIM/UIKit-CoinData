@@ -34,6 +34,11 @@ class MyPageViewController: UIViewController {
         return UIButton.createButton(title: "로그아웃", backgroundColor: .systemBlue, foregroundColor: .white)
     }()
     
+    // 회원정보 수정 Btn
+    private let editButton: UIButton = {
+        return UIButton.createButton(title: "정보수정", backgroundColor: .systemGray, foregroundColor: .white)
+    }()
+    
     // 탈퇴 Btn
     private let withdrawButton: UIButton = {
         return UIButton.createButton(title: "탈퇴하기", backgroundColor: .systemRed, foregroundColor: .white)
@@ -60,6 +65,7 @@ class MyPageViewController: UIViewController {
         self.view.addSubview(userNameLabel)
         self.view.addSubview(userBookmarkLabel)
         self.view.addSubview(logoutButton)
+        self.view.addSubview(editButton)
         self.view.addSubview(withdrawButton)
         setupLayout()
     }
@@ -81,7 +87,10 @@ class MyPageViewController: UIViewController {
             logoutButton.topAnchor.constraint(equalTo: userBookmarkLabel.bottomAnchor, constant: 50),
             logoutButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             
-            withdrawButton.topAnchor.constraint(equalTo: logoutButton.bottomAnchor, constant: 20),
+            editButton.topAnchor.constraint(equalTo: logoutButton.bottomAnchor, constant: 20),
+            editButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            
+            withdrawButton.topAnchor.constraint(equalTo: editButton.bottomAnchor, constant: 20),
             withdrawButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
         ])
     }
@@ -132,6 +141,11 @@ class MyPageViewController: UIViewController {
                     print("Tab bar controller is nil")
                 }
             }
+        }, for: .touchUpInside)
+        
+        editButton.addAction(UIAction { [weak self] _ in
+            guard let self = self else { return }
+            print("회원정보 수정")
         }, for: .touchUpInside)
         
         withdrawButton.addAction(UIAction { [weak self] _ in

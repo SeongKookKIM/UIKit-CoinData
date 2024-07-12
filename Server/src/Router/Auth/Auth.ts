@@ -233,4 +233,6 @@ auth.post("/widhdraw", async (req: Request, res: Response) => {
   }
 });
 
+// 회원정보 수정
+
 export default auth;
