@@ -10,42 +10,29 @@ import UIKit
 class SignInViewController: UIViewController, UITextFieldDelegate {
     
     private let signInViewModel = SignInViewModel()
-    
-    // Views
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-    
-    private let contentView: UIView = {
-        let contentView = UIView()
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        return contentView
-    }()
-    
+        
     // 닉네임
-    private lazy var nickNameLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "닉네임", align: .left)
-    private lazy var nickNameTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "2자이상 입력해주세요.", placeholderFontSize: 14, isSecure: false)
-    private lazy var nickNameErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
+    private let nickNameLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "닉네임", align: .left)
+    private let nickNameTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "2자이상 입력해주세요.", placeholderFontSize: 14, isSecure: false)
+    private let nickNameErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
     
     // 아이디
-    private lazy var idLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "아이디", align: .left)
-    private lazy var idTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "영문 숫자 조합 6자 이상.", placeholderFontSize: 14, isSecure: false)
-    private lazy var idErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
+    private let idLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "아이디", align: .left)
+    private let idTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "영문 숫자 조합 6자 이상.", placeholderFontSize: 14, isSecure: false)
+    private let idErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
     
     // 비밀번호
-    private lazy var passwordLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "비밀번호", align: .left)
-    private lazy var passwordTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "영어 소문자, 대문자, 특수기호 포함 8자 이상.", placeholderFontSize: 14, isSecure: true)
-    private lazy var passwordErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
+    private let passwordLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "비밀번호", align: .left)
+    private let passwordTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "영어 소문자, 대문자, 특수기호 포함 8자 이상.", placeholderFontSize: 14, isSecure: true)
+    private let passwordErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
     
     // 비밀번호 확인
-    private lazy var passwordCheckLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "비밀번호 확인", align: .left)
-    private lazy var passwordCheckTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "비밀번호를 다시 입력해주세요.", placeholderFontSize: 14, isSecure: true)
-    private lazy var passwordCheckErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
+    private let passwordCheckLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "비밀번호 확인", align: .left)
+    private let passwordCheckTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "비밀번호를 다시 입력해주세요.", placeholderFontSize: 14, isSecure: true)
+    private let passwordCheckErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
     
     // Submit Btn
-    private lazy var submitButton: UIButton = {
+    private let submitButton: UIButton = {
         UIButton.submitButton(title: "가입하기", backgroundColor: .systemBlue, foregroundColor: .white)
     }()
     
@@ -88,22 +75,21 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     func setupUI() {
         self.title = "회원가입"
         self.view.backgroundColor = .white
-        self.view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
+
         
-        contentView.addSubview(nickNameLabel)
-        contentView.addSubview(nickNameTF)
-        contentView.addSubview(nickNameErrorMessage)
-        contentView.addSubview(idLabel)
-        contentView.addSubview(idTF)
-        contentView.addSubview(idErrorMessage)
-        contentView.addSubview(passwordLabel)
-        contentView.addSubview(passwordTF)
-        contentView.addSubview(passwordErrorMessage)
-        contentView.addSubview(passwordCheckLabel)
-        contentView.addSubview(passwordCheckTF)
-        contentView.addSubview(passwordCheckErrorMessage)
-        contentView.addSubview(submitButton)
+        self.view.addSubview(nickNameLabel)
+        self.view.addSubview(nickNameTF)
+        self.view.addSubview(nickNameErrorMessage)
+        self.view.addSubview(idLabel)
+        self.view.addSubview(idTF)
+        self.view.addSubview(idErrorMessage)
+        self.view.addSubview(passwordLabel)
+        self.view.addSubview(passwordTF)
+        self.view.addSubview(passwordErrorMessage)
+        self.view.addSubview(passwordCheckLabel)
+        self.view.addSubview(passwordCheckTF)
+        self.view.addSubview(passwordCheckErrorMessage)
+        self.view.addSubview(submitButton)
         
         setupLayout()
     }
@@ -133,70 +119,61 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     // setupLayout Contraint
     func setupLayout() {
+        let safeArea = self.view.safeAreaLayoutGuide
+        
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(equalToConstant: 600),
-            
-            nickNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
-            nickNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            nickNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            nickNameLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 30),
+            nickNameLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            nickNameLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             
             nickNameTF.topAnchor.constraint(equalTo: nickNameLabel.bottomAnchor, constant: 10),
-            nickNameTF.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            nickNameTF.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            nickNameTF.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            nickNameTF.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             
             nickNameErrorMessage.topAnchor.constraint(equalTo: nickNameTF.bottomAnchor, constant: 5),
-            nickNameErrorMessage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            nickNameErrorMessage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            nickNameErrorMessage.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            nickNameErrorMessage.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             
             idLabel.topAnchor.constraint(equalTo: nickNameErrorMessage.bottomAnchor, constant: 40),
-            idLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            idLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            idLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            idLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             
             idTF.topAnchor.constraint(equalTo: idLabel.bottomAnchor, constant: 10),
-            idTF.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            idTF.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            idTF.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            idTF.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             
             idErrorMessage.topAnchor.constraint(equalTo: idTF.bottomAnchor, constant: 5),
-            idErrorMessage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            idErrorMessage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            idErrorMessage.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            idErrorMessage.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             
             passwordLabel.topAnchor.constraint(equalTo: idErrorMessage.bottomAnchor, constant: 40),
-            passwordLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            passwordLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            passwordLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            passwordLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             
             passwordTF.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 10),
-            passwordTF.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            passwordTF.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            passwordTF.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            passwordTF.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             
             passwordErrorMessage.topAnchor.constraint(equalTo: passwordTF.bottomAnchor, constant: 5),
-            passwordErrorMessage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            passwordErrorMessage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            passwordErrorMessage.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            passwordErrorMessage.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             
             passwordCheckLabel.topAnchor.constraint(equalTo: passwordErrorMessage.bottomAnchor, constant: 40),
-            passwordCheckLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            passwordCheckLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            passwordCheckLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            passwordCheckLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             
             passwordCheckTF.topAnchor.constraint(equalTo: passwordCheckLabel.bottomAnchor, constant: 10),
-            passwordCheckTF.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            passwordCheckTF.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            passwordCheckTF.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            passwordCheckTF.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             
             passwordCheckErrorMessage.topAnchor.constraint(equalTo: passwordCheckTF.bottomAnchor, constant: 5),
-            passwordCheckErrorMessage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            passwordCheckErrorMessage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            
-            submitButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            submitButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            submitButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30)
+            passwordCheckErrorMessage.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            passwordCheckErrorMessage.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
+   
+            submitButton.topAnchor.constraint(equalTo: passwordCheckErrorMessage.bottomAnchor, constant: 30),
+            submitButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            submitButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
+//            submitButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -30)
         ])
     }
     
@@ -263,9 +240,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             let keyboardHeight = keyboardSize.height
             if view.frame.origin.y == 0 {
                 if activeTF == passwordTF {
-                    view.frame.origin.y -= keyboardHeight * 0.45
+                    view.frame.origin.y -= keyboardHeight * 0.35
                 } else if activeTF == passwordCheckTF {
-                    view.frame.origin.y -= keyboardHeight * 0.4
+                    view.frame.origin.y -= keyboardHeight * 0.3
                 }
             }
         }
