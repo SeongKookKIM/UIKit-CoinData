@@ -24,79 +24,31 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         return contentView
     }()
     
-    private lazy var nickNameLabel: UILabel = createLabel(text: "닉네임")
-    private lazy var nickNameTF: UITextField = createTextField(placeholder: "2자이상 입력해주세요.")
-    private lazy var nickNameErrorMessage: UILabel = createErrorMessageLabel()
+    // 닉네임
+    private lazy var nickNameLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "닉네임", align: .left)
+    private lazy var nickNameTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "2자이상 입력해주세요.", placeholderFontSize: 14, isSecure: false)
+    private lazy var nickNameErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
     
-    private lazy var idLabel: UILabel = createLabel(text: "아이디")
-    private lazy var idTF: UITextField = createTextField(placeholder: "영문 숫자 조합 6자 이상")
-    private lazy var idErrorMessage: UILabel = createErrorMessageLabel()
+    // 아이디
+    private lazy var idLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "아이디", align: .left)
+    private lazy var idTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "영문 숫자 조합 6자 이상.", placeholderFontSize: 14, isSecure: false)
+    private lazy var idErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
     
-    private lazy var passwordLabel: UILabel = createLabel(text: "비밀번호")
-    private lazy var passwordTF: UITextField = createTextField(placeholder: "영어 소문자, 대문자, 특수기호 포함 8자 이상", isSecure: true)
-    private lazy var passwordErrorMessage: UILabel = createErrorMessageLabel()
+    // 비밀번호
+    private lazy var passwordLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "비밀번호", align: .left)
+    private lazy var passwordTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "영어 소문자, 대문자, 특수기호 포함 8자 이상.", placeholderFontSize: 14, isSecure: true)
+    private lazy var passwordErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
     
-    private lazy var passwordCheckLabel: UILabel = createLabel(text: "비밀번호 확인")
-    private lazy var passwordCheckTF: UITextField = createTextField(placeholder: "비밀번호를 다시 입력해주세요.", isSecure: true)
-    private lazy var passwordCheckErrorMessage: UILabel = createErrorMessageLabel()
+    // 비밀번호 확인
+    private lazy var passwordCheckLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "비밀번호 확인", align: .left)
+    private lazy var passwordCheckTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "비밀번호를 다시 입력해주세요.", placeholderFontSize: 14, isSecure: true)
+    private lazy var passwordCheckErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
     
+    // Submit Btn
     private lazy var submitButton: UIButton = {
-        let submitButton = UIButton(type: .custom)
-        var config = UIButton.Configuration.filled()
-        config.title = "가입하기"
-        config.baseBackgroundColor = .systemBlue
-        config.baseForegroundColor = .white
-        config.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 15, trailing: 20)
-        
-        submitButton.configuration = config
-        submitButton.isEnabled = false
-        submitButton.alpha = 0.5
-        submitButton.translatesAutoresizingMaskIntoConstraints = false
-        submitButton.addTarget(self, action: #selector(handlerSignInButton), for: .touchUpInside)
-        
-        return submitButton
+        UIButton.submitButton(title: "가입하기", backgroundColor: .systemBlue, foregroundColor: .white)
     }()
     
-    func createLabel(text: String) -> UILabel {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .gray
-        label.text = text
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }
-    
-    func createTextField(placeholder: String, isSecure: Bool = false) -> UITextField {
-        let textField = UITextField()
-        textField.font = UIFont.systemFont(ofSize: 16)
-        textField.attributedPlaceholder = NSAttributedString(
-            string: placeholder,
-            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
-        )
-        textField.borderStyle = .roundedRect
-        textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 6.0, height: 0.0))
-        textField.leftViewMode = .always
-        textField.isSecureTextEntry = isSecure
-        textField.textContentType = .oneTimeCode
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.autocapitalizationType = .none
-        textField.delegate = self
-        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        
-        return textField
-    }
-    
-    func createErrorMessageLabel() -> UILabel {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = .red
-        label.text = ""
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }
     
     // tap 제스처
     private lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(hanlderTapGeture))
@@ -110,6 +62,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         setupNavigationBar()
         setupUI()
+        setupActions()
         validateForm()
     }
     
@@ -153,6 +106,18 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         contentView.addSubview(submitButton)
         
         setupLayout()
+    }
+    
+    // Action
+    func setupActions() {
+        let textFields = [nickNameTF, idTF, passwordTF, passwordCheckTF]
+        
+        for textFiled in textFields {
+            textFiled.delegate = self
+            textFiled.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        }
+        
+        submitButton.addTarget(self, action: #selector(handlerSignInButton), for: .touchUpInside)
     }
     
     //  setup NavigationBar

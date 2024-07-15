@@ -38,40 +38,38 @@ class SignInViewModel {
     
     // 유효성 검사 메서드
     private func validateNickname() {
-        if nickname.count >= 2 {
-            nicknameErrorMessage = ""
+        if let errorMessage = ValidHelper.validateNickname(nickname) {
+            nicknameErrorMessage = errorMessage
         } else {
-            nicknameErrorMessage = "닉네임은 2자 이상이어야 합니다."
+            nicknameErrorMessage = ""
         }
         validateForm()
     }
     
     // 정규식 패턴 확인
     private func validateID() {
-        let idRegex = "^(?=.*[a-zA-Z])(?=.*\\d)[a-zA-Z0-9]{6,}$"
-        if NSPredicate(format: "SELF MATCHES %@", idRegex).evaluate(with: id) {
-            idErrorMessage = ""
+        if let errorMessage = ValidHelper.validateID(id) {
+            idErrorMessage = errorMessage
         } else {
-            idErrorMessage = "아이디는 영문 숫자 조합 6자 이상이어야 합니다."
+            idErrorMessage = ""
         }
         validateForm()
     }
     
     private func validatePassword() {
-        let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+=-]).{8,}$"
-        if NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: password) {
-            passwordErrorMessage = ""
+        if let errorMessage = ValidHelper.validatePassword(password) {
+            passwordErrorMessage = errorMessage
         } else {
-            passwordErrorMessage = "비밀번호는 소문자, 대문자, 숫자, 특수기호 포함 8자 이상이어야 합니다."
+            passwordErrorMessage = ""
         }
         validateForm()
     }
     
     private func validatePasswordCheck() {
-        if password == passwordCheck {
-            passwordCheckErrorMessage = ""
+        if let errorMessage = ValidHelper.validatePasswordCheck(password, passwordCheck) {
+            passwordCheckErrorMessage = errorMessage
         } else {
-            passwordCheckErrorMessage = "비밀번호가 일치하지 않습니다."
+            passwordCheckErrorMessage = ""
         }
         validateForm()
     }

@@ -31,6 +31,7 @@
 		046EFD4A2C41275A00051AEC /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EFD492C41275A00051AEC /* Extension+UIImageView.swift */; };
 		046EFD4C2C41277A00051AEC /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EFD4B2C41277A00051AEC /* Extension+UITextField.swift */; };
 		046EFD4E2C41279600051AEC /* Extension+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EFD4D2C41279600051AEC /* Extension+UIButton.swift */; };
+		046EFD502C45449500051AEC /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EFD4F2C45449500051AEC /* EditProfileViewController.swift */; };
 		047CF7FA2C22C8B400C598FB /* CoinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF7F92C22C8B400C598FB /* CoinDetailViewController.swift */; };
 		047CF7FD2C22D39A00C598FB /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 047CF7FC2C22D39A00C598FB /* DGCharts */; };
 		0490F2BE2C3571010068A9B5 /* CoinDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0490F2BD2C3571010068A9B5 /* CoinDetailViewModel.swift */; };
@@ -71,6 +72,7 @@
 		046EFD492C41275A00051AEC /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		046EFD4B2C41277A00051AEC /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
 		046EFD4D2C41279600051AEC /* Extension+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIButton.swift"; sourceTree = "<group>"; };
+		046EFD4F2C45449500051AEC /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		047CF7F92C22C8B400C598FB /* CoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewController.swift; sourceTree = "<group>"; };
 		0490F2BD2C3571010068A9B5 /* CoinDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewModel.swift; sourceTree = "<group>"; };
 		0497888D2C34233C00E27138 /* CoinApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinApp.entitlements; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				04A8900A2C2B107200E55EA4 /* SignInViewController.swift */,
 				0464D1772C2D4017002EBE45 /* MyPageViewController.swift */,
 				0437EE822C3312EE008DFAFB /* UserContainerViewController.swift */,
+				046EFD4F2C45449500051AEC /* EditProfileViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				0464D1742C2D00BF002EBE45 /* LoginViewModel.swift in Sources */,
 				04EC37912C299A1600EA1BDE /* APIHelper.swift in Sources */,
 				043AEEFA2C2BF49300B03ADA /* AutherService.swift in Sources */,
+				046EFD502C45449500051AEC /* EditProfileViewController.swift in Sources */,
 				04ED11E52C3AC9C9004750BF /* CoinBookmarkTVCell.swift in Sources */,
 				0431BBDC2C2065F00045AF95 /* SceneDelegate.swift in Sources */,
 				04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */,

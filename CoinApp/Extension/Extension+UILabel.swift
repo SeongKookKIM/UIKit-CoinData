@@ -17,13 +17,23 @@ extension UILabel {
     }
     
     static func createLabel(fontSize: CGFloat, fontWeight: UIFont.Weight, textColor: UIColor, text: String, align: NSTextAlignment) -> UILabel {
-        let loginTitleLabel = UILabel()
-        loginTitleLabel.font = UIFont.systemFont(ofSize: fontSize, weight: fontWeight)
-        loginTitleLabel.textColor = textColor
-        loginTitleLabel.text = text
-        loginTitleLabel.textAlignment = align
-        loginTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: fontSize, weight: fontWeight)
+        label.textColor = textColor
+        label.text = text
+        label.textAlignment = align
+        label.translatesAutoresizingMaskIntoConstraints = false
         
-        return loginTitleLabel
+        return label
+    }
+    
+    static func errorLabel(fontSize: CGFloat, textColor: UIColor, text: String) -> UILabel {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: fontSize)
+        label.textColor = textColor
+        label.text = text
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
     }
 }
