@@ -53,4 +53,10 @@ class AuthService {
         let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/auth/withdraw", method: "POST", body: try JSONEncoder().encode(userInfo))
         return try await serviceHelper.sendRequest(request)
     }
+    
+    // EditProfile
+    func userEditProfileService(userEditProfileInfo: EditProfileModel) async throws -> EditProfileResultModel {
+        let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/auth/editProfile", method: "POST", body: try JSONEncoder().encode(userEditProfileInfo))
+        return try await serviceHelper.sendRequest(request)
+    }
 }

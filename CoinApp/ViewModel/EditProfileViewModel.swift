@@ -8,6 +8,8 @@
 import Foundation
 
 class EditProfileViewModel {
+    private var keychain = KeychainHelper()
+    private let autherService = AuthService()
     
     // 유효성 검사
     var nickname: String = UserViewModel.shared.userInfo?.nickName ?? "" {
@@ -98,5 +100,19 @@ class EditProfileViewModel {
         !password.isEmpty &&
         !newPassword.isEmpty &&
         !newPasswordCheck.isEmpty
+    }
+    
+    // 서버에 회원정보 수정 요청
+    func editProfile(defaultUserId: String, defaultUserNickname: String) async throws -> EditProfileResultModel {
+        
+        let userEditProfileInfo = EditProfileModel(id: id, nickName: nickname, defaultId: defaultUserId, defaultNickname: defaultUserNickname, password: password, newPassword: newPassword)
+        let result = try await autherService.userEditProfileService(userEditProfileInfo: userEditProfileInfo)
+        
+        if result.isSuccess, let accessToken = result.accessToken, let refreshToken = result.refreshToken {
+            keychain.save(accessToken, forKey: "accessToken")
+            keychain.save(refreshToken, forKey: "refreshToken")
+        }
+        
+        return result
     }
 }

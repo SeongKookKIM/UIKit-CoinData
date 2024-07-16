@@ -49,12 +49,12 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
     
     // TextField 추적
     private var activeTF: UITextField?
-
-
+    
+    
     // ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupNavigationBar()
         setupUI()
         setupBindData()
@@ -105,8 +105,8 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
         
         setupLayout()
     }
-
-
+    
+    
     
     // setupLayout Contraint
     private func setupLayout() {
@@ -172,7 +172,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
             newPasswordCheckErrorMessage.topAnchor.constraint(equalTo: newPasswordCheckTF.bottomAnchor, constant: 5),
             newPasswordCheckErrorMessage.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
             newPasswordCheckErrorMessage.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
-   
+            
             editProfileBtn.topAnchor.constraint(equalTo: newPasswordCheckErrorMessage.bottomAnchor, constant: 30),
             editProfileBtn.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
             editProfileBtn.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20)
@@ -194,6 +194,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
             textFiled.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         }
         
+        editProfileBtn.addTarget(self, action: #selector(handlerEditProfileButton), for: .touchUpInside)
     }
     
     // TF입력
@@ -236,15 +237,50 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.compactAppearance = appearance
     }
     
+    // EditProfileBtn
+    @objc func handlerEditProfileButton() {
+        Task {
+            do {
+                let result = try await editProfileViewModel.editProfile(defaultUserId: UserViewModel.shared.userInfo?.id ?? "", defaultUserNickname: UserViewModel.shared.userInfo?.nickName ?? "")
+                DispatchQueue.main.async {
+                    if result.isSuccess {
+                        self.showAlert(result.failMessage) {
+                             UserViewModel.shared.fetchUserInfo()
+                             self.navigationController?.popToRootViewController(animated: true)
+                        }
+                    } else {
+                        self.showAlert(result.failMessage, completion: nil)
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    print("에러 발생: \(error)")
+                    self.showAlert("회원정보 수정 중 오류가 발생했습니다.", completion: nil)
+                }
+            }
+        }
+    }
+    
+    // 회원가입시 알림
+    private func showAlert(_ message: String, completion: (() -> Void)?) {
+        let alert = UIAlertController(title: "회원정보 수정", message: message, preferredStyle: .alert)
+        let confirmBtn = UIAlertAction(title: "확인", style: .default) { _ in
+            completion?()
+        }
+        alert.addAction(confirmBtn)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     // Tap Hanlder
     @objc func keyboardWillShow(_ notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let keyboardHeight = keyboardSize.height
             if view.frame.origin.y == 0 {
-                if activeTF == passwordTF {
-                    view.frame.origin.y -= keyboardHeight * 0.35
-                } else if activeTF == newPasswordTF {
-                    view.frame.origin.y -= keyboardHeight * 0.3
+                if activeTF == newPasswordTF {
+                    view.frame.origin.y -= keyboardHeight * 0.65
+                } else if activeTF == newPasswordCheckTF {
+                    view.frame.origin.y -= keyboardHeight * 0.6
                 }
             }
         }
