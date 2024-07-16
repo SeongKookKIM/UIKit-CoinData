@@ -38,7 +38,7 @@ class SplashViewController: UIViewController {
     }
     
     // setupUI
-    func setupUI() {
+    private func setupUI() {
         self.view.backgroundColor = UIColor(red: 172/255, green: 183/255, blue: 189/255, alpha: 1)
         
         view.addSubview(imageView)

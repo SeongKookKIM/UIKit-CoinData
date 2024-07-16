@@ -66,7 +66,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     }
         
     // UI Update
-    func setupUI() {
+    private func setupUI() {
         self.title = "Coin List"
         self.view.backgroundColor = .white
         
@@ -82,7 +82,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     }
     
     // setup NSLayout
-    func setupLayout(_ safeArea: UILayoutGuide) {
+    private func setupLayout(_ safeArea: UILayoutGuide) {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
@@ -177,7 +177,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     }
     
     // setup UIBarButton
-    func setupBarButtonItem() {
+    private func setupBarButtonItem() {
         let image = UIImage(systemName: "arrow.clockwise")
         let updateDataButton = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(handlerUpdateData))
         self.navigationItem.rightBarButtonItem = updateDataButton
@@ -189,7 +189,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     }
     
     // refresh Data
-    func setupRefreshData() {
+    private func setupRefreshData() {
         refreshCoinDataController.addTarget(self, action: #selector(refreshTableData(refresh:)), for: .valueChanged)
         refreshCoinDataController.attributedTitle = NSAttributedString(string: "데이터 새로고침")
         

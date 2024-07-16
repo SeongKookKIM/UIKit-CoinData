@@ -35,7 +35,7 @@ class CointListTVCell: UITableViewCell {
     }
     
     // setupUI
-    func setupUI() {
+    private func setupUI() {
         contentView.addSubview(nameLabel)
         contentView.addSubview(priceLabel)
         contentView.addSubview(bookmarkImage)
@@ -43,7 +43,7 @@ class CointListTVCell: UITableViewCell {
     }
     
     // setupLayout
-    func setupLayout() {
+    private func setupLayout() {
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),

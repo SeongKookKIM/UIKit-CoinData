@@ -57,7 +57,7 @@ class MyPageViewController: UIViewController {
     
     
     // setupUI
-    func setupUI() {
+    private func setupUI() {
         self.title = "MYPAGE"
         self.view.backgroundColor = .white
         
@@ -71,7 +71,7 @@ class MyPageViewController: UIViewController {
     }
     
     // setupLayout
-    func setupLayout() {
+    private func setupLayout() {
         let safeArea = self.view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
@@ -96,7 +96,7 @@ class MyPageViewController: UIViewController {
     }
     
     // setupBind UserInfo
-    func setupBindData() {
+    private func setupBindData() {
         userNameLabel.text = "\(UserViewModel.shared.userInfo?.nickName ?? "")님"
         
         coinViewModel.$bookmarkList
@@ -109,7 +109,7 @@ class MyPageViewController: UIViewController {
     }
     
     // fetchBookmarks
-    func fetchBookmarks() {
+    private func fetchBookmarks() {
         Task {
             do {
                 if let userId = UserViewModel.shared.userInfo?.id,
@@ -129,7 +129,7 @@ class MyPageViewController: UIViewController {
     }
     
     // Button Actions
-    func setupButtonAction() {
+    private func setupButtonAction() {
         logoutButton.addAction(UIAction { [weak self] _ in
             guard let self = self else { return }
             self.showAlert("로그아웃", "로그아웃 하시겠습니까?", check: false) {
@@ -145,7 +145,9 @@ class MyPageViewController: UIViewController {
         
         editButton.addAction(UIAction { [weak self] _ in
             guard let self = self else { return }
-            print("회원정보 수정")
+            
+            let editProfileVC = EditProfileViewController()
+            self.navigationController?.pushViewController(editProfileVC, animated: true)
         }, for: .touchUpInside)
         
         withdrawButton.addAction(UIAction { [weak self] _ in
@@ -178,7 +180,7 @@ class MyPageViewController: UIViewController {
     
     
     // 로그아웃시 알림
-    func showAlert(_ title: String, _ message: String , check: Bool , completion: (() -> Void)?) {
+    private func showAlert(_ title: String, _ message: String , check: Bool , completion: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let confirmBtn = UIAlertAction(title: "확인", style: .default) { _ in
             completion?()

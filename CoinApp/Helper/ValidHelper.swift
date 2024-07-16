@@ -41,4 +41,12 @@ class ValidHelper {
              return "비밀번호가 일치하지 않습니다."
          }
      }
+    
+    static func validatePasswordEmpty(_ password: String) -> String? {
+        if password.isEmpty {
+            return "비밀번호를 입력해주세요."
+        } else {
+            return nil
+        }
+    }
 }

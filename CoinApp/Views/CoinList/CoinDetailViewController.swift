@@ -85,7 +85,7 @@ class CoinDetailViewController: UIViewController {
     }
     
     // UI Upadate
-    func setupUI() {
+    private func setupUI() {
         
         self.view.backgroundColor = .white
         
@@ -111,7 +111,7 @@ class CoinDetailViewController: UIViewController {
         setupLayout()
     }
     
-    func setupLayout() {
+    private func setupLayout() {
         NSLayoutConstraint.activate([
             coinTitleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30),
             coinTitleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
@@ -140,7 +140,7 @@ class CoinDetailViewController: UIViewController {
     }
     
     // setupButtonActions
-    func setupButtonActions() {
+    private func setupButtonActions() {
         bookmarkButton.addAction(UIAction { [weak self] _ in
             guard let self = self else { return }
             Task {
@@ -170,7 +170,7 @@ class CoinDetailViewController: UIViewController {
     
 
     
-    func showAlert(_ message: String, completion: (() -> Void)?) {
+    private func showAlert(_ message: String, completion: (() -> Void)?) {
         let alert = UIAlertController(title: "북마크", message: message, preferredStyle: .alert)
         let confirmBtn = UIAlertAction(title: "확인", style: .default) { _ in
             completion?()
@@ -181,7 +181,7 @@ class CoinDetailViewController: UIViewController {
     
     
     // setup yesterdayLabel
-    func setupColorLabel() {
+    private func setupColorLabel() {
         // 어제의 가격 계산
         let yesterdayPrice = coindata.quotes.krw.price - coindata.quotes.krw.price / (1 + coindata.quotes.krw.percentChange24h / 100)
         
@@ -193,7 +193,7 @@ class CoinDetailViewController: UIViewController {
     }
     
     // Chart Update
-    func setupChart() {
+    private func setupChart() {
         // 기본 문구
         self.myBarChartView.noDataText = "출력 데이터가 없습니다."
         // 기본 문구 폰트
@@ -246,7 +246,7 @@ class CoinDetailViewController: UIViewController {
     }
     
     // 데이터셋 만들고 차트에 적용하기
-    func setBarData(barChartView: BarChartView, barChartDataEntries: [BarChartDataEntry]) {
+    private func setBarData(barChartView: BarChartView, barChartDataEntries: [BarChartDataEntry]) {
         // 데이터 셋 만들기
         let barChartdataSet = BarChartDataSet(entries: barChartDataEntries, label: "가격")
         // 막대 색상 설정

@@ -67,7 +67,7 @@ class LoginViewController: UIViewController {
     
     
     // setupUI
-    func setupUI() {
+    private func setupUI() {
         self.view.backgroundColor = .white
         self.view.addSubview(loginTitleLabel)
         self.view.addSubview(loginStack)
@@ -84,7 +84,7 @@ class LoginViewController: UIViewController {
     }
     
     // setupLayout Contraint
-    func setupLayout() {
+    private func setupLayout() {
         let safeArea = self.view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
@@ -109,7 +109,7 @@ class LoginViewController: UIViewController {
     }
     
     // Button Actions
-    func setupButtonTap() {
+    private func setupButtonTap() {
         loginButton.addAction(UIAction { [weak self] _ in
             guard let self = self else { return }
             
@@ -160,7 +160,7 @@ class LoginViewController: UIViewController {
     }
     
     // 로그인시 알림
-    func showAlert(_ message: String, completion: (() -> Void)?) {
+    private func showAlert(_ message: String, completion: (() -> Void)?) {
         let alert = UIAlertController(title: "로그인", message: message, preferredStyle: .alert)
         let confirmBtn = UIAlertAction(title: "확인", style: .default) { _ in
             completion?()

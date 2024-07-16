@@ -72,7 +72,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     //setupUI
-    func setupUI() {
+    private func setupUI() {
         self.title = "회원가입"
         self.view.backgroundColor = .white
 
@@ -95,7 +95,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Action
-    func setupActions() {
+    private func setupActions() {
         let textFields = [nickNameTF, idTF, passwordTF, passwordCheckTF]
         
         for textFiled in textFields {
@@ -118,7 +118,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     // setupLayout Contraint
-    func setupLayout() {
+    private func setupLayout() {
         let safeArea = self.view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
@@ -172,8 +172,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
    
             submitButton.topAnchor.constraint(equalTo: passwordCheckErrorMessage.bottomAnchor, constant: 30),
             submitButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
-            submitButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
-//            submitButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -30)
+            submitButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20)
         ])
     }
     
@@ -196,7 +195,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     // 유효성 검사에 따른 버튼 활성화
-    func validateForm() {
+    private func validateForm() {
         let isFormValid = signInViewModel.isFormValid
         submitButton.isEnabled = isFormValid
         submitButton.alpha = isFormValid ? 1.0 : 0.5
@@ -225,7 +224,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     // 회원가입시 알림
-    func showAlert(_ message: String, completion: (() -> Void)?) {
+    private func showAlert(_ message: String, completion: (() -> Void)?) {
         let alert = UIAlertController(title: "회원가입", message: message, preferredStyle: .alert)
         let confirmBtn = UIAlertAction(title: "확인", style: .default) { _ in
             completion?()
@@ -264,13 +263,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     // UITextField Delegate
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTF = textField
-        
-
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         activeTF = nil
-        
-
     }
 }

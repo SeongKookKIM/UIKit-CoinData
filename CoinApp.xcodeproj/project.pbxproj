@@ -20,6 +20,7 @@
 		043AEEF62C2BDD2D00B03ADA /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF52C2BDD2D00B03ADA /* AuthModel.swift */; };
 		043AEEF82C2BDD5E00B03ADA /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */; };
 		043AEEFA2C2BF49300B03ADA /* AutherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF92C2BF49300B03ADA /* AutherService.swift */; };
+		045F21302C4662880080F7FA /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045F212F2C4662880080F7FA /* EditProfileViewModel.swift */; };
 		0462627E2C3EBA4E00B70BCC /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462627D2C3EBA4E00B70BCC /* ServiceHelper.swift */; };
 		0464D1742C2D00BF002EBE45 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464D1732C2D00BF002EBE45 /* LoginViewModel.swift */; };
 		0464D1762C2D3964002EBE45 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464D1752C2D3964002EBE45 /* KeychainHelper.swift */; };
@@ -61,6 +62,7 @@
 		043AEEF52C2BDD2D00B03ADA /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		043AEEF92C2BF49300B03ADA /* AutherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutherService.swift; sourceTree = "<group>"; };
+		045F212F2C4662880080F7FA /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		0462627D2C3EBA4E00B70BCC /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHelper.swift; sourceTree = "<group>"; };
 		0464D1732C2D00BF002EBE45 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0464D1752C2D3964002EBE45 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				04E37B392C305CB50051FBEA /* UserViewModel.swift */,
 				0431BBF32C2068E70045AF95 /* CoinViewModel.swift */,
 				0490F2BD2C3571010068A9B5 /* CoinDetailViewModel.swift */,
+				045F212F2C4662880080F7FA /* EditProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -227,9 +230,9 @@
 			children = (
 				04A890082C2AF64000E55EA4 /* LoginViewController.swift */,
 				04A8900A2C2B107200E55EA4 /* SignInViewController.swift */,
+				046EFD4F2C45449500051AEC /* EditProfileViewController.swift */,
 				0464D1772C2D4017002EBE45 /* MyPageViewController.swift */,
 				0437EE822C3312EE008DFAFB /* UserContainerViewController.swift */,
-				046EFD4F2C45449500051AEC /* EditProfileViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				045F21302C4662880080F7FA /* EditProfileViewModel.swift in Sources */,
 				04A8900B2C2B107200E55EA4 /* SignInViewController.swift in Sources */,
 				046EFD412C41242000051AEC /* ValidHelper.swift in Sources */,
 				046EFD482C41273B00051AEC /* Extension+UILabel.swift in Sources */,

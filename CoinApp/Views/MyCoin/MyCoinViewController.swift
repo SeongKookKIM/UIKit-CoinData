@@ -64,7 +64,7 @@ class MyCoinViewController: UIViewController {
     }
     
     // UI Update
-    func setupUI() {
+    private func setupUI() {
         self.title = "Coin Bookmark List"
         self.view.backgroundColor = .white
         
@@ -81,7 +81,7 @@ class MyCoinViewController: UIViewController {
     }
     
     // setup NSLayout
-    func setupLayout(_ safeArea: UILayoutGuide) {
+    private func setupLayout(_ safeArea: UILayoutGuide) {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
@@ -183,7 +183,7 @@ class MyCoinViewController: UIViewController {
     }
     
     // setup UIBarButton - 삭제버튼
-    func setupBarButtonItem() {
+    private func setupBarButtonItem() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
                                                                  target: self,
                                                                  action: #selector(handlerDelete))
