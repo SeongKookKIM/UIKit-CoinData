@@ -18,7 +18,7 @@ protocol TokenIdentifiable {
 }
 
 // 회원가입
-struct UserSignInModel: Codable, UserIdentifiable {
+struct UserSignUpModel: Codable, UserIdentifiable {
     var id: String?
     var nickName: String?
     

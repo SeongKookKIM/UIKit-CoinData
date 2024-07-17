@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SignInViewModel {
+class SignUpViewModel {
     
     private let autherService = AuthService()
     
@@ -87,8 +87,8 @@ class SignInViewModel {
     }
     
     // 서버에 회원가입 요청
-    func signIn() async throws -> SignUpResultModel {
-        let userSignInfo = UserSignInModel(id: id, nickName: nickname, password: password)
-        return try await autherService.signInService(userSignInfo: userSignInfo)
+    func signUp() async throws -> SignUpResultModel {
+        let userSignInfo = UserSignUpModel(id: id, nickName: nickname, password: password)
+        return try await autherService.signUpService(userSignInfo: userSignInfo)
     }
 }

@@ -13,9 +13,9 @@ class AuthService {
     private let serviceHelper = ServiceHelper()
 
     
-    // signIn Server
-    func signInService(userSignInfo: UserSignInModel) async throws -> SignUpResultModel {
-        let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/auth/signIn", method: "POST", body: try JSONEncoder().encode(userSignInfo))
+    // signUp Server
+    func signUpService(userSignInfo: UserSignUpModel) async throws -> SignUpResultModel {
+        let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/auth/signUp", method: "POST", body: try JSONEncoder().encode(userSignInfo))
         return try await serviceHelper.sendRequest(request)
     }
     

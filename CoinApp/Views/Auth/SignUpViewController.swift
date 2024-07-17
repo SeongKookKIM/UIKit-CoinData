@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SignInViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     
-    private let signInViewModel = SignInViewModel()
+    private let signUpViewModel = SignUpViewModel()
         
     // 닉네임
     private let nickNameLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "닉네임", align: .left)
@@ -103,7 +103,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             textFiled.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         }
         
-        submitButton.addTarget(self, action: #selector(handlerSignInButton), for: .touchUpInside)
+        submitButton.addTarget(self, action: #selector(handlerSignUpButton), for: .touchUpInside)
     }
     
     //  setup NavigationBar
@@ -179,33 +179,33 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     // TF입력
     @objc func textFieldDidChange(_ textField: UITextField) {
         if textField == nickNameTF {
-            signInViewModel.nickname = textField.text ?? ""
-            nickNameErrorMessage.text = signInViewModel.nicknameErrorMessage
+            signUpViewModel.nickname = textField.text ?? ""
+            nickNameErrorMessage.text = signUpViewModel.nicknameErrorMessage
         } else if textField == idTF {
-            signInViewModel.id = textField.text ?? ""
-            idErrorMessage.text = signInViewModel.idErrorMessage
+            signUpViewModel.id = textField.text ?? ""
+            idErrorMessage.text = signUpViewModel.idErrorMessage
         } else if textField == passwordTF {
-            signInViewModel.password = textField.text ?? ""
-            passwordErrorMessage.text = signInViewModel.passwordErrorMessage
+            signUpViewModel.password = textField.text ?? ""
+            passwordErrorMessage.text = signUpViewModel.passwordErrorMessage
         } else if textField == passwordCheckTF {
-            signInViewModel.passwordCheck = textField.text ?? ""
-            passwordCheckErrorMessage.text = signInViewModel.passwordCheckErrorMessage
+            signUpViewModel.passwordCheck = textField.text ?? ""
+            passwordCheckErrorMessage.text = signUpViewModel.passwordCheckErrorMessage
         }
         validateForm()
     }
     
     // 유효성 검사에 따른 버튼 활성화
     private func validateForm() {
-        let isFormValid = signInViewModel.isFormValid
+        let isFormValid = signUpViewModel.isFormValid
         submitButton.isEnabled = isFormValid
         submitButton.alpha = isFormValid ? 1.0 : 0.5
     }
     
     // 가입하기 버튼
-    @objc func handlerSignInButton() {
+    @objc func handlerSignUpButton() {
         Task {
             do {
-                let result = try await signInViewModel.signIn()
+                let result = try await signUpViewModel.signUp()
                 DispatchQueue.main.async {
                     if result.isSuccess {
                         self.showAlert(result.failMessage) {

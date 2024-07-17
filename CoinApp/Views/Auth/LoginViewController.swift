@@ -147,8 +147,8 @@ class LoginViewController: UIViewController {
             self.idTF.resignFirstResponder()
             self.passwordTF.resignFirstResponder()
             
-            let signInVC = SignInViewController()
-            self.navigationController?.pushViewController(signInVC, animated: true)
+            let signUpVC = SignUpViewController()
+            self.navigationController?.pushViewController(signUpVC, animated: true)
             
         }, for: .touchUpInside)
     }

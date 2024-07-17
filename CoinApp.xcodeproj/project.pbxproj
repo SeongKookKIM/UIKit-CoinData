@@ -39,7 +39,7 @@
 		04A890032C2AE64600E55EA4 /* MyCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890022C2AE64600E55EA4 /* MyCoinViewController.swift */; };
 		04A890062C2AE75600E55EA4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890052C2AE75600E55EA4 /* SplashViewController.swift */; };
 		04A890092C2AF64000E55EA4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A890082C2AF64000E55EA4 /* LoginViewController.swift */; };
-		04A8900B2C2B107200E55EA4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8900A2C2B107200E55EA4 /* SignInViewController.swift */; };
+		04A8900B2C2B107200E55EA4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8900A2C2B107200E55EA4 /* SignUpViewController.swift */; };
 		04E37B3A2C305CB50051FBEA /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E37B392C305CB50051FBEA /* UserViewModel.swift */; };
 		04EC378E2C29926400EA1BDE /* CoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC378D2C29926400EA1BDE /* CoinService.swift */; };
 		04EC37912C299A1600EA1BDE /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC37902C299A1600EA1BDE /* APIHelper.swift */; };
@@ -81,7 +81,7 @@
 		04A890022C2AE64600E55EA4 /* MyCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinViewController.swift; sourceTree = "<group>"; };
 		04A890052C2AE75600E55EA4 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		04A890082C2AF64000E55EA4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		04A8900A2C2B107200E55EA4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		04A8900A2C2B107200E55EA4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		04E37B392C305CB50051FBEA /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		04EC378D2C29926400EA1BDE /* CoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinService.swift; sourceTree = "<group>"; };
 		04EC37902C299A1600EA1BDE /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				04A890082C2AF64000E55EA4 /* LoginViewController.swift */,
-				04A8900A2C2B107200E55EA4 /* SignInViewController.swift */,
+				04A8900A2C2B107200E55EA4 /* SignUpViewController.swift */,
 				046EFD4F2C45449500051AEC /* EditProfileViewController.swift */,
 				0464D1772C2D4017002EBE45 /* MyPageViewController.swift */,
 				0437EE822C3312EE008DFAFB /* UserContainerViewController.swift */,
@@ -335,7 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				045F21302C4662880080F7FA /* EditProfileViewModel.swift in Sources */,
-				04A8900B2C2B107200E55EA4 /* SignInViewController.swift in Sources */,
+				04A8900B2C2B107200E55EA4 /* SignUpViewController.swift in Sources */,
 				046EFD412C41242000051AEC /* ValidHelper.swift in Sources */,
 				046EFD482C41273B00051AEC /* Extension+UILabel.swift in Sources */,
 				0431BBF42C2068E70045AF95 /* CoinViewModel.swift in Sources */,
