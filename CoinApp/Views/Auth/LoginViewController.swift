@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let passwordTF: UITextField = {
-        return UITextField.createTextField(fontSize: 16, placeholder: "아이디를 입력해주세요.", placeholderFontSize: 14, isSecure: true)
+        return UITextField.createTextField(fontSize: 16, placeholder: "비밀번호를 입력해주세요.", placeholderFontSize: 14, isSecure: true)
     }()
     
     private let loginButton: UIButton = {
