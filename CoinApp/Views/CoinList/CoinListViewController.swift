@@ -69,6 +69,7 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     private func setupUI() {
         self.title = "Coin List"
         self.view.backgroundColor = .white
+        self.view.accessibilityIdentifier = "CoinListView"
         
         tableView.delegate = self
         tableView.dataSource = self

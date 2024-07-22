@@ -28,15 +28,21 @@ class LoginViewController: UIViewController {
     }()
     
     private lazy var idTF: UITextField = {
-        return UITextField.createTextField(fontSize: 16, placeholder: "아이디를 입력해주세요.", placeholderFontSize: 14, isSecure: false)
+        let textField = UITextField.createTextField(fontSize: 16, placeholder: "아이디를 입력해주세요.", placeholderFontSize: 14, isSecure: false)
+        textField.accessibilityIdentifier = "usernameTextField" // Accessibility Identifier 설정
+        return textField
     }()
     
     private let passwordTF: UITextField = {
-        return UITextField.createTextField(fontSize: 16, placeholder: "아이디를 입력해주세요.", placeholderFontSize: 14, isSecure: true)
+        let textField = UITextField.createTextField(fontSize: 16, placeholder: "비밀번호를 입력해주세요.", placeholderFontSize: 14, isSecure: true)
+        textField.accessibilityIdentifier = "passwordTextField" // Accessibility Identifier 설정
+        return textField
     }()
     
     private let loginButton: UIButton = {
-        return UIButton.createButton(title: "로그인", backgroundColor: .blue, foregroundColor: .white)
+        let button = UIButton.createButton(title: "로그인", backgroundColor: .blue, foregroundColor: .white)
+        button.accessibilityIdentifier = "loginButton" // Accessibility Identifier 설정
+        return button
     }()
     
     private let signButton: UIButton = {
@@ -166,6 +172,7 @@ class LoginViewController: UIViewController {
             completion?()
         }
         alert.addAction(confirmBtn)
+        alert.view.accessibilityIdentifier = "loginAlert"
         self.present(alert, animated: true, completion: nil)
     }
 }

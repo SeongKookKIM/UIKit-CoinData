@@ -41,6 +41,17 @@
                ReferencedContainer = "container:CoinApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "043CADB92C4E84050064B507"
+               BuildableName = "CoinAppUITests.xctest"
+               BlueprintName = "CoinAppUITests"
+               ReferencedContainer = "container:CoinApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

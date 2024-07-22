@@ -16,6 +16,7 @@ class SplashViewController: UIViewController {
     private let imageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "CoinWatch_logo"))
         imageView.contentMode = .scaleAspectFit
+        imageView.accessibilityIdentifier = "splashImageView"
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
