@@ -20,6 +20,7 @@
 		043AEEF62C2BDD2D00B03ADA /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF52C2BDD2D00B03ADA /* AuthModel.swift */; };
 		043AEEF82C2BDD5E00B03ADA /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */; };
 		043AEEFA2C2BF49300B03ADA /* AutherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF92C2BF49300B03ADA /* AutherService.swift */; };
+		043CAD872C4E419E0064B507 /* CoinAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CAD862C4E419E0064B507 /* CoinAppTests.swift */; };
 		045F21302C4662880080F7FA /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045F212F2C4662880080F7FA /* EditProfileViewModel.swift */; };
 		0462627E2C3EBA4E00B70BCC /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462627D2C3EBA4E00B70BCC /* ServiceHelper.swift */; };
 		0464D1742C2D00BF002EBE45 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464D1732C2D00BF002EBE45 /* LoginViewModel.swift */; };
@@ -46,6 +47,16 @@
 		04ED11E52C3AC9C9004750BF /* CoinBookmarkTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED11E42C3AC9C9004750BF /* CoinBookmarkTVCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		043CAD882C4E419E0064B507 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0431BBCE2C2065F00045AF95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0431BBD52C2065F00045AF95;
+			remoteInfo = CoinApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0431BBD62C2065F00045AF95 /* CoinApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0431BBD92C2065F00045AF95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +73,8 @@
 		043AEEF52C2BDD2D00B03ADA /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		043AEEF92C2BF49300B03ADA /* AutherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutherService.swift; sourceTree = "<group>"; };
+		043CAD842C4E419E0064B507 /* CoinAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		043CAD862C4E419E0064B507 /* CoinAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAppTests.swift; sourceTree = "<group>"; };
 		045F212F2C4662880080F7FA /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		0462627D2C3EBA4E00B70BCC /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHelper.swift; sourceTree = "<group>"; };
 		0464D1732C2D00BF002EBE45 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -97,6 +110,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		043CAD812C4E419E0064B507 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -104,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				0431BBD82C2065F00045AF95 /* CoinApp */,
+				043CAD852C4E419E0064B507 /* CoinAppTests */,
 				0431BBD72C2065F00045AF95 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				0431BBD62C2065F00045AF95 /* CoinApp.app */,
+				043CAD842C4E419E0064B507 /* CoinAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,6 +207,14 @@
 				04ED11E42C3AC9C9004750BF /* CoinBookmarkTVCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		043CAD852C4E419E0064B507 /* CoinAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				043CAD862C4E419E0064B507 /* CoinAppTests.swift */,
+			);
+			path = CoinAppTests;
 			sourceTree = "<group>";
 		};
 		046EFD422C4126B700051AEC /* Extension */ = {
@@ -280,6 +310,24 @@
 			productReference = 0431BBD62C2065F00045AF95 /* CoinApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		043CAD832C4E419E0064B507 /* CoinAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 043CAD8C2C4E419E0064B507 /* Build configuration list for PBXNativeTarget "CoinAppTests" */;
+			buildPhases = (
+				043CAD802C4E419E0064B507 /* Sources */,
+				043CAD812C4E419E0064B507 /* Frameworks */,
+				043CAD822C4E419E0064B507 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				043CAD892C4E419E0064B507 /* PBXTargetDependency */,
+			);
+			name = CoinAppTests;
+			productName = CoinAppTests;
+			productReference = 043CAD842C4E419E0064B507 /* CoinAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -292,6 +340,10 @@
 				TargetAttributes = {
 					0431BBD52C2065F00045AF95 = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					043CAD832C4E419E0064B507 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 0431BBD52C2065F00045AF95;
 					};
 				};
 			};
@@ -312,6 +364,7 @@
 			projectRoot = "";
 			targets = (
 				0431BBD52C2065F00045AF95 /* CoinApp */,
+				043CAD832C4E419E0064B507 /* CoinAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -324,6 +377,13 @@
 				0431BBE32C2065F20045AF95 /* Assets.xcassets in Resources */,
 				0431BBE62C2065F20045AF95 /* Base in Resources */,
 				0431BBE12C2065F00045AF95 /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		043CAD822C4E419E0064B507 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +430,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		043CAD802C4E419E0064B507 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				043CAD872C4E419E0064B507 /* CoinAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		043CAD892C4E419E0064B507 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0431BBD52C2065F00045AF95 /* CoinApp */;
+			targetProxy = 043CAD882C4E419E0064B507 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0431BBDF2C2065F00045AF95 /* Main.storyboard */ = {
@@ -567,6 +643,40 @@
 			};
 			name = Release;
 		};
+		043CAD8A2C4E419E0064B507 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.codegrove.CoinAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoinApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CoinApp";
+			};
+			name = Debug;
+		};
+		043CAD8B2C4E419E0064B507 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.codegrove.CoinAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoinApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CoinApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -584,6 +694,15 @@
 			buildConfigurations = (
 				0431BBEB2C2065F20045AF95 /* Debug */,
 				0431BBEC2C2065F20045AF95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		043CAD8C2C4E419E0064B507 /* Build configuration list for PBXNativeTarget "CoinAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				043CAD8A2C4E419E0064B507 /* Debug */,
+				043CAD8B2C4E419E0064B507 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
