@@ -9,7 +9,7 @@ import UIKit
 
 // UITextField
 extension UITextField {
-    static func createTextField(fontSize: CGFloat, placeholder: String, placeholderFontSize: CGFloat, isSecure: Bool) -> UITextField {
+    static func createTextField(fontSize: CGFloat, placeholder: String, placeholderFontSize: CGFloat, isSecure: Bool, testIdentifiler: String) -> UITextField {
         let textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: fontSize)
         textField.attributedPlaceholder = NSAttributedString(
@@ -21,6 +21,7 @@ extension UITextField {
         textField.leftViewMode = .always
         textField.autocapitalizationType = .none
         textField.isSecureTextEntry = isSecure
+        textField.accessibilityIdentifier = testIdentifiler
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }

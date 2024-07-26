@@ -13,27 +13,27 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
     // 닉네임
     private let nickNameLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "닉네임", align: .left)
-    private let nickNameTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "2자이상 입력해주세요.", placeholderFontSize: 14, isSecure: false)
+    private let nickNameTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "2자이상 입력해주세요.", placeholderFontSize: 14, isSecure: false, testIdentifiler: "signUpNickname")
     private let nickNameErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
     
     // 아이디
     private let idLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "아이디", align: .left)
-    private let idTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "영문 숫자 조합 6자 이상.", placeholderFontSize: 14, isSecure: false)
+    private let idTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "영문 숫자 조합 6자 이상.", placeholderFontSize: 14, isSecure: false, testIdentifiler: "signUpID")
     private let idErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
     
     // 비밀번호
     private let passwordLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "비밀번호", align: .left)
-    private let passwordTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "영어 소문자, 대문자, 특수기호 포함 8자 이상.", placeholderFontSize: 14, isSecure: true)
+    private let passwordTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "영어 소문자, 대문자, 특수기호 포함 8자 이상.", placeholderFontSize: 14, isSecure: true, testIdentifiler: "signUpPW")
     private let passwordErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
     
     // 비밀번호 확인
     private let passwordCheckLabel: UILabel = UILabel.createLabel(fontSize: 16, fontWeight: .bold, textColor: .gray, text: "비밀번호 확인", align: .left)
-    private let passwordCheckTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "비밀번호를 다시 입력해주세요.", placeholderFontSize: 14, isSecure: true)
+    private let passwordCheckTF: UITextField = UITextField.createTextField(fontSize: 16, placeholder: "비밀번호를 다시 입력해주세요.", placeholderFontSize: 14, isSecure: true, testIdentifiler: "signUpPWCheck")
     private let passwordCheckErrorMessage: UILabel = UILabel.errorLabel(fontSize: 12, textColor: .red, text: "")
     
     // Submit Btn
     private let submitButton: UIButton = {
-        UIButton.submitButton(title: "가입하기", backgroundColor: .systemBlue, foregroundColor: .white)
+        UIButton.submitButton(title: "가입하기", backgroundColor: .systemBlue, foregroundColor: .white, testIdentifiler: "signUpSubmitBtn")
     }()
     
     

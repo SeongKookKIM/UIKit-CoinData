@@ -28,25 +28,19 @@ class LoginViewController: UIViewController {
     }()
     
     private lazy var idTF: UITextField = {
-        let textField = UITextField.createTextField(fontSize: 16, placeholder: "아이디를 입력해주세요.", placeholderFontSize: 14, isSecure: false)
-        textField.accessibilityIdentifier = "usernameTextField" // Accessibility Identifier 설정
-        return textField
+        return UITextField.createTextField(fontSize: 16, placeholder: "아이디를 입력해주세요.", placeholderFontSize: 14, isSecure: false, testIdentifiler: "usernameTextField")
     }()
     
     private let passwordTF: UITextField = {
-        let textField = UITextField.createTextField(fontSize: 16, placeholder: "비밀번호를 입력해주세요.", placeholderFontSize: 14, isSecure: true)
-        textField.accessibilityIdentifier = "passwordTextField" // Accessibility Identifier 설정
-        return textField
+        return UITextField.createTextField(fontSize: 16, placeholder: "비밀번호를 입력해주세요.", placeholderFontSize: 14, isSecure: true, testIdentifiler: "passwordTextField")
     }()
     
     private let loginButton: UIButton = {
-        let button = UIButton.createButton(title: "로그인", backgroundColor: .blue, foregroundColor: .white)
-        button.accessibilityIdentifier = "loginButton" // Accessibility Identifier 설정
-        return button
+        return UIButton.createButton(title: "로그인", backgroundColor: .blue, foregroundColor: .white, testIdentifiler: "loginButton")
     }()
     
     private let signButton: UIButton = {
-        return UIButton.createButton(title: "회원가입", backgroundColor: .systemBlue, foregroundColor: .white)
+        return UIButton.createButton(title: "회원가입", backgroundColor: .systemBlue, foregroundColor: .white, testIdentifiler: "signUpButton")
     }()
     
     // tap 제스처

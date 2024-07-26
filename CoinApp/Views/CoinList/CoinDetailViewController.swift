@@ -51,7 +51,7 @@ class CoinDetailViewController: UIViewController {
     }()
     
     private let bookmarkButton: UIButton = {
-        return UIButton.createButton(title: "북마크 추가하기", backgroundColor: .systemBlue, foregroundColor: .white)
+        return UIButton.createButton(title: "북마크 추가하기", backgroundColor: .systemBlue, foregroundColor: .white, testIdentifiler: "addBookmarkBtn")
     }()
     
     

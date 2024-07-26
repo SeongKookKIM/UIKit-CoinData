@@ -20,6 +20,17 @@ final class CoinAppUITests: XCTestCase {
 
         app.launch()
     }
+    
+    // 회원가입 테스트
+    func testSignUp() throws {
+        let loginButton = app.buttons["User"]
+        XCTAssertTrue(loginButton.waitForExistence(timeout: 5))
+        loginButton.tap()
+        
+        let signUpButton = app.buttons["signUpButton"]
+        signUpButton.tap()
+        
+    }
 
     // 로그인 테스트
     func testLoginFlow() throws {
@@ -62,4 +73,10 @@ final class CoinAppUITests: XCTestCase {
 
         XCTAssertTrue(exists, "Failed to navigate to CoinListView after login")
     }
+    
+
+    
+    // 북마크 테스트
+    
+    // 
 }

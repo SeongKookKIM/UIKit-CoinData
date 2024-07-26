@@ -31,17 +31,17 @@ class MyPageViewController: UIViewController {
     
     // Logout Btn
     private let logoutButton: UIButton = {
-        return UIButton.createButton(title: "로그아웃", backgroundColor: .systemBlue, foregroundColor: .white)
+        return UIButton.createButton(title: "로그아웃", backgroundColor: .systemBlue, foregroundColor: .white, testIdentifiler: "logoutBtn")
     }()
     
     // 회원정보 수정 Btn
     private let editButton: UIButton = {
-        return UIButton.createButton(title: "정보수정", backgroundColor: .systemGray, foregroundColor: .white)
+        return UIButton.createButton(title: "정보수정", backgroundColor: .systemGray, foregroundColor: .white, testIdentifiler: "editProfileBtn")
     }()
     
     // 탈퇴 Btn
     private let withdrawButton: UIButton = {
-        return UIButton.createButton(title: "탈퇴하기", backgroundColor: .systemRed, foregroundColor: .white)
+        return UIButton.createButton(title: "탈퇴하기", backgroundColor: .systemRed, foregroundColor: .white, testIdentifiler: "withdrawBtn")
     }()
     
     // ViewDidLoad

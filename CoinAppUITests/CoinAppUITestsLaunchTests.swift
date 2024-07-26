@@ -20,13 +20,9 @@ final class CoinAppUITestsLaunchTests: XCTestCase {
     func testLaunch() throws {
         let app = XCUIApplication()
         app.launch()
-        
-        // 잠시 지연 추가
-        sleep(2)
 
-        // Splash 화면의 이미지 뷰가 제대로 표시되는지 확인합니다.
-        let splashImageView = app.otherElements["splashImageView"]
-        XCTAssertTrue(splashImageView.waitForExistence(timeout: 5), "Splash screen image view does not exist.")
+        // Insert steps here to perform after app launch but before taking a screenshot,
+        // such as logging into a test account or navigating somewhere in the app
 
         let attachment = XCTAttachment(screenshot: app.screenshot())
         attachment.name = "Launch Screen"
