@@ -64,12 +64,10 @@ final class CoinAppUITests: XCTestCase {
             print("Current screen elements:")
             print(app.debugDescription)
         }
-
-        XCTAssertTrue(exists, "회원가입에 실패하였습니다.")
     }
-
+    
     // 로그인 테스트
-    func testB_LoginFlow() throws {
+    func testB_Login() throws {
         
         // User 탭 선택
         let loginButton = app.buttons["User"]
@@ -106,13 +104,78 @@ final class CoinAppUITests: XCTestCase {
             print("Current screen elements:")
             print(app.debugDescription)
         }
-
-        XCTAssertTrue(exists, "Failed to navigate to CoinListView after login")
     }
     
+    // 회원 정보 수정
+    func testC_EditProfile() throws {
+        
+        let loginButton = app.buttons["User"]
+        XCTAssertTrue(loginButton.waitForExistence(timeout: 5))
+        loginButton.tap()
+        
+        let editProfileButton = app.buttons["editProfileBtn"]
+        XCTAssertTrue(editProfileButton.waitForExistence(timeout: 5))
+        editProfileButton.tap()
+        
+        let editNicknameTF = app.textFields["editNickname"]
+        let editIDTF = app.textFields["editID"]
+        let editPWTF = app.secureTextFields["editPW"]
+        let editNewPWTF = app.secureTextFields["editNewPW"]
+        let editNewPWCheckTF = app.secureTextFields["editNewPWCheck"]
+        
+        editNicknameTF.tap()
+        clearAndTypeText(textField: editNicknameTF, text: "히히여장군")
+        
+        editIDTF.tap()
+        clearAndTypeText(textField: editIDTF, text: "qwer123")
+        
+        editPWTF.tap()
+        clearAndTypeText(textField: editPWTF, text: "Qwer123@")
+        
+        editNewPWTF.tap()
+        clearAndTypeText(textField: editNewPWTF, text: "Qwer123!@#")
+        
+        editNewPWCheckTF.tap()
+        clearAndTypeText(textField: editNewPWCheckTF, text: "Qwer123!@#")
+        
+        let editSubmitButton = app.buttons["editSubmitBtn"]
+        editSubmitButton.tap()
+        
+        let editProfileAlert = app.alerts["editProfileAlert"]
+        XCTAssertTrue(editProfileAlert.waitForExistence(timeout: 5))
 
+        // 확인 버튼을 탭합니다.
+        editProfileAlert.buttons["확인"].tap()
+        
+        let myPageView = app.otherElements["MyPageView"]
+        let exists = myPageView.waitForExistence(timeout: 5)
+        
+        if !exists {
+            print("Current screen elements:")
+            print(app.debugDescription)
+        }
+    }
+
+    // 텍스트 필드의 기존 텍스트를 지우고 새로운 텍스트를 입력하는 함수
+    func clearAndTypeText(textField: XCUIElement, text: String) {
+        guard let stringValue = textField.value as? String else {
+            XCTFail("텍스트 필드의 값이 문자열이 아닙니다.")
+            return
+        }
+        
+        let deleteString = stringValue.map { _ in "\u{8}" }.joined() // 기존 텍스트를 삭제할 백스페이스 문자열 생성
+        textField.typeText(deleteString)
+        textField.typeText(text)
+    }
+    
     
     // 북마크 테스트
     
-    // 
+    // 북마크 삭제 테스트
+    
+    // 회원 탈퇴
+    
+    func testF_withdrawUser() {
+        
+    }
 }

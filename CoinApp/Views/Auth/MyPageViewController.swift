@@ -60,6 +60,7 @@ class MyPageViewController: UIViewController {
     private func setupUI() {
         self.title = "MYPAGE"
         self.view.backgroundColor = .white
+        self.view.accessibilityIdentifier = "MyPageView"
         
         self.view.addSubview(welcomeLabel)
         self.view.addSubview(userNameLabel)

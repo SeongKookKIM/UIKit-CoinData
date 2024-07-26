@@ -103,6 +103,10 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(newPasswordCheckErrorMessage)
         self.view.addSubview(editProfileBtn)
         
+        passwordTF.textContentType = .newPassword
+        newPasswordTF.textContentType = .newPassword
+        newPasswordCheckTF.textContentType = .newPassword
+        
         setupLayout()
     }
     
@@ -268,6 +272,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
             completion?()
         }
         alert.addAction(confirmBtn)
+        alert.view.accessibilityIdentifier = "editProfileAlert"
         self.present(alert, animated: true, completion: nil)
     }
     
