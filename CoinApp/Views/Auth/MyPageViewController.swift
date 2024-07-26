@@ -193,6 +193,7 @@ class MyPageViewController: UIViewController {
         }
         
         alert.addAction(confirmBtn)
+        alert.view.accessibilityIdentifier = "withdrawAlert"
         self.present(alert, animated: true, completion: nil)
     }
     

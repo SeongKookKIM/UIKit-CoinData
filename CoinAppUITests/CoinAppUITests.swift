@@ -176,6 +176,66 @@ final class CoinAppUITests: XCTestCase {
     // 회원 탈퇴
     
     func testF_withdrawUser() {
+        let userButton = app.buttons["User"]
+        XCTAssertTrue(userButton.waitForExistence(timeout: 5))
+        userButton.tap()
         
+        let withdrawButton = app.buttons["withdrawBtn"]
+        XCTAssertTrue(withdrawButton.waitForExistence(timeout: 5))
+        withdrawButton.tap()
+        
+        let withdrawAlert = app.alerts["withdrawAlert"]
+        XCTAssertTrue(withdrawAlert.waitForExistence(timeout: 5))
+        
+        // 취소 버튼 탭
+        withdrawAlert.buttons["취소"].tap()
+        
+        let myPageView = app.otherElements["MyPageView"]
+        let exists = myPageView.waitForExistence(timeout: 5)
+        
+        if !exists {
+            print("Current screen elements:")
+            print(app.debugDescription)
+        }
+        
+        // 확인 버튼 탭
+        withdrawButton.tap()
+        withdrawAlert.buttons["확인"].tap()
+        XCTAssertTrue(withdrawAlert.waitForExistence(timeout: 5))
+        withdrawAlert.buttons["확인"].tap()
+        
+        // 로그인 후 CoinListView로 이동했는지 확인합니다.
+        let coinListView = app.otherElements["CoinListView"]
+        let existsCoinListView = coinListView.waitForExistence(timeout: 10)
+        
+        if !existsCoinListView {
+            // 실패 시 더 자세한 정보를 얻기 위해 현재 화면의 요소들을 출력합니다.
+            print("Current screen elements:")
+            print(app.debugDescription)
+        }
+        
+        let loginUserButton = app.buttons["User"]
+        XCTAssertTrue(loginUserButton.waitForExistence(timeout: 5))
+        loginUserButton.tap()
+        
+        // 사용자 이름과 비밀번호를 입력합니다.
+        let usernameTextField = app.textFields["usernameTextField"]
+        let passwordSecureTextField = app.secureTextFields["passwordTextField"]
+
+        usernameTextField.tap()
+        usernameTextField.typeText("qwer123")
+
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText("Qwer123!@#")
+
+        // 로그인 버튼을 탭합니다.
+        let loginButton = app.buttons["loginButton"]
+        loginButton.tap()
+        
+        let loginAlert = app.alerts["loginAlert"]
+        XCTAssertTrue(loginAlert.waitForExistence(timeout: 10))
+
+        let alertMessage = loginAlert.staticTexts.element(boundBy: 1).label
+        XCTAssertEqual(alertMessage, "존재하지 않는 ID입니다.", "Unexpected alert message")
     }
 }
