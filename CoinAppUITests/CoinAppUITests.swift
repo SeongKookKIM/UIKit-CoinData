@@ -22,7 +22,7 @@ final class CoinAppUITests: XCTestCase {
     }
     
     // 회원가입 테스트
-    func testSignUp() throws {
+    func testA_SignUp() throws {
         let loginButton = app.buttons["User"]
         XCTAssertTrue(loginButton.waitForExistence(timeout: 5))
         loginButton.tap()
@@ -30,10 +30,46 @@ final class CoinAppUITests: XCTestCase {
         let signUpButton = app.buttons["signUpButton"]
         signUpButton.tap()
         
+        let nicknameTF = app.textFields["signUpNickname"]
+        let idTF = app.textFields["signUpID"]
+        let passwordTF = app.secureTextFields["signUpPW"]
+        let passwordCheckedTF = app.secureTextFields["signUpPWCheck"]
+        
+        nicknameTF.tap()
+        nicknameTF.typeText("히히여전사")
+        
+        idTF.tap()
+        idTF.typeText("qwer123")
+        
+        passwordTF.tap()
+        passwordTF.typeText("Qwer123@")
+        
+        passwordCheckedTF.tap()
+        passwordCheckedTF.typeText("Qwer123@")
+        
+        let submitButton = app.buttons["signUpSubmitBtn"]
+        submitButton.tap()
+        
+        let signUpAlert = app.alerts["signUpAlert"]
+        XCTAssertTrue(signUpAlert.waitForExistence(timeout: 5))
+
+        // 확인 버튼을 탭합니다.
+        signUpAlert.buttons["확인"].tap()
+        
+        let loginView = app.otherElements["LoginView"]
+        let exists = loginView.waitForExistence(timeout: 5)
+        
+        if !exists {
+            // 실패 시 더 자세한 정보를 얻기 위해 현재 화면의 요소들을 출력합니다.
+            print("Current screen elements:")
+            print(app.debugDescription)
+        }
+
+        XCTAssertTrue(exists, "회원가입에 실패하였습니다.")
     }
 
     // 로그인 테스트
-    func testLoginFlow() throws {
+    func testB_LoginFlow() throws {
         
         // User 탭 선택
         let loginButton = app.buttons["User"]
@@ -45,10 +81,10 @@ final class CoinAppUITests: XCTestCase {
         let passwordSecureTextField = app.secureTextFields["passwordTextField"]
 
         usernameTextField.tap()
-        usernameTextField.typeText("ksk8646")
+        usernameTextField.typeText("qwer123")
 
         passwordSecureTextField.tap()
-        passwordSecureTextField.typeText("Tlqkfdk2@")
+        passwordSecureTextField.typeText("Qwer123@")
 
         // 로그인 버튼을 탭합니다.
         let signInButton = app.buttons["loginButton"]

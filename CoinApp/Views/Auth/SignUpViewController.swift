@@ -91,6 +91,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(passwordCheckErrorMessage)
         self.view.addSubview(submitButton)
         
+        passwordTF.textContentType = .newPassword
+        passwordCheckTF.textContentType = .newPassword
+        
         setupLayout()
     }
     
@@ -230,6 +233,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             completion?()
         }
         alert.addAction(confirmBtn)
+        alert.view.accessibilityIdentifier = "signUpAlert"
         self.present(alert, animated: true, completion: nil)
     }
     
