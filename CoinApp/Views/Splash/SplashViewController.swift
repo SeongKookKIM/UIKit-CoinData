@@ -79,7 +79,7 @@ class SplashViewController: UIViewController {
             
             items[1].selectedImage = UIImage(systemName: "bookmark.fill")
             items[1].image = UIImage(systemName: "bookmark")
-            items[1].title = "Coin Bookmark"
+            items[1].title = "Coin Bookmark List"
             
             items[2].selectedImage = UIImage(systemName: "person.fill")
             items[2].image = UIImage(systemName: "person")

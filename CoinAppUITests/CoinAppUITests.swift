@@ -9,15 +9,15 @@ import XCTest
 @testable import CoinApp
 
 final class CoinAppUITests: XCTestCase {
-
+    
     let app = XCUIApplication()
-
+    
     override func setUpWithError() throws {
         continueAfterFailure = false
         
         // 앱 실행 시 TokenManager 초기화를 위한 launch argument 추가
         app.launchArguments.append("--uitesting")
-
+        
         app.launch()
     }
     
@@ -52,7 +52,7 @@ final class CoinAppUITests: XCTestCase {
         
         let signUpAlert = app.alerts["signUpAlert"]
         XCTAssertTrue(signUpAlert.waitForExistence(timeout: 5))
-
+        
         // 확인 버튼을 탭합니다.
         signUpAlert.buttons["확인"].tap()
         
@@ -73,17 +73,17 @@ final class CoinAppUITests: XCTestCase {
         let loginButton = app.buttons["User"]
         XCTAssertTrue(loginButton.waitForExistence(timeout: 5))
         loginButton.tap()
-
+        
         // 사용자 이름과 비밀번호를 입력합니다.
         let usernameTextField = app.textFields["usernameTextField"]
         let passwordSecureTextField = app.secureTextFields["passwordTextField"]
-
+        
         usernameTextField.tap()
         usernameTextField.typeText("qwer123")
-
+        
         passwordSecureTextField.tap()
         passwordSecureTextField.typeText("Qwer123@")
-
+        
         // 로그인 버튼을 탭합니다.
         let signInButton = app.buttons["loginButton"]
         signInButton.tap()
@@ -91,10 +91,10 @@ final class CoinAppUITests: XCTestCase {
         // 로그인 성공 후 나타나는 알림을 기다립니다.
         let loginAlert = app.alerts["loginAlert"]
         XCTAssertTrue(loginAlert.waitForExistence(timeout: 5))
-
+        
         // 확인 버튼을 탭합니다.
         loginAlert.buttons["확인"].tap()
-
+        
         // 로그인 후 CoinListView로 이동했는지 확인합니다.
         let coinListView = app.otherElements["CoinListView"]
         let exists = coinListView.waitForExistence(timeout: 10)
@@ -143,7 +143,7 @@ final class CoinAppUITests: XCTestCase {
         
         let editProfileAlert = app.alerts["editProfileAlert"]
         XCTAssertTrue(editProfileAlert.waitForExistence(timeout: 5))
-
+        
         // 확인 버튼을 탭합니다.
         editProfileAlert.buttons["확인"].tap()
         
@@ -155,7 +155,7 @@ final class CoinAppUITests: XCTestCase {
             print(app.debugDescription)
         }
     }
-
+    
     // 텍스트 필드의 기존 텍스트를 지우고 새로운 텍스트를 입력하는 함수
     func clearAndTypeText(textField: XCUIElement, text: String) {
         guard let stringValue = textField.value as? String else {
@@ -170,8 +170,50 @@ final class CoinAppUITests: XCTestCase {
     
     
     // 북마크 테스트
+    func testD_AddBookmark() {
+//        let coinListButton = app.buttons["Coin List"]
+//        XCTAssertTrue(coinListButton.waitForExistence(timeout: 5))
+//        coinListButton.tap()
+        
+        let firstCoinCell = app.tables.cells.element(boundBy: 0)
+        XCTAssertTrue(firstCoinCell.waitForExistence(timeout: 5))
+        firstCoinCell.tap()
+        
+        let addBookmarkButton = app.buttons["addBookmarkBtn"]
+        XCTAssertTrue(addBookmarkButton.waitForExistence(timeout: 5))
+        addBookmarkButton.tap()
+        
+        let bookmarkListButton = app.buttons["Coin Bookmark List"]
+        XCTAssertTrue(bookmarkListButton.waitForExistence(timeout: 5))
+        bookmarkListButton.tap()
+        
+        let bookmarkedCoinCell = app.tables.cells.element(boundBy: 0)
+        XCTAssertTrue(bookmarkedCoinCell.waitForExistence(timeout: 5))
+        
+        let bookmarkedCoinName = bookmarkedCoinCell.staticTexts["coinNameLabel"].label
+        XCTAssertEqual(bookmarkedCoinName, "Bitcoin")
+    }
     
     // 북마크 삭제 테스트
+    func testE_DeleteBookmark() {
+        let bookmarkListButton = app.buttons["Coin Bookmark List"]
+        XCTAssertTrue(bookmarkListButton.waitForExistence(timeout: 5))
+        bookmarkListButton.tap()
+
+        let firstBookmarkCell = app.tables.cells.element(boundBy: 0)
+        XCTAssertTrue(firstBookmarkCell.waitForExistence(timeout: 5))
+        
+        let coinNameBeforeDeletion = firstBookmarkCell.staticTexts["coinNameLabel"].label
+        
+        firstBookmarkCell.swipeLeft()
+        let deleteButton = firstBookmarkCell.buttons["Delete"]
+        XCTAssertTrue(deleteButton.waitForExistence(timeout: 5))
+        deleteButton.tap()
+
+        // 북마크 리스트 확인
+        let deletedCoinCell = app.tables.cells.staticTexts[coinNameBeforeDeletion]
+        XCTAssertFalse(deletedCoinCell.exists)
+    }
     
     // 회원 탈퇴
     
@@ -221,20 +263,20 @@ final class CoinAppUITests: XCTestCase {
         // 사용자 이름과 비밀번호를 입력합니다.
         let usernameTextField = app.textFields["usernameTextField"]
         let passwordSecureTextField = app.secureTextFields["passwordTextField"]
-
+        
         usernameTextField.tap()
         usernameTextField.typeText("qwer123")
-
+        
         passwordSecureTextField.tap()
         passwordSecureTextField.typeText("Qwer123!@#")
-
+        
         // 로그인 버튼을 탭합니다.
         let loginButton = app.buttons["loginButton"]
         loginButton.tap()
         
         let loginAlert = app.alerts["loginAlert"]
         XCTAssertTrue(loginAlert.waitForExistence(timeout: 10))
-
+        
         let alertMessage = loginAlert.staticTexts.element(boundBy: 1).label
         XCTAssertEqual(alertMessage, "존재하지 않는 ID입니다.", "Unexpected alert message")
     }
