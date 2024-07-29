@@ -171,27 +171,41 @@ final class CoinAppUITests: XCTestCase {
     
     // 북마크 테스트
     func testD_AddBookmark() {
-//        let coinListButton = app.buttons["Coin List"]
-//        XCTAssertTrue(coinListButton.waitForExistence(timeout: 5))
-//        coinListButton.tap()
+        // Coin List 탭으로 이동
+        let coinListButton = app.tabBars.buttons["Coin List"]
+        XCTAssertTrue(coinListButton.waitForExistence(timeout: 5))
+        coinListButton.tap()
         
+        // 첫 번째 코인 셀 선택
         let firstCoinCell = app.tables.cells.element(boundBy: 0)
         XCTAssertTrue(firstCoinCell.waitForExistence(timeout: 5))
+        
+        // 북마크 추가 전 코인 이름 저장
+        let coinNameBeforeBookmark = firstCoinCell.staticTexts["coinNameLabel"].label
+        
         firstCoinCell.tap()
         
+        // 북마크 추가 버튼 탭
         let addBookmarkButton = app.buttons["addBookmarkBtn"]
         XCTAssertTrue(addBookmarkButton.waitForExistence(timeout: 5))
         addBookmarkButton.tap()
         
-        let bookmarkListButton = app.buttons["Coin Bookmark List"]
+        // 북마크 추가 확인 알림 처리
+        let bookmarkAlert = app.alerts["bookmarkAlert"]
+        XCTAssertTrue(bookmarkAlert.waitForExistence(timeout: 5))
+        bookmarkAlert.buttons["확인"].tap()
+        
+        // Coin Bookmark List 탭으로 이동
+        let bookmarkListButton = app.tabBars.buttons["Coin Bookmark List"]
         XCTAssertTrue(bookmarkListButton.waitForExistence(timeout: 5))
         bookmarkListButton.tap()
         
+        // 북마크된 코인 확인
         let bookmarkedCoinCell = app.tables.cells.element(boundBy: 0)
         XCTAssertTrue(bookmarkedCoinCell.waitForExistence(timeout: 5))
         
         let bookmarkedCoinName = bookmarkedCoinCell.staticTexts["coinNameLabel"].label
-        XCTAssertEqual(bookmarkedCoinName, "Bitcoin")
+        XCTAssertEqual(bookmarkedCoinName, coinNameBeforeBookmark, "북마크된 코인이 예상과 다릅니다.")
     }
     
     // 북마크 삭제 테스트
