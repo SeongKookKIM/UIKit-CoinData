@@ -176,6 +176,7 @@ class CoinDetailViewController: UIViewController {
             completion?()
         }
         alert.addAction(confirmBtn)
+        alert.view.accessibilityIdentifier = "bookmarkAlert"
         self.present(alert, animated: true, completion: nil)
     }
     
