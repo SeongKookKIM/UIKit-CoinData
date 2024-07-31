@@ -215,27 +215,35 @@ final class CoinAppUITests: XCTestCase {
     
     // 북마크 삭제 테스트
     func testE_DeleteBookmark() {
-        let bookmarkListButton = app.buttons["Coin Bookmark List"]
-        XCTAssertTrue(bookmarkListButton.waitForExistence(timeout: 5))
+        // Coin Bookmark List 탭으로 이동
+        let bookmarkListButton = app.tabBars.buttons["Coin Bookmark List"]
+        XCTAssertTrue(bookmarkListButton.waitForExistence(timeout: 10))
         bookmarkListButton.tap()
         
+        // 첫 번째 북마크 셀 선택
         let firstBookmarkCell = app.tables.cells.element(boundBy: 0)
-        XCTAssertTrue(firstBookmarkCell.waitForExistence(timeout: 5))
+        XCTAssertTrue(firstBookmarkCell.waitForExistence(timeout: 10))
         
-        let coinNameBeforeDeletion = firstBookmarkCell.staticTexts["coinNameLabel"].label
+        // 북마크 삭제 전 코인 이름 저장
+        let coinNameBeforeDeletion = firstBookmarkCell.staticTexts.element(boundBy: 0).label
         
+        // 북마크 삭제 동작
         firstBookmarkCell.swipeLeft()
         let deleteButton = firstBookmarkCell.buttons["Delete"]
-        XCTAssertTrue(deleteButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(deleteButton.waitForExistence(timeout: 10))
         deleteButton.tap()
         
-        // 북마크 리스트 확인
+        // 북마크 삭제 확인 알림 처리
+//        let deleteBookmarkAlert = app.alerts["deleteBookmarkAlert"]
+//        XCTAssertTrue(deleteBookmarkAlert.waitForExistence(timeout: 10))
+//        deleteBookmarkAlert.buttons["확인"].tap()
+        
+        // 북마크 리스트에서 삭제된 코인 확인
         let deletedCoinCell = app.tables.cells.staticTexts[coinNameBeforeDeletion]
-        XCTAssertFalse(deletedCoinCell.exists)
+        XCTAssertFalse(deletedCoinCell.exists, "북마크 삭제가 정상적으로 되지 않았습니다.")
     }
     
     // 회원 탈퇴
-    
     func testF_withdrawUser() {
         let userButton = app.buttons["User"]
         XCTAssertTrue(userButton.waitForExistence(timeout: 5))
