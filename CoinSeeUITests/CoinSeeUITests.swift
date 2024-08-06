@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import CoinApp
+@testable import CoinSee
 
 final class CoinAppUITests: XCTestCase {
     

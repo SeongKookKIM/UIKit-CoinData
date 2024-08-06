@@ -14,7 +14,7 @@ class SplashViewController: UIViewController {
     
     // imageView
     private let imageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "CoinWatch_logo"))
+        let imageView = UIImageView(image: UIImage(named: "CoinLogo"))
         imageView.contentMode = .scaleAspectFit
         imageView.accessibilityIdentifier = "splashImageView"
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,7 @@ class SplashViewController: UIViewController {
     
     // setupUI
     private func setupUI() {
-        self.view.backgroundColor = UIColor(red: 172/255, green: 183/255, blue: 189/255, alpha: 1)
+        self.view.backgroundColor = UIColor(red: 189/255, green: 197/255, blue: 201/255, alpha: 1)
         
         view.addSubview(imageView)
         

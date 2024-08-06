@@ -20,8 +20,8 @@
 		043AEEF62C2BDD2D00B03ADA /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF52C2BDD2D00B03ADA /* AuthModel.swift */; };
 		043AEEF82C2BDD5E00B03ADA /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */; };
 		043AEEFA2C2BF49300B03ADA /* AutherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AEEF92C2BF49300B03ADA /* AutherService.swift */; };
-		043CADBD2C4E84050064B507 /* CoinAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CADBC2C4E84050064B507 /* CoinAppUITests.swift */; };
-		043CADBF2C4E84050064B507 /* CoinAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CADBE2C4E84050064B507 /* CoinAppUITestsLaunchTests.swift */; };
+		043CADBD2C4E84050064B507 /* CoinSeeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CADBC2C4E84050064B507 /* CoinSeeUITests.swift */; };
+		043CADBF2C4E84050064B507 /* CoinSeeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CADBE2C4E84050064B507 /* CoinSeeUITestsLaunchTests.swift */; };
 		045F21302C4662880080F7FA /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045F212F2C4662880080F7FA /* EditProfileViewModel.swift */; };
 		0462627E2C3EBA4E00B70BCC /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462627D2C3EBA4E00B70BCC /* ServiceHelper.swift */; };
 		0464D1742C2D00BF002EBE45 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464D1732C2D00BF002EBE45 /* LoginViewModel.swift */; };
@@ -59,7 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0431BBD62C2065F00045AF95 /* CoinApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0431BBD62C2065F00045AF95 /* CoinSee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinSee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0431BBD92C2065F00045AF95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0431BBDB2C2065F00045AF95 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0431BBDD2C2065F00045AF95 /* CoinListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewController.swift; sourceTree = "<group>"; };
@@ -74,9 +74,9 @@
 		043AEEF52C2BDD2D00B03ADA /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		043AEEF72C2BDD5E00B03ADA /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		043AEEF92C2BF49300B03ADA /* AutherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutherService.swift; sourceTree = "<group>"; };
-		043CADBA2C4E84050064B507 /* CoinAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		043CADBC2C4E84050064B507 /* CoinAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAppUITests.swift; sourceTree = "<group>"; };
-		043CADBE2C4E84050064B507 /* CoinAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		043CADBA2C4E84050064B507 /* CoinSeeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinSeeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		043CADBC2C4E84050064B507 /* CoinSeeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSeeUITests.swift; sourceTree = "<group>"; };
+		043CADBE2C4E84050064B507 /* CoinSeeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSeeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		045F212F2C4662880080F7FA /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		0462627D2C3EBA4E00B70BCC /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHelper.swift; sourceTree = "<group>"; };
 		0464D1732C2D00BF002EBE45 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 		046EFD4F2C45449500051AEC /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		047CF7F92C22C8B400C598FB /* CoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewController.swift; sourceTree = "<group>"; };
 		0490F2BD2C3571010068A9B5 /* CoinDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewModel.swift; sourceTree = "<group>"; };
-		0497888D2C34233C00E27138 /* CoinApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinApp.entitlements; sourceTree = "<group>"; };
+		0497888D2C34233C00E27138 /* CoinSee.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinSee.entitlements; sourceTree = "<group>"; };
 		04A890022C2AE64600E55EA4 /* MyCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinViewController.swift; sourceTree = "<group>"; };
 		04A890052C2AE75600E55EA4 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		04A890082C2AF64000E55EA4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -125,8 +125,8 @@
 		0431BBCD2C2065F00045AF95 = {
 			isa = PBXGroup;
 			children = (
-				0431BBD82C2065F00045AF95 /* CoinApp */,
-				043CADBB2C4E84050064B507 /* CoinAppUITests */,
+				0431BBD82C2065F00045AF95 /* CoinSee */,
+				043CADBB2C4E84050064B507 /* CoinSeeUITests */,
 				0431BBD72C2065F00045AF95 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -134,17 +134,17 @@
 		0431BBD72C2065F00045AF95 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0431BBD62C2065F00045AF95 /* CoinApp.app */,
-				043CADBA2C4E84050064B507 /* CoinAppUITests.xctest */,
+				0431BBD62C2065F00045AF95 /* CoinSee.app */,
+				043CADBA2C4E84050064B507 /* CoinSeeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0431BBD82C2065F00045AF95 /* CoinApp */ = {
+		0431BBD82C2065F00045AF95 /* CoinSee */ = {
 			isa = PBXGroup;
 			children = (
 				046EFD422C4126B700051AEC /* Extension */,
-				0497888D2C34233C00E27138 /* CoinApp.entitlements */,
+				0497888D2C34233C00E27138 /* CoinSee.entitlements */,
 				04EC378F2C299A0500EA1BDE /* Helper */,
 				04EC378C2C2991C600EA1BDE /* Service */,
 				0431BC242C208B4D0045AF95 /* Cell */,
@@ -157,7 +157,7 @@
 				0431BBE42C2065F20045AF95 /* LaunchScreen.storyboard */,
 				0431BBE72C2065F20045AF95 /* Info.plist */,
 			);
-			path = CoinApp;
+			path = CoinSee;
 			sourceTree = "<group>";
 		};
 		0431BBED2C2065FF0045AF95 /* App */ = {
@@ -211,13 +211,13 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		043CADBB2C4E84050064B507 /* CoinAppUITests */ = {
+		043CADBB2C4E84050064B507 /* CoinSeeUITests */ = {
 			isa = PBXGroup;
 			children = (
-				043CADBC2C4E84050064B507 /* CoinAppUITests.swift */,
-				043CADBE2C4E84050064B507 /* CoinAppUITestsLaunchTests.swift */,
+				043CADBC2C4E84050064B507 /* CoinSeeUITests.swift */,
+				043CADBE2C4E84050064B507 /* CoinSeeUITestsLaunchTests.swift */,
 			);
-			path = CoinAppUITests;
+			path = CoinSeeUITests;
 			sourceTree = "<group>";
 		};
 		046EFD422C4126B700051AEC /* Extension */ = {
@@ -293,9 +293,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0431BBD52C2065F00045AF95 /* CoinApp */ = {
+		0431BBD52C2065F00045AF95 /* CoinSee */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0431BBEA2C2065F20045AF95 /* Build configuration list for PBXNativeTarget "CoinApp" */;
+			buildConfigurationList = 0431BBEA2C2065F20045AF95 /* Build configuration list for PBXNativeTarget "CoinSee" */;
 			buildPhases = (
 				0431BBD22C2065F00045AF95 /* Sources */,
 				0431BBD32C2065F00045AF95 /* Frameworks */,
@@ -305,17 +305,17 @@
 			);
 			dependencies = (
 			);
-			name = CoinApp;
+			name = CoinSee;
 			packageProductDependencies = (
 				047CF7FC2C22D39A00C598FB /* DGCharts */,
 			);
 			productName = CoinApp;
-			productReference = 0431BBD62C2065F00045AF95 /* CoinApp.app */;
+			productReference = 0431BBD62C2065F00045AF95 /* CoinSee.app */;
 			productType = "com.apple.product-type.application";
 		};
-		043CADB92C4E84050064B507 /* CoinAppUITests */ = {
+		043CADB92C4E84050064B507 /* CoinSeeUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 043CADC22C4E84050064B507 /* Build configuration list for PBXNativeTarget "CoinAppUITests" */;
+			buildConfigurationList = 043CADC22C4E84050064B507 /* Build configuration list for PBXNativeTarget "CoinSeeUITests" */;
 			buildPhases = (
 				043CADB62C4E84050064B507 /* Sources */,
 				043CADB72C4E84050064B507 /* Frameworks */,
@@ -326,9 +326,9 @@
 			dependencies = (
 				043CADC12C4E84050064B507 /* PBXTargetDependency */,
 			);
-			name = CoinAppUITests;
+			name = CoinSeeUITests;
 			productName = CoinAppUITests;
-			productReference = 043CADBA2C4E84050064B507 /* CoinAppUITests.xctest */;
+			productReference = 043CADBA2C4E84050064B507 /* CoinSeeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -350,7 +350,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0431BBD12C2065F00045AF95 /* Build configuration list for PBXProject "CoinApp" */;
+			buildConfigurationList = 0431BBD12C2065F00045AF95 /* Build configuration list for PBXProject "CoinSee" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -366,8 +366,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0431BBD52C2065F00045AF95 /* CoinApp */,
-				043CADB92C4E84050064B507 /* CoinAppUITests */,
+				0431BBD52C2065F00045AF95 /* CoinSee */,
+				043CADB92C4E84050064B507 /* CoinSeeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -437,8 +437,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				043CADBD2C4E84050064B507 /* CoinAppUITests.swift in Sources */,
-				043CADBF2C4E84050064B507 /* CoinAppUITestsLaunchTests.swift in Sources */,
+				043CADBD2C4E84050064B507 /* CoinSeeUITests.swift in Sources */,
+				043CADBF2C4E84050064B507 /* CoinSeeUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,7 +447,7 @@
 /* Begin PBXTargetDependency section */
 		043CADC12C4E84050064B507 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0431BBD52C2065F00045AF95 /* CoinApp */;
+			target = 0431BBD52C2065F00045AF95 /* CoinSee */;
 			targetProxy = 043CADC02C4E84050064B507 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -596,12 +596,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = CoinApp/CoinApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CoinSee/CoinSee.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VUW56J5QC2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CoinApp/Info.plist;
+				INFOPLIST_FILE = CoinSee/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -625,12 +625,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = CoinApp/CoinApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CoinSee/CoinSee.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VUW56J5QC2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CoinApp/Info.plist;
+				INFOPLIST_FILE = CoinSee/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -684,7 +684,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0431BBD12C2065F00045AF95 /* Build configuration list for PBXProject "CoinApp" */ = {
+		0431BBD12C2065F00045AF95 /* Build configuration list for PBXProject "CoinSee" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0431BBE82C2065F20045AF95 /* Debug */,
@@ -693,7 +693,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0431BBEA2C2065F20045AF95 /* Build configuration list for PBXNativeTarget "CoinApp" */ = {
+		0431BBEA2C2065F20045AF95 /* Build configuration list for PBXNativeTarget "CoinSee" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0431BBEB2C2065F20045AF95 /* Debug */,
@@ -702,7 +702,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		043CADC22C4E84050064B507 /* Build configuration list for PBXNativeTarget "CoinAppUITests" */ = {
+		043CADC22C4E84050064B507 /* Build configuration list for PBXNativeTarget "CoinSeeUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				043CADC32C4E84050064B507 /* Debug */,
