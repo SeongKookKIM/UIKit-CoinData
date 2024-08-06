@@ -84,7 +84,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
     // setupUI
     private func setupUI() {
         self.title = "회원정보 수정"
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemBackground
         
         self.view.addSubview(nickNameLabel)
         self.view.addSubview(nickNameTF)
@@ -234,7 +234,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
     private func setupNavigationBar() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .white
+        appearance.backgroundColor = .systemBackground
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance

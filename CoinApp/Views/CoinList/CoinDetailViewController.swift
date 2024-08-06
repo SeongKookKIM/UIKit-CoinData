@@ -87,7 +87,7 @@ class CoinDetailViewController: UIViewController {
     // UI Upadate
     private func setupUI() {
         
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemBackground
         
         coinTitleLabel.text = coindata.name
         currentPriceLabel.text = "\(coindata.quotes.krw.price.priceInt())원"
@@ -200,9 +200,9 @@ class CoinDetailViewController: UIViewController {
         // 기본 문구 폰트
         self.myBarChartView.noDataFont = .systemFont(ofSize: 26)
         // 기본 문구 색상
-        self.myBarChartView.noDataTextColor = .black
+        self.myBarChartView.noDataTextColor = .systemBackground
         // 차트 기본 뒷 배경색
-        self.myBarChartView.backgroundColor = .white
+        self.myBarChartView.backgroundColor = .systemBackground
         // 구분값 보이기
         self.myBarChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dayData)
         // 구분값 모두 보이기

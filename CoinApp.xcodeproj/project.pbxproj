@@ -599,6 +599,7 @@
 				CODE_SIGN_ENTITLEMENTS = CoinApp/CoinApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VUW56J5QC2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoinApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -627,6 +628,7 @@
 				CODE_SIGN_ENTITLEMENTS = CoinApp/CoinApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VUW56J5QC2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoinApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

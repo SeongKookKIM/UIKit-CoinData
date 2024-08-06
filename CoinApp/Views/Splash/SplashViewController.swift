@@ -94,6 +94,7 @@ class SplashViewController: UIViewController {
         
         UITabBar.appearance().tintColor = selectedColor
         UITabBar.appearance().unselectedItemTintColor = unselectedColor
+        UITabBar.appearance().backgroundColor = .systemBackground
         
         window.rootViewController = tabBarController
         UIView.transition(with: window, duration: 0.7, options: .transitionCrossDissolve, animations: nil, completion: nil)

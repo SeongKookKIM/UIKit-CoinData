@@ -70,7 +70,7 @@ class LoginViewController: UIViewController {
     private func setupUI() {
         self.view.accessibilityIdentifier = "LoginView"
         
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemBackground
         self.view.addSubview(loginTitleLabel)
         self.view.addSubview(loginStack)
         

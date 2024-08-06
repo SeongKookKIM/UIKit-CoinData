@@ -66,7 +66,7 @@ class MyCoinViewController: UIViewController {
     // UI Update
     private func setupUI() {
         self.title = "Coin Bookmark List"
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemBackground
         
         tableView.delegate = self
         tableView.dataSource = self

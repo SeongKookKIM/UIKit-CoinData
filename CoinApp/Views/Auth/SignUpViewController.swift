@@ -74,7 +74,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     //setupUI
     private func setupUI() {
         self.title = "회원가입"
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemBackground
 
         
         self.view.addSubview(nickNameLabel)
@@ -113,7 +113,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     private func setupNavigationBar() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .white
+        appearance.backgroundColor = .systemBackground
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
