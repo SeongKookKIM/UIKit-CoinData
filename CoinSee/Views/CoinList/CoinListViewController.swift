@@ -181,6 +181,8 @@ class CoinListViewController: UIViewController, UISearchResultsUpdating {
     private func setupBarButtonItem() {
         let image = UIImage(systemName: "arrow.clockwise")
         let updateDataButton = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(handlerUpdateData))
+        updateDataButton.tintColor = UIColor(named: "TabBarColor")
+                
         self.navigationItem.rightBarButtonItem = updateDataButton
     }
     

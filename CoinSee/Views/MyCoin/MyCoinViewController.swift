@@ -187,6 +187,7 @@ class MyCoinViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
                                                                  target: self,
                                                                  action: #selector(handlerDelete))
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "TabBarColor")
     }
     
     @objc func handlerDelete() {
