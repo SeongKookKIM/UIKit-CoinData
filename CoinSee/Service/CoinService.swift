@@ -49,14 +49,14 @@ struct CoinService {
     
     func fetchAddBookmark(addBookMark: BookmarkData) async throws -> BookmarkMessageModel {
         let body = try JSONEncoder().encode(addBookMark)
-        let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/coin/add/bookmark", method: "POST", body: body)
+        let request = try serviceHelper.createRequest(urlString: "https://coinsee-back.vercel.app/coin/add/bookmark", method: "POST", body: body)
         return try await serviceHelper.sendRequest(request)
     }
     
     // Check Bookmark
     func fetchUserBookmark(userInfo: BookmarkData) async throws -> [String] {
         let body = try JSONEncoder().encode(userInfo)
-        let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/coin/get/bookmark", method: "POST", body: body)
+        let request = try serviceHelper.createRequest(urlString: "https://coinsee-back.vercel.app/coin/get/bookmark", method: "POST", body: body)
         return try await serviceHelper.sendRequest(request)
     }
     
@@ -64,7 +64,7 @@ struct CoinService {
     // Delete Bookmark
     func fetchDeleteBookmark(data: BookmarkData) async throws -> [String] {
         let body = try JSONEncoder().encode(data)
-        let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/coin/delete/bookmark", method: "POST", body: body)
+        let request = try serviceHelper.createRequest(urlString: "https://coinsee-back.vercel.app/coin/delete/bookmark", method: "POST", body: body)
         return try await serviceHelper.sendRequest(request)
     }
 }

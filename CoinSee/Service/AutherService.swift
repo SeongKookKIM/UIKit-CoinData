@@ -15,13 +15,13 @@ class AuthService {
     
     // signUp Server
     func signUpService(userSignInfo: UserSignUpModel) async throws -> SignUpResultModel {
-        let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/auth/signUp", method: "POST", body: try JSONEncoder().encode(userSignInfo))
+        let request = try serviceHelper.createRequest(urlString: "https://coinsee-back.vercel.app/auth/signUp", method: "POST", body: try JSONEncoder().encode(userSignInfo))
         return try await serviceHelper.sendRequest(request)
     }
     
     // Login Server
     func loginService(loginInfo: UserLoginModel) async throws -> LoginResultModel {
-        let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/auth/login", method: "POST", body: try JSONEncoder().encode(loginInfo))
+        let request = try serviceHelper.createRequest(urlString: "https://coinsee-back.vercel.app/auth/login", method: "POST", body: try JSONEncoder().encode(loginInfo))
         let result: LoginResultModel = try await serviceHelper.sendRequest(request)
         
         if result.isSuccess, let accessToken = result.accessToken, let refreshToken = result.refreshToken {
@@ -41,7 +41,7 @@ class AuthService {
             return UserModel(isLogin: false, nickName: nil, id: nil, accessToken: nil, refreshToken: nil)
         }
         
-        var request = try serviceHelper.createRequest(urlString: "http://localhost:8080/auth/loginCheck", method: "POST")
+        var request = try serviceHelper.createRequest(urlString: "https://coinsee-back.vercel.app/auth/loginCheck", method: "POST")
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Refresh-Token")
         
@@ -50,13 +50,13 @@ class AuthService {
     
     // Logout
     func logoutService(userInfo: UserModel) async throws -> WithdrawResultModel {
-        let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/auth/withdraw", method: "POST", body: try JSONEncoder().encode(userInfo))
+        let request = try serviceHelper.createRequest(urlString: "https://coinsee-back.vercel.app/auth/withdraw", method: "POST", body: try JSONEncoder().encode(userInfo))
         return try await serviceHelper.sendRequest(request)
     }
     
     // EditProfile
     func userEditProfileService(userEditProfileInfo: EditProfileModel) async throws -> EditProfileResultModel {
-        let request = try serviceHelper.createRequest(urlString: "http://localhost:8080/auth/editProfile", method: "POST", body: try JSONEncoder().encode(userEditProfileInfo))
+        let request = try serviceHelper.createRequest(urlString: "https://coinsee-back.vercel.app/auth/editProfile", method: "POST", body: try JSONEncoder().encode(userEditProfileInfo))
         return try await serviceHelper.sendRequest(request)
     }
 }
