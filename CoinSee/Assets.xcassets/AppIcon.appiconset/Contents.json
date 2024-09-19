@@ -78,12 +78,14 @@
       "size" : "64x64"
     },
     {
+      "filename" : "192.jpeg",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",
       "size" : "64x64"
     },
     {
+      "filename" : "136.jpeg",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
