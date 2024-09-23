@@ -1,10 +1,6 @@
 # CoinData App - 실시간 코인 가격 조회
 
-<p align="center">
-  <video src="https://sam-blog-image.s3.ap-northeast-2.amazonaws.com/CoinSeeVideo.mp4" controls="controls" width="200">
-    Your browser does not support the video tag.
-  </video>
-</p>
+시연영상 URL: https://sam-blog-image.s3.ap-northeast-2.amazonaws.com/CoinSeeVideo.mp4
 
 <br/>
 이 프로젝트는 코인 API를 활용하여 실시간으로 다양한 암호화폐의 가격 변동을 시각적으로 확인할 수 있는 플랫폼입니다. 사용자들은 간편하게 원하는 코인을 검색하고, 직관적인 그래프 UI를 통해 실시간 가격 추이를 확인할 수 있습니다. 로그인한 사용자는 자신만의 관심 코인을 북마크하여 편리하게 관리할 수 있습니다.
