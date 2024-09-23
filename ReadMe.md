@@ -1,9 +1,16 @@
 # CoinData App - 실시간 코인 가격 조회
 
+<p align="center">
+  <video src="https://sam-blog-image.s3.ap-northeast-2.amazonaws.com/CoinSeeVideo.mp4" controls="controls" width="200">
+    Your browser does not support the video tag.
+  </video>
+</p>
+
+<br/>
 이 프로젝트는 코인 API를 활용하여 실시간으로 다양한 암호화폐의 가격 변동을 시각적으로 확인할 수 있는 플랫폼입니다. 사용자들은 간편하게 원하는 코인을 검색하고, 직관적인 그래프 UI를 통해 실시간 가격 추이를 확인할 수 있습니다. 로그인한 사용자는 자신만의 관심 코인을 북마크하여 편리하게 관리할 수 있습니다.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2fb263d9-84f9-4731-8e20-cb34a18ea882" alt="이미지1 설명" width="200" />
+  <img src="https://github.com/user-attachments/assets/3ee3e83d-1c7d-4e49-86ec-a4ebd615b4da" alt="이미지1 설명" width="200" />
 </p>
 - 간편한 검색: 다양한 코인을 빠르게 검색하여 실시간 가격을 확인할 수 있습니다.
 
@@ -19,8 +26,9 @@
 <br/>
 <br/>
 <br/>
+
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/3ee3e83d-1c7d-4e49-86ec-a4ebd615b4da" alt="이미지1 설명" width="200" />
+  <img src="https://github.com/user-attachments/assets/2fb263d9-84f9-4731-8e20-cb34a18ea882" alt="이미지1 설명" width="200" />
 </p>
 - 개인 맞춤 북마크: 로그인한 사용자는 관심 있는 코인을 북마크하여 언제든지 빠르게 확인할 수 있습니다.
 
